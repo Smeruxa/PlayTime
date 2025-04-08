@@ -6,7 +6,7 @@
 
 int main() {
     setlocale(LC_ALL, "ru");
-    Server server("92.53.107.231", 8653);
+    Server server("000.000.000.000", 0000);
 
     Play play;
     play.play_received(&server);
