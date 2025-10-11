@@ -66,6 +66,8 @@
 
 ## ⚙️**Разработчики**
 
+**Главный разработчик (Fullstack)** — Smeruxa
+
 **Тестировщики:** Smeruxa, sonlug, Davidik237.
 
 **Sound Designer** — Davidik237.
