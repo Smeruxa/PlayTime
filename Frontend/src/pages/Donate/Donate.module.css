@@ -1,0 +1,42 @@
+@import "../../colors.css";
+
+.body {
+    background-color: var(--bg);
+    width: 100vw;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.donateWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.body span {
+    font-size: 5vw;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--text), var(--secondary-text), var(--text));
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 10s ease infinite;
+}
+
+.backIcon {
+    margin-right: 16px;
+    color: var(--text);
+    transition: transform 0.2s;
+}
+
+.backIcon:hover {
+    transform: translateX(-4px);
+}

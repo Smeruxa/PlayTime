@@ -1,0 +1,23 @@
+$backgroundColor: #d4fce4;
+$backgroundColorSelection: #d4fce4;
+$boxShadow: #c1e6d0;
+$boxShadow-hover: #c1e6d0;
+
+@mixin size($width: null, $height: $width) {
+    width: $width;
+    height: $height;
+}
+%reset {
+    margin: 0;
+    padding: 0;
+}
+%flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}

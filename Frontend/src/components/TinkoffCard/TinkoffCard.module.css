@@ -1,0 +1,50 @@
+@import "../../colors.css";
+
+.tinkoffCard {
+    color: var(--text);
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.tinkoffTitle {
+    font-size: 2.5vw;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tinkoffContent {
+    display: flex;
+    align-items: center;
+}
+
+.tinkoffLogo {
+    width: 40px;
+    height: 50px;
+    margin-right: 12px;
+    position: relative;
+}
+
+.shield {
+    width: 100%;
+    height: 100%;
+    background: gold;
+    clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+    position: relative;
+}
+
+.stripe {
+    position: absolute;
+    width: 100%;
+    height: 33%;
+}
+
+.stripe1 { top: 0; background: rgb(255, 255, 255); }
+.stripe2 { top: 33%; background: rgb(0, 17, 255); }
+.stripe3 { top: 66%; background: rgb(255, 0, 0); }
+
+.tinkoffNumber {
+    font-weight: 600;
+    font-size: 4vw;
+}

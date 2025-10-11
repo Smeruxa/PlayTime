@@ -1,0 +1,64 @@
+@import "../../colors.css";
+
+.body {
+    background-color: var(--third-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 16px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.img {
+    border-radius: 50%;
+    width: 3vw;
+    height: 3vw;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.name {
+    font-size: 1.5vw;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.lastMessage {
+    font-size: 1vw;
+    font-weight: 400;
+    color: var(--quite-text);
+    width: 12vw;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.cursorBall {
+    position: absolute;
+    pointer-events: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
+                0 0 40px rgba(255, 255, 255, 0.05),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, background 0.2s ease;
+    z-index: 0;
+}

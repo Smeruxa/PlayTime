@@ -1,0 +1,24 @@
+:root {
+    --bg: #161616;
+    --secondary-bg: #222222;
+    --third-bg: #2a2a2a;
+    --active-bg: #6b6b6b;
+    --border: #3a3a3a;
+
+    --text: #fdfdfd;
+    --secondary-text: #6863fd;
+    --quite-text: #9b9b9b;
+    --icons: #b8b8b8;
+    --icons-hover: #fdfdfd;
+    --icons-active: #6863fd;
+
+    --font-s1: 1vw;
+    --font-s2: 2vw;
+    --font-s3: 3vw;
+    --font-s4: 4vw;
+    --font-s5: 5vw;
+    --font-s6: 6vw;
+
+    --modal-bg: rgb(22, 22, 22);
+    --modal-secondary-bg: rgb(15, 15, 15);
+}

@@ -1,0 +1,8 @@
+.users {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+    padding: 0px 12px;
+    gap: 10px;
+    width: 100%;
+}

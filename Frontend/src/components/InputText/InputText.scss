@@ -1,0 +1,222 @@
+// Colors
+$backgroundColor: #d4fce4;
+$backgroundColorSelection: #d4fce4;
+$boxShadow: #c1e6d0;
+$boxShadow-hover: #c1e6d0;
+
+// Some Helpers
+@mixin size($width: null, $height: $width) {
+	width: $width;
+	height: $height;
+}
+%reset {
+	margin: 0;
+	padding: 0;
+}
+%flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+// Just for demo
+html,
+body {
+	@include size($width: 100%);
+	@extend %reset;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	@extend %reset;
+	@extend %flex;
+	@include size($width:100%);
+	overflow: hidden;
+	background: $backgroundColor;
+}
+
+// Input Container
+.container {
+	position: relative;
+	perspective: 80;
+	border-radius: 100vw;
+	width: 100%;
+}
+
+// Ripple Effect
+.ripple {
+	position: absolute;
+	width: 180px;
+	height: 60px;
+	z-index: 90;
+	right: 0;
+	transition: transform 0.2s;
+	transition: transform 0.2s;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0 25px;
+	overflow: hidden;
+	border-radius: 100vw;
+	pointer-events: none;
+
+	&.animate {
+		&:before {
+			animation: clicked 0.4s forwards cubic-bezier(0.5, 0.61, 0.36, 1);
+		}
+	}
+	&:before {
+		content: "";
+		background: rgba(0, 0, 0, 0.1);
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		top: 50%;
+		right: 41px;
+		border-radius: 50%;
+		opacity: 0;
+		transform: translate(50%, -50%) scale(0.5);
+		pointer-events: none;
+	}
+
+	@keyframes clicked {
+		0% {
+			opacity: 0;
+			transform: translate(50%, -50%) scale(0.5);
+		}
+		10% {
+			opacity: 0.8;
+		}
+		100% {
+			opacity: 0;
+			transform: translate(50%, -50%) scale(1.2);
+		}
+	}
+}
+
+// Toggle Visibility
+.toggle {
+	position: absolute;
+	width: 85px;
+	height: 60px;
+	background: transparent;
+	z-index: 100;
+	right: 0;
+	top: 0;
+	transition: transform 0.2s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	overflow: hidden;
+	border-radius: 100vw;
+	cursor: pointer;
+
+	// Slash-line over the eye icon
+	&:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #fdfdfd;
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotateZ(46deg);
+        transition: width 0.13s ease-out;
+    }
+	&[data-state="visible"] {
+        &:before {
+            width: 25px;
+        }
+    }
+	&[data-state="hidden"] {
+        &:before {
+            width: 0;
+        }
+    }
+
+	// SVG eye icon
+	.eye {
+		fill: #fdfdfd;
+		transition: transform .13s linear;
+		stroke-width: 0;
+		transform: scale(1) rotateY(0);
+
+		path {
+			fill: none;
+			stroke-width: 1.5;
+			stroke-miterlimit: 5;
+			stroke: #fdfdfd;
+		}
+	}
+
+	// When pressed
+	&:active {
+		transform: scale(0.9);
+
+		+ input {
+			transform: rotateY(1deg);
+			letter-spacing: 1.5px;
+			box-shadow: 3px 0px 15px 0px $boxShadow-hover;
+			cursor: text;
+
+			&.password {
+				letter-spacing: 3px;
+			}
+		}
+		
+		&:before {
+			transform: rotateZ(46deg) rotateY(5deg);
+		}
+
+		.eye {
+			transform: scale(0.75) rotateY(5deg);
+		}
+	}
+}
+
+// Text / Password input
+input {
+	@extend %flex;
+	@include size($width: 340px, $height: 60px);
+	width: 100%;
+	background: #ffffff;
+	border-radius: 10px;
+	will-change: transform;
+	border-radius: 100vw;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 2.2vw;
+	color: #000000;
+	outline: none;
+	text-align: left;
+	border: 0;
+	padding: 10px 30px 10px 30px;
+	transform-origin: left center;
+	transition: transform 0.13s;
+	font-family: "Poppins", sans-serif;
+	box-shadow: 0px 0px 10px 0px $boxShadow;
+	transition: letter-spacing 0.13s ease-out, box-shadow 0.13s ease-out;
+
+	&::selection {
+		background: $backgroundColorSelection;
+	}
+	
+	&::placeholder {
+		color: var(--placeholder-color, #999);
+	}
+
+
+	&.password {
+		letter-spacing: 1px;
+	}
+}

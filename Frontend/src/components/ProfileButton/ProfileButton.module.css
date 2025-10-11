@@ -1,0 +1,47 @@
+.profileName {
+    position: relative;
+    margin: 0 10px;
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: var(--text);
+    background-color: var(--bg);
+    border: 2px solid var(--quite-text);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.profileName:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+}
+
+.username {
+    transition: transform 0.4s ease;
+    z-index: 1;
+}
+
+.arrow {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    opacity: 0;
+    padding-right: 20px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.profileName:hover .username {
+    transform: translateX(-20px);
+}
+
+.profileName:hover .arrow {
+    transform: translateX(0);
+    opacity: 1;
+}

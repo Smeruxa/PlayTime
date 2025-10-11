@@ -1,0 +1,47 @@
+.Btn {
+    width: 90%;
+    padding: 0 20px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+    background-size: 250%;
+    background-position: left;
+    color: #fdfdfd;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    font-size: 2vw;
+    white-space: nowrap;
+}
+
+.Btn::before {
+    position: absolute;
+    content: attr(data-text);
+    color: #fdfdfd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 90%;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-size: 200%;
+}
+
+.Btn:hover {
+    background-position: right;
+}
+
+.Btn:hover::before {
+    background-position: right;
+}
+
+.Btn:active {
+    transform: scale(0.95);
+}

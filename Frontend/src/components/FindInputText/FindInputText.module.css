@@ -1,0 +1,90 @@
+.container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+}
+
+.wrapper {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    width: 90vw;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    font-size: 3.5vw;
+    color: #fff;
+    background-color: #222;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    padding: 0.2em 0.5em;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.hiddenInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 3.5vw;
+    width: 100%;
+}
+
+.letterAnimTop,
+.letterAnimBottom {
+    display: inline-block;
+    opacity: 0;
+    transform-origin: center;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.letterAnimTop {
+    animation-name: dropTop;
+}
+
+.letterAnimBottom {
+    animation-name: dropBottom;
+}
+
+.blink {
+    margin-left: 1px;
+    animation: blink 0.5s infinite alternate;
+}
+
+.button {
+    margin-left: 0.5em;
+    padding: 0.2em 0.6em;
+    font-size: 2.5vw;
+    cursor: pointer;
+    border: 2px solid #fff;
+    background-color: #222;
+    color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes blink {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes dropTop {
+    from { transform: translateY(-1em) rotateX(90deg); opacity: 0; }
+    to { transform: translateY(0) rotateX(0deg); opacity: 1; }
+}
+
+@keyframes dropBottom {
+    from { transform: translateY(1em) rotateX(-90deg); opacity: 0; }
+    to { transform: translateY(0) rotateX(0deg); opacity: 1; }
+}

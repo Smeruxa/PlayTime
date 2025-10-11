@@ -1,0 +1,188 @@
+@import "../../colors.css";
+
+.body {
+    background-color: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+
+    font-size: 4vw;
+    font-weight: 400;
+
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.friendsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.friends {
+    width: 90%;
+    height: 100%;
+    max-height: 80px;
+    font-size: 2.5vw;
+}
+
+.quitWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    max-height: 40px;
+    overflow: hidden;
+}
+
+.quitButton {
+    width: 90%;
+    height: 100%;
+    max-height: 40px;
+    font-size: 2vw;
+}
+
+.userButtons {
+    margin-left: auto;
+    width: auto;
+    align-items: center;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.iconButton {
+    color: var(--icons);
+    width: 2.5vw;
+    height: 2.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 300ms ease, color 1s ease;
+}
+
+.iconButton:active {
+    color: var(--icons-active);
+}
+
+.iconButton:hover {
+    color: var(--icons-hover);
+    transform: scale(1.1);
+}
+
+.userInfo {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2.5vw;
+}
+
+.contentWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.nothing {
+    font-size: 2.5vw;
+}
+
+.divider {
+    width: 6px;
+    background-color: var(--border);
+}
+
+.mainWrapper {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+}
+
+.nav {
+    background-color: var(--secondary-bg);
+    border-radius: 10px 0 0 10px;
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 20px;
+}
+
+.usersWrapper {
+    flex: 1;
+    width: 100%;
+    border-radius: 30px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0) transparent;
+    transition: scrollbar-color 0.3s;
+}
+
+.usersWrapper:hover {
+    scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+}
+
+.usersWrapper::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+
+.usersWrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.usersWrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0);
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.usersWrapper:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+.usersWrapper::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.usersWrapper::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.downWrapper {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.content {
+    background-color: var(--secondary-bg);
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0 0;
+    align-items: center;
+    gap: 20px;
+
+    box-sizing: border-box;
+}
