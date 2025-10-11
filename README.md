@@ -66,8 +66,10 @@
 
 ## ⚙️**Разработчики**
 
-**Тестировщики: ** Smeruxa, sonlug, Davidik237.
+**Тестировщики:** Smeruxa, sonlug, Davidik237.
+
 **Sound Designer** — Davidik237.
+
 **Тим-лидер** — sonlug.
 
 ---
