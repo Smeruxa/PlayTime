@@ -64,6 +64,13 @@
 
 ---
 
+## 📈**Стэк**
+
+**FrontEnd:** React TS/TSX, react-icons, JavaScript, fetch, Electron, HTML, Module-CSS, TypeScript, socket.io, react-router-dom (cache), Аудио-обработка и настройка
+**BackEnd:** Node JS, express, express-router, socket.io, cors, http, PostgreSQL, Redis, ООП, SQL-Query, JWT-Token, bcrypt
+
+---
+
 ## ⚙️**Разработчики**
 
 **Главный разработчик (Fullstack)** — Smeruxa
