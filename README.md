@@ -4,9 +4,7 @@
 
 ## 👥 Участники проекта
 
-<a href="https://github.com/Smeruxa/PlayTime/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Smeruxa/PlayTime" />
-</a>
+[![GitHub contributors](https://img.shields.io/github/contributors/Smeruxa/PlayTime?color=green&label=Contributors)](https://github.com/Smeruxa/PlayTime/graphs/contributors)
 
 ---
 
