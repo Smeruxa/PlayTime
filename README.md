@@ -88,4 +88,4 @@
 
 🕹 **PlayTime — потому что общение должно приносить удовольствие.**
 
-<img src="https://github.com/user-attachments/assets/88fd7b42-0e08-4f26-81c0-60517943f008" alt="PlayTime" width="600" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+<img src="https://github.com/user-attachments/assets/88fd7b42-0e08-4f26-81c0-60517943f008" alt="PlayTime" width="600" style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
