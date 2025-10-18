@@ -1,5 +1,11 @@
-# 🎮 **PlayTime — новый уровень общения [![## 👥 Участники проекта](https://img.shields.io/github/contributors/Smeruxa/PlayTime?color=green&label=Contributors)](https://github.com/Smeruxa/PlayTime/graphs/contributors)**
+<p align="center">
 
+# 🎮 <b>PlayTime — новый уровень общения</b>  
+[![👥 Участники проекта](https://img.shields.io/github/contributors/Smeruxa/PlayTime?color=green&label=Contributors)](https://github.com/Smeruxa/PlayTime/graphs/contributors)
+
+<img src="https://github.com/user-attachments/assets/88fd7b42-0e08-4f26-81c0-60517943f008" alt="PlayTime" width="600" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+
+</p>
 ---
 
 **PlayTime** — это свежий взгляд на то, каким должен быть современный мессенджер для игроков, студентов и команд.  
