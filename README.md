@@ -1,5 +1,4 @@
-# 🎮 <b>PlayTime — новый уровень общения</b>  
-[![👥 Участники проекта](https://img.shields.io/github/contributors/Smeruxa/PlayTime?color=green&label=Contributors)](https://github.com/Smeruxa/PlayTime/graphs/contributors)
+# 🎮 <b>PlayTime — новый уровень общения</b>  [![👥 Участники проекта](https://img.shields.io/github/contributors/Smeruxa/PlayTime?color=green&label=Contributors)](https://github.com/Smeruxa/PlayTime/graphs/contributors)
 
 ---
 
