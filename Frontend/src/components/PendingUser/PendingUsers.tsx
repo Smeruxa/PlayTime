@@ -1,6 +1,6 @@
 import styles from "./PendingUsers.module.css"
 import { FriendItem } from "../../pages/Friends/Friends"
-import { FaCheck, FaTimes, FaUserLock } from "react-icons/fa"
+import { FaCheck, FaTimes, FaUserLock, FaSadTear } from "react-icons/fa"
 
 interface PendingUsersProps {
     users: FriendItem[];
@@ -32,7 +32,10 @@ export default function PendingUsers({ users, accept, decline, block }: PendingU
                     ))}
                 </ul>
             ) : (
-                <h4>Пока у вас нет заявок :\</h4>
+                <div className={styles.haventRequests}>
+                    <span>У вас пока нет заявок</span>
+                    <FaSadTear />
+                </div>
             )}
         </div>
     )

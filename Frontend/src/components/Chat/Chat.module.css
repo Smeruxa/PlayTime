@@ -77,7 +77,6 @@
     height: 10%;
     width: 100%;
     background-color: var(--secondary-bg);
-    border-radius: 0 0 12px 12px;
     display: flex;
     align-items: center;
     padding: 0 2px;
@@ -94,7 +93,6 @@
     border: none;
     height: 100%;
     box-shadow: none;
-    border-radius: 0 0 12px 12px;
     background-color: var(--secondary-bg);
 }
 
@@ -126,10 +124,7 @@
     position: relative;
     width: auto;
     height: 100%;
-    margin: 10px 12px;
     background-color: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -152,9 +147,9 @@
 }
 
 .horizontalDivider {
-    height: 6px;
+    height: 4px;
     width: 100%;
-    background-color: var(--border);
+    background: var(--border);
 }
 
 .userButtons {
@@ -169,8 +164,8 @@
 
 .iconButton {
     color: var(--icons);
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 3.5vw;
+    height: 3.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,6 +186,6 @@
     padding: 0 12px;
     display: flex;
     flex-direction: row;
-    font-size: 2.5vw;
+    font-size: 4vw;
     margin-bottom: 10px;
 }

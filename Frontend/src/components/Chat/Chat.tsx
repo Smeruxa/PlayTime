@@ -91,12 +91,12 @@ export default function Chat({ name, messages }: UserProps) {
             <div className={styles.userInfo}>
                 <span>{name}</span>
                 <div className={styles.userButtons}>
-                    <IconContext.Provider value={{ size: "2.5vw" }}>
+                    <IconContext.Provider value={{ size: "3.5vw" }}>
                         <div className={styles.iconButton} onClick={startCall}>
                             <FaPhone />
                         </div>
                     </IconContext.Provider>
-                    <IconContext.Provider value={{ size: "2.5vw" }}>
+                    <IconContext.Provider value={{ size: "3.5vw" }}>
                         <div className={styles.iconButton}>
                             <FaUser />
                         </div>

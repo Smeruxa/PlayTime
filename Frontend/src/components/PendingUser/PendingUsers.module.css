@@ -95,3 +95,21 @@
 .btnBlock {
     color: #34495e;
 }
+
+.haventRequests {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    align-items: center;
+    color: var(--text);
+}
+
+.haventRequests span {
+    font-size: 2vw;
+    font-weight: 700;
+}
+
+.haventRequests:last-of-type svg {
+    font-size: 6vw;
+    color: #888;
+}

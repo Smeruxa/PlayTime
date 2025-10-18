@@ -8,6 +8,10 @@ declare module "react-icons/fa" {
     export const FaTimes: FC<SVGProps<SVGSVGElement>>;
     export const FaUserLock: FC<SVGProps<SVGSVGElement>>;
     export const FaArrowRight: FC<SVGProps<SVGSVGElement>>;
+    export const FaHandHoldingUsd: FC<SVGProps<SVGSVGElement>>;
+    export const FaSignOutAlt: FC<SVGProps<SVGSVGElement>>;
+    export const FaUsers: FC<SVGProps<SVGSVGElement>>;
+    export const FaSadTear: FC<SVGProps<SVGSVGElement>>;
 }
 
 declare module "react-icons/fi" {

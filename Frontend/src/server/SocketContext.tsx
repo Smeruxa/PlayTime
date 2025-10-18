@@ -23,7 +23,7 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         if (!token) return
-        const s = io("wss://domen.ru", {
+        const s = io("wss://smeruxa.ru", {
             path: "/playtime/socket.io",
             autoConnect: true,
             reconnection: true,

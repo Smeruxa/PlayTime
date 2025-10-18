@@ -1,6 +1,7 @@
 import AnimatedRoutes from "./routes/AnimatedRoutes"
 import IncomingCallHandler from "./utils/IncomingCallHandler/IncomingCallHandler"
 import { SocketProvider } from "./server/SocketContext"
+import Titlebar from "./components/Titlebar/Titlebar"
 
 export default function App() {
     return (

@@ -1,47 +1,45 @@
+@import "../../colors.css";
+
 .Btn {
     width: 90%;
-    padding: 0 20px;
-    height: 40px;
+    padding: 0 24px;
+    height: 46px;
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
-    background-size: 250%;
-    background-position: left;
-    color: #fdfdfd;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #111 0%, #222 50%, #111 100%);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 2vw;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
     overflow: hidden;
-    font-size: 2vw;
-    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    letter-spacing: 0.5px;
 }
 
 .Btn::before {
+    content: "";
     position: absolute;
-    content: attr(data-text);
-    color: #fdfdfd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    height: 90%;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.2);
-    background-size: 200%;
-}
-
-.Btn:hover {
-    background-position: right;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .Btn:hover::before {
-    background-position: right;
+    opacity: 1;
+}
+
+.Btn:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.8);
 }
 
 .Btn:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.7);
 }

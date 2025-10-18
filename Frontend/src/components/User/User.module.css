@@ -1,11 +1,10 @@
 @import "../../colors.css";
 
 .body {
-    background-color: var(--third-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 10px 16px;
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
+    padding: 10px 16px;
     position: relative;
     overflow: hidden;
     cursor: default;
@@ -13,7 +12,7 @@
 
 .content {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     gap: 15px;
     position: relative;
     z-index: 1;
@@ -21,27 +20,30 @@
 
 .img {
     border-radius: 50%;
-    width: 3vw;
-    height: 3vw;
+    width: 4vw;
+    height: 4vw;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .textWrapper {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
+    gap: 4px;
 }
 
 .name {
-    font-size: 1.5vw;
+    font-size: 2vw;
     font-weight: 600;
     color: var(--text);
 }
 
 .lastMessage {
-    font-size: 1vw;
+    font-size: 1.5vw;
     font-weight: 400;
     color: var(--quite-text);
-    width: 12vw;
+    width: 15vw;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

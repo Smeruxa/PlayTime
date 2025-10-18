@@ -1,5 +1,5 @@
 export async function login(email: string, password: string) {
-    const res = await fetch("https://domen.ru/playtime/auth/login", {
+    const res = await fetch("https://smeruxa.ru/playtime/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -13,7 +13,7 @@ export async function login(email: string, password: string) {
 }
 
 export async function register(username: string, email: string, password: string) {
-    const res = await fetch("https://domen.ru/playtime/auth/register", {
+    const res = await fetch("https://smeruxa.ru/playtime/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password })
@@ -26,7 +26,7 @@ export async function register(username: string, email: string, password: string
 }
 
 export async function tokenValid(token: string) {
-    const res = await fetch("https://domen.ru/playtime/auth/tokenValid", {
+    const res = await fetch("https://smeruxa.ru/playtime/auth/tokenValid", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token })

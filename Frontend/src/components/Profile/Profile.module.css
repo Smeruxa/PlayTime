@@ -1,0 +1,69 @@
+@import url("../../colors.css");
+
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--third-bg);
+    width: 100%;
+    height: auto;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+}
+
+.circle {
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fafafa;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 12px;
+    padding: 6px 8px;
+}
+
+.naming {
+    display: flex;
+    flex-direction: column;
+}
+
+.right span:first-of-type {
+    font-size: 3vw;
+}
+
+.right span:last-of-type {
+    font-size: 1.7vw;
+    color: var(--quite-text);
+    cursor: default;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 4vw;
+    gap: 12px;
+    color: #858585;
+}
+
+.icon {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    padding: 5px;
+    transition: background-color 300ms ease;
+}
+
+.icon:hover {
+    background-color: var(--hover-bg);
+    cursor: pointer;
+}
