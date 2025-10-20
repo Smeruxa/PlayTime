@@ -26,6 +26,7 @@
 .right {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     flex: 1;
     gap: 12px;
     padding: 6px 8px;
@@ -49,9 +50,10 @@
 .icons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     font-size: 4vw;
+    width: 100%;
     gap: 12px;
     color: #858585;
 }

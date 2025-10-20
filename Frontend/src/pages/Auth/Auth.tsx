@@ -14,18 +14,23 @@ export default function Auth() {
     const [loading, setLoading] = useState(false)
     const { setToken } = useSocket()
 
+    const checkLength = (str: string) => {
+        return str.length >= 3 && str.length <= 30
+    }
+
     const handleLogin = async () => {
         setLoading(true)
         setError("")
         try {
+            if (!checkLength(password) || !checkLength(email)) {
+                setError("Поля должны быть от 3 до 30 символов.")
+                return
+            }
             const res = await login(email, password)
             if (res && res.token) {
-
                 localStorage.setItem("email", email)
                 localStorage.setItem("password", password)
-                console.log("Auth")
                 setToken(res.token)
-
                 navigate("/content")
             } else {
                 localStorage.removeItem("email")

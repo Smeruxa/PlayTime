@@ -12,6 +12,8 @@
     --icons: #b8b8b8;
     --icons-hover: #fdfdfd;
     --icons-active: #6863fd;
+    --error: #ff4d4d;
+    --success: #4caf50;
 
     --font-s1: 1vw;
     --font-s2: 2vw;

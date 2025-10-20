@@ -20,7 +20,13 @@ export async function initAudio(socket: any, roomId: string) {
     const workletPath = debug ? "/recorder-worklet.js" : await (window as any).electronAPI.getWorkletPath()
     await audioContext.audioWorklet.addModule(workletPath)
 
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    const stream = await navigator.mediaDevices.getUserMedia({  
+        audio: {
+            noiseSuppression: true,
+            echoCancellation: true,
+            autoGainControl: true
+        } 
+    })
     const source = audioContext.createMediaStreamSource(stream)
 
     const micGain = audioContext.createGain()

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { UserProps, Message } from "../../types"
+import { UserProps } from "../../types"
 import { useSocket } from "../../server/SocketContext"
 import { FriendItem } from "../Friends/Friends"
 import Users from "../../components/Users/Users"
@@ -26,8 +26,7 @@ export default function Content() {
             const accepted = list.filter(f => f.status === "accepted")
             setUsers(
                 accepted.map(v => ({
-                    name: v.friend_username,
-                    messages: [] as Message[]
+                    name: v.friend_username
                 }))
             )
         })
@@ -36,12 +35,25 @@ export default function Content() {
             setUsers(prev => prev.filter(u => u.name !== data.from))
         }
 
+        /*const updateLastMessageUser = (msg: { sender_username: string, receiver_username: string }) => {
+            setUsers(prev => {
+                const name = msg.sender_username === myName ? msg.receiver_username : msg.sender_username
+                const existing = prev.find(u => u.name === name)
+                if (!existing) return prev
+                return [existing, ...prev.filter(u => u.name !== name)]
+            })
+        }*/
+
         socket.on("friend:remove", friendDeletes)
+        //socket.on("message:receive", updateLastMessageUser)
+        //socket.on("message:send:success", updateLastMessageUser)
 
         return () => {
             socket.off("friend:remove", friendDeletes)
+            //socket.off("message:receive", updateLastMessageUser)
+            //socket.off("message:send:success", updateLastMessageUser)
         }
-    }, [socket])
+    }, [socket, myName])
 
     return ( 
         <div className={styles.body}>
@@ -58,9 +70,9 @@ export default function Content() {
                 <div className={styles.content}>
                     {
                         users[currentUser] ?
-                            <Chat name={users[currentUser].name} messages={users[currentUser].messages} />
+                            <Chat name={users[currentUser].name} />
                         :
-                            <Chat name="Выберите пользователя" messages={[]} />
+                            <Chat name="Выберите пользователя" />
                     }
                 </div>
             </div>

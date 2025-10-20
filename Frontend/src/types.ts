@@ -6,5 +6,4 @@ export type Message = {
 
 export type UserProps = {
     name: string;
-    messages: Message[];
 };

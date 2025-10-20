@@ -86,7 +86,7 @@
 .input {
     max-height: 100%;
     padding: 0 10px 0 20px;
-    font-size: 1.5vw;
+    font-size: 2vw;
     color: var(--text);
     width: 100%;
     outline: none;
@@ -188,4 +188,10 @@
     flex-direction: row;
     font-size: 4vw;
     margin-bottom: 10px;
+}
+
+.callError {
+    color: #ff3f3f;
+    font-size: 1.5vw;
+    margin-right: 1vw;
 }

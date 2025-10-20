@@ -18,49 +18,21 @@
     z-index: 1;
 }
 
-.img {
-    border-radius: 50%;
+.avatar {
+    display: grid;
+    place-items: center;
     width: 4vw;
     height: 4vw;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-.textWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 2vw;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .name {
     font-size: 2vw;
     font-weight: 600;
     color: var(--text);
-}
-
-.lastMessage {
-    font-size: 1.5vw;
-    font-weight: 400;
-    color: var(--quite-text);
-    width: 15vw;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-}
-
-.cursorBall {
-    position: absolute;
-    pointer-events: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
-                0 0 40px rgba(255, 255, 255, 0.05),
-                inset 0 0 30px rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, background 0.2s ease;
-    z-index: 0;
 }

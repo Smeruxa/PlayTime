@@ -32,13 +32,22 @@ export default function Registration() {
         }
     }, [successText, navigate])
 
+    const checkLength = (str: string) => {
+        return str.length >= 3 && str.length <= 30
+    }
+
     const handleRegistration = async () => {
         setError("")
         setLoading(true)
+
         try {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
             if (!username || !email || !password) {
                 setError("Заполните все поля")
+                return
+            }
+            if (!checkLength(username) || !checkLength(password) || !checkLength(email)) {
+                setError("Поля должны быть от 3 до 30 символов.")
                 return
             }
             if (!emailRegex.test(email)) {

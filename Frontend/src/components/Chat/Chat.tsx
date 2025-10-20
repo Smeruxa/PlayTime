@@ -16,20 +16,28 @@ type MessageType = {
     me: boolean 
 }
 
+type DisplayMessage = {
+    me: boolean
+    text: string
+    data: number
+}
+
 type StartCallResponse = {
     success?: boolean
     roomId?: string
     err?: string
 }
 
-export default function Chat({ name, messages }: UserProps) {
+export default function Chat({ name }: UserProps) {
     const navigate = useNavigate()
     const [input, setInput] = useState("")
-    const [chatMessages, setChatMessages] = useState(messages || [])
+    const [chatMessages, setChatMessages] = useState<DisplayMessage[]>([])
+    const [startCallError, setStartCallError] = useState<string | null>(null)
     const { socket } = useSocket()
 
     useEffect(() => {
         setChatMessages([])
+        setStartCallError(null)
         if (!socket) return
         socket.emit("message:getMessages", { username: name })
 
@@ -69,13 +77,14 @@ export default function Chat({ name, messages }: UserProps) {
     }
 
     const startCall = () => {
-        if (!name || !socket) return
+        if (!name || !socket || name === "Выберите пользователя") return
 
         socket.emit("call:start", { username: name }, (res: StartCallResponse) => {
-            console.log(res)
             if (res?.success && res.roomId) {
                 navigate("/talk", { state: { name, roomId: res.roomId } })
+                setStartCallError(null)
             } else {
+                setStartCallError(res?.err || "Unknown error")
                 console.error(res?.err || "Unknown error")
             }
         })
@@ -91,6 +100,7 @@ export default function Chat({ name, messages }: UserProps) {
             <div className={styles.userInfo}>
                 <span>{name}</span>
                 <div className={styles.userButtons}>
+                    {startCallError ? ( <span className={styles.callError}>{startCallError}</span> ) : null}
                     <IconContext.Provider value={{ size: "3.5vw" }}>
                         <div className={styles.iconButton} onClick={startCall}>
                             <FaPhone />

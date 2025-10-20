@@ -11,20 +11,16 @@ import Content from "../pages/Content/Content"
 import Donate from "../pages/Donate/Donate"
 import Talk from "../pages/Talk/Talk"
 import Friends from "../pages/Friends/Friends"
+import Profile from "../pages/Profile/Profile"
 
 const AnimatedRoutes: React.FC = () => {
     const location = useLocation()
     const navigate = useNavigate()
-    const { token, setToken } = useSocket()
+    const { setToken } = useSocket()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const autoLogin = async () => {
-            if (location.pathname === "/") {
-                setLoading(false)
-                return
-            }
-
             const token = localStorage.getItem("token")
             const email = localStorage.getItem("email")
             const password = localStorage.getItem("password")
@@ -42,6 +38,7 @@ const AnimatedRoutes: React.FC = () => {
             if (validToken) {
                 console.log("Got valid token")
                 setToken(token!)
+                navigate("/content")
             } else if (email && password) {
                 try {
                     const res = await login(email, password)
@@ -49,6 +46,7 @@ const AnimatedRoutes: React.FC = () => {
                         console.log("Logined with email & password")
                         localStorage.setItem("token", res.token)
                         setToken(res.token)
+                        navigate("/content")
                     } else {
                         localStorage.removeItem("email")
                         localStorage.removeItem("password")
@@ -68,25 +66,6 @@ const AnimatedRoutes: React.FC = () => {
 
         autoLogin()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token])
-
-    useEffect(() => { 
-        const body = async () => {
-            try {
-                const email = localStorage.getItem("email")
-                const password = localStorage.getItem("password")
-                if (email && password && email !== "" && password !== "") {
-                    const res = await login(email, password)
-                    if (res && res.token) {
-                        setToken(res.token)
-                        navigate("/content")
-                    }
-                }
-            } finally {
-                setLoading(false)
-            }
-        }
-        body()
     }, [])
 
     if (loading) return <Loading />
@@ -100,6 +79,7 @@ const AnimatedRoutes: React.FC = () => {
                 <Route path="/donate" element={<PageTransition><Donate /></PageTransition>} />
                 <Route path="/talk" element={<PageTransition><Talk /></PageTransition>} />
                 <Route path="/friends" element={<PageTransition><Friends /></PageTransition>} />
+                <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
             </Routes>
         </AnimatePresence>
     )
