@@ -88,6 +88,4 @@
 
 🕹 **PlayTime — потому что общение должно приносить удовольствие.**
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/14a9c54e-185d-4b1a-9c22-69ba77de392d" />
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/6d487352-0ffb-432a-a7dd-44b66a39986b" />
-
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/078f3fb6-efff-4297-b76c-011334190537" />
