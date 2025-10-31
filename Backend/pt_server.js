@@ -8,7 +8,8 @@ const { authSocket } = require("./middlewares/authMiddleware")
 const events = [
     require("./events/friendship"), 
     require("./events/messages"),
-    require("./events/rooms/rooms")
+    require("./events/rooms/rooms"),
+    require("./events/account")
 ]
 
 const app = express()

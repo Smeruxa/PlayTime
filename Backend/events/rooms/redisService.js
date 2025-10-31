@@ -1,5 +1,4 @@
-const Redis = require("ioredis")
-const redis = new Redis()
+const { redis } = require("../../config");
 const ROOM_PREFIX = "call:room:"
 
 async function saveRoom(roomId, room) {

@@ -3,6 +3,7 @@ const Room = require("./room")
 const { saveRoom, getRoom, deleteRoom, getAllRooms, ROOM_PREFIX } = require("./redisService")
 
 module.exports = (io, socket) => {
+
     socket.on("call:start", async (data, callback) => {
         try {
             const result = await pool.query("SELECT id FROM users WHERE username=$1", [data.username])
@@ -10,6 +11,8 @@ module.exports = (io, socket) => {
 
             const receiverId = result.rows[0].id
             const allRooms = await getAllRooms()
+
+            if (allRooms.length >= 5) return callback({ err: `Вы в очереди ${allRooms.length - 4}` })
 
             const busy = allRooms.some(({ room }) => {
                 return (

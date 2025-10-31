@@ -134,25 +134,63 @@ module.exports = (io, socket) => {
 
     socket.on("friend:list", async (_, callback) => {
         try {
-            const result = await pool.query(
+            const friendsRes = await pool.query(
                 `SELECT 
                     f.id,
                     f.user_id,
                     f.friend_id,
                     f.status,
-                    f.created_at,
+                    f.created_at AS friendship_created,
                     u.username AS friend_username,
                     CASE 
                         WHEN f.user_id=$1 THEN 'outgoing'
                         ELSE 'incoming'
-                    END AS direction
+                    END AS direction,
+                    m.content AS last_message,
+                    m.created_at AS last_message_at
                 FROM friendships f
                 JOIN users u 
                     ON u.id = CASE WHEN f.user_id=$1 THEN f.friend_id ELSE f.user_id END
-                WHERE f.user_id=$1 OR f.friend_id=$1`,
+                LEFT JOIN LATERAL (
+                    SELECT content, created_at 
+                    FROM messages 
+                    WHERE (sender_id = $1 AND receiver_id = u.id) OR (sender_id = u.id AND receiver_id = $1)
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                ) m ON true
+                WHERE f.user_id=$1 OR f.friend_id=$1
+                ORDER BY m.created_at DESC NULLS LAST, f.created_at DESC`,
                 [socket.user.id]
             )
-            callback(result.rows)
+
+            const roomsRes = await pool.query(
+                `SELECT r.id, r.name
+                FROM rooms r
+                JOIN room_members rm ON rm.room_id = r.id
+                WHERE rm.user_id=$1
+                ORDER BY r.created_at DESC`,
+                [socket.user.id]
+            )
+
+            const rooms = roomsRes.rows.map(r => ({
+                id: r.id,
+                user_id: socket.user.id,
+                friend_id: null,
+                status: "accepted",
+                friendship_created: r.created_at || new Date(),
+                friend_username: r.name || `Комната №${r.id}`,
+                direction: "outgoing",
+                last_message: null,
+                last_message_at: null,
+                is_room: true
+            }))
+
+            const friends = friendsRes.rows.map(f => ({
+                ...f,
+                is_room: false
+            }))
+
+            callback([...friends, ...rooms])
         } catch (err) {
             console.error("friend:list error", err)
             callback([])
