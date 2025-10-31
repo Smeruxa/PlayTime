@@ -1,4 +1,4 @@
-import { FaArrowLeft } from "react-icons/fa"
+import { FaArrowLeft, FaGift, FaMoneyBill } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { useNavigate } from "react-router-dom"
 import styles from "./Donate.module.css"
@@ -9,14 +9,23 @@ export default function Donate() {
 
     return (
         <div className={styles.body}>
-            <span>Донат на сервер ^_^</span>
+            <span className={styles.title}>Донат на сервер <FaMoneyBill /></span>
             <div className={styles.donateWrapper}>
                 <TinkoffCard accountNumber="2200 7008 0763 8506" />
-                <span className={styles.backIcon} onClick={() => navigate("/content")}>
-                    <IconContext.Provider value={{}}>
+                <button className={styles.backButton} onClick={() => navigate("/content")}>
+                    <IconContext.Provider value={{ size: "1.5em" }}>
                         <FaArrowLeft />
                     </IconContext.Provider>
-                </span>
+                    Назад
+                </button>
+            </div>
+            <div className={styles.extra}>
+                <button className={styles.giftButton}>
+                    <IconContext.Provider value={{ size: "1.2em" }}>
+                        <FaGift />
+                    </IconContext.Provider>
+                    Подарить бонус
+                </button>
             </div>
         </div>
     )

@@ -5,14 +5,15 @@ import { UserProps } from "../../types"
 
 interface UsersProps {
     setUser: (index: number) => void
+    selected: number 
+    setSelected: (index: number) => void
     users: UserProps[]
 }
 
-export default function Users({ setUser, users }: UsersProps) {
+export default function Users({ setUser, users, selected, setSelected }: UsersProps) {
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
     const [visible, setVisible] = useState(false)
     const [active, setActive] = useState(false)
-    const [selected, setSelected] = useState<number | null>(null)
 
     return (
         <div
@@ -45,7 +46,7 @@ export default function Users({ setUser, users }: UsersProps) {
                             setUser(index)
                         }}
                     >
-                        <User name={user.name} />
+                        <User name={user.name} is_room={user.is_room} id={user.id} />
                     </div>
                 ))
             ) : (

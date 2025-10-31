@@ -1,0 +1,32 @@
+.interactions {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--border);
+    border-radius: 50%;
+    width: 5vw;
+    height: 5vw;
+    transition: background-color 0.3s ease;
+    font-size: 4vw;
+}
+
+.iconWrapper:hover {
+    background-color: var(--bg);
+}
+
+.iconWrapper:last-child:hover {
+    background-color: var(--error);
+}
+
+.icon {
+    padding: 3px;
+}

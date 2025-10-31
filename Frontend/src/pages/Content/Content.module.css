@@ -3,7 +3,7 @@
 .body {
     background-color: var(--bg);
     color: var(--text);
-    height: 100vh;
+    height: calc(100vh - var(--title-bar-size));
     width: 100vw;
     padding: 0;
 

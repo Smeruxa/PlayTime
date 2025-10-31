@@ -1,0 +1,22 @@
+@import url("../../colors.css");
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    color: var(--text);
+    gap: 6px;
+}
+
+.body > span {
+    font-size: 3vw;
+}
+
+.avatar {
+    width: 6vw;
+    height: 6vw;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #50b3ff 0%, #fff 50%, #69e4ff 75%, #41c0ff 100%);
+}

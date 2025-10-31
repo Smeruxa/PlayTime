@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import { login, tokenValid } from "../utils/api/api"
+import { login, tokenValid } from "../utils/api"
 import { useSocket } from "../server/SocketContext"
 import React, { useEffect, useState } from "react"
 import Loading from "../components/Loading/Loading"
@@ -12,6 +12,7 @@ import Donate from "../pages/Donate/Donate"
 import Talk from "../pages/Talk/Talk"
 import Friends from "../pages/Friends/Friends"
 import Profile from "../pages/Profile/Profile"
+import CreateRoom from "../pages/CreateRoom/CreateRoom"
 
 const AnimatedRoutes: React.FC = () => {
     const location = useLocation()
@@ -80,6 +81,7 @@ const AnimatedRoutes: React.FC = () => {
                 <Route path="/talk" element={<PageTransition><Talk /></PageTransition>} />
                 <Route path="/friends" element={<PageTransition><Friends /></PageTransition>} />
                 <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
+                <Route path="/createRoom" element={<PageTransition><CreateRoom /></PageTransition>} />
             </Routes>
         </AnimatePresence>
     )

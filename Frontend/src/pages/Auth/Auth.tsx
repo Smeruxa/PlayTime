@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { login } from "../../utils/api/api"
+import { login } from "../../utils/api"
 import { useSocket } from "../../server/SocketContext"
 import styles from "./Auth.module.css"
 import InputText from "../../components/InputText/InputText"
@@ -15,7 +15,7 @@ export default function Auth() {
     const { setToken } = useSocket()
 
     const checkLength = (str: string) => {
-        return str.length >= 3 && str.length <= 30
+        return str.length >= 3 && str.length <= 50
     }
 
     const handleLogin = async () => {
@@ -23,7 +23,7 @@ export default function Auth() {
         setError("")
         try {
             if (!checkLength(password) || !checkLength(email)) {
-                setError("Поля должны быть от 3 до 30 символов.")
+                setError("Поля должны быть от 3 до 50 символов.")
                 return
             }
             const res = await login(email, password)

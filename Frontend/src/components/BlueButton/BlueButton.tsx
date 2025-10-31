@@ -8,8 +8,6 @@ type BlueButtonProps = {
 
 export default function BlueButton({ text, onClick, className }: BlueButtonProps) {
     return (
-        <button className={`${styles.button65} ${className || ""}`} onClick={onClick}>
-            {text}
-        </button>
+        <button className={`${styles.button65} ${className || ""}`} onClick={onClick}>{text}</button>
     )
 }

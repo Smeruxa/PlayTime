@@ -12,6 +12,7 @@ export type FriendItem = {
     friend_id: number
     status: "pending" | "accepted" | "blocked"
     friend_username: string
+    is_room: boolean
 }
 
 export default function Friends() {

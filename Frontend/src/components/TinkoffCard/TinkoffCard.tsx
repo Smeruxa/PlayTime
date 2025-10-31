@@ -10,13 +10,7 @@ const TinkoffCard: React.FC<TinkoffCardProps> = ({ accountNumber }) => {
         <div className={styles.tinkoffCard}>
             <div className={styles.tinkoffTitle}>Тинькофф - Алексей С.</div>
             <div className={styles.tinkoffContent}>
-                <div className={styles.tinkoffLogo}>
-                    <div className={styles.shield}>
-                        <div className={`${styles.stripe} ${styles.stripe1}`}></div>
-                        <div className={`${styles.stripe} ${styles.stripe2}`}></div>
-                        <div className={`${styles.stripe} ${styles.stripe3}`}></div>
-                    </div>
-                </div>
+                <img src="./assets/tinkoff.png" className={styles.tinkoffLogo} />
                 <div className={styles.tinkoffNumber}>{accountNumber}</div>
             </div>
         </div>

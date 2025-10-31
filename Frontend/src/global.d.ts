@@ -1,11 +1,16 @@
-interface WindowControls {
-    minimize: () => void
-    maximize: () => void
-    close: () => void
-}
 declare global {
     interface Window {
-        windowControls?: WindowControls
+        electronAPI: {
+            sendNotification: (data: { name: string, text: string }) => void
+            on: (channel: string, func: (...args: any[]) => void) => void
+            off: (channel: string, func: (...args: any[]) => void) => void
+        }
+        windowControls?: {
+            minimize: () => void
+            maximize: () => void
+            close: () => void
+        }
     }
 }
+
 export {}

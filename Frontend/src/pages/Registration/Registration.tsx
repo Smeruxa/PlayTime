@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { register } from "../../utils/api/api"
+import { register } from "../../utils/api"
 import styles from "./Registration.module.css"
 import InputText from "../../components/InputText/InputText"
 import BlueButton from "../../components/BlueButton/BlueButton"
@@ -33,7 +33,7 @@ export default function Registration() {
     }, [successText, navigate])
 
     const checkLength = (str: string) => {
-        return str.length >= 3 && str.length <= 30
+        return str.length >= 3 && str.length <= 50
     }
 
     const handleRegistration = async () => {
@@ -46,8 +46,8 @@ export default function Registration() {
                 setError("Заполните все поля")
                 return
             }
-            if (!checkLength(username) || !checkLength(password) || !checkLength(email)) {
-                setError("Поля должны быть от 3 до 30 символов.")
+            if (!checkLength(username) || !checkLength(email)) {
+                setError("Поля должны быть от 3 до 50 символов.")
                 return
             }
             if (!emailRegex.test(email)) {

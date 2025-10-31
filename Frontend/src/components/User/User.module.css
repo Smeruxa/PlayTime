@@ -18,6 +18,13 @@
     z-index: 1;
 }
 
+.roomAvatar {
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c7c7c7 0%, #ff4545 100%);
+}
+
 .avatar {
     display: grid;
     place-items: center;

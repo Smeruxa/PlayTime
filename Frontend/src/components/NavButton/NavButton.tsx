@@ -18,7 +18,7 @@ export default function NavButton({ buttons }: NavButtonProps) {
                     onClick={v.onClick}
                     className={styles.button}
                     style={{
-                        borderRadius: i === 0 ? "15px 0 0 0" : i == 1 ? "0" : "0 15px 0 0",
+                        borderRadius: i === 0 ? "15px 0 0 0" : i === 1 ? "0" : "0 15px 0 0",
                         ...((i === 1 || i === 2) ? { borderLeft: "none" } : {})
                     }}
                 >

@@ -2,7 +2,7 @@ import styles from "./ModalWindow.module.css"
 import { Dispatch, SetStateAction, useRef, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSocket } from "../../server/SocketContext"
-import { CallIncomingType } from "../../utils/IncomingCallHandler/IncomingCallHandler"
+import { CallIncomingType } from "../../utils/IncomingCallHandler"
 
 interface ModalWindowProps {
     text: string
@@ -12,7 +12,7 @@ interface ModalWindowProps {
 
 export default function ModalWindow({ text, call, setShow }: ModalWindowProps) {
     const navigate = useNavigate()
-    const { socket } = useSocket()
+    const { socket, setActiveCall, myName } = useSocket()
     const callRef = useRef<HTMLAudioElement | null>(null)
     const confirmedRef = useRef<HTMLAudioElement | null>(null)
     const declinedRef = useRef<HTMLAudioElement | null>(null)
@@ -39,11 +39,16 @@ export default function ModalWindow({ text, call, setShow }: ModalWindowProps) {
         setShow(null)
         socket.emit("call:confirm", { roomId: call.roomId, accept: true })
         const audio = confirmedRef.current
-        if (audio) {
-            audio.play().then(() => {
-                navigate("/talk", { state: { name: call.from, roomId: call.roomId, incoming: true } })
-            })
-        }
+        if (!audio) return
+        audio.play().then(() => {
+            const content = {
+                names: [call.from, myName],
+                roomId: call.roomId,
+                incoming: true
+            }
+            setActiveCall(content)
+            navigate("/content", { state: { name: call.from } })
+        })
     }
 
     const reject = () => {

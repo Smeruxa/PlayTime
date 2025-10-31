@@ -1,0 +1,77 @@
+@import url("../../../colors.css");
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding: 12px 0;
+    background-color: var(--third-bg);
+    position: relative;
+}
+
+.horizontalDivider {
+    height: 4px;
+    width: 100%;
+    background: var(--border);
+}
+
+.interactiveWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.interactiveWrapper > :first-child {
+    flex: 1;
+}
+
+.state {
+    flex-shrink: 0;
+    font-size: 2vw;
+    text-align: right;
+    padding: 2px 1vw;
+    color: var(--quite-text);
+}
+
+.verticalSlider {
+    all: unset;
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 100px;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.verticalSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--quite-text);
+    border-radius: 50%;
+    border: 2px solid var(--main-bg);
+    cursor: pointer;
+}
+
+.verticalSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--quite-text);
+    border-radius: 50%;
+    border: 2px solid var(--main-bg);
+    cursor: pointer;
+}

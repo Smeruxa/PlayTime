@@ -16,7 +16,7 @@ export default function Profile({ username, onDonate, onOut }: ProfileProps) {
             <div className={styles.right}>
                 <div className={styles.naming}>
                     <span>{username || "Unknown"}</span>
-                    <span>Онлайн</span>
+                    <div className={styles.onlineCircle}></div>
                 </div>
                 <div className={styles.icons}>
                     <FaHandHoldingUsd className={styles.icon} onClick={onDonate} />

@@ -13,6 +13,14 @@ declare module "react-icons/fa" {
     export const FaUsers: FC<SVGProps<SVGSVGElement>>;
     export const FaSadTear: FC<SVGProps<SVGSVGElement>>;
     export const FaAddressCard: FC<SVGProps<SVGSVGElement>>;
+    export const FaWindowMinimize: FC<SVGProps<SVGSVGElement>>;
+    export const FaWindowMaximize: FC<SVGProps<SVGSVGElement>>;
+    export const FaPlusSquare: FC<SVGProps<SVGSVGElement>>;
+    export const FaMicrophone: FC<SVGProps<SVGSVGElement>>;
+    export const FaMicrophoneSlash: FC<SVGProps<SVGSVGElement>>;
+    export const FaPhoneSlash: FC<SVGProps<SVGSVGElement>>;
+    export const FaGift: FC<SVGProps<SVGSVGElement>>;
+    export const FaMoneyBill: FC<SVGProps<SVGSVGElement>>;
 }
 
 declare module "react-icons/fi" {

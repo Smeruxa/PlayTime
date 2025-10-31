@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { UserProps } from "../../types"
 import { useSocket } from "../../server/SocketContext"
@@ -7,33 +7,55 @@ import Users from "../../components/Users/Users"
 import styles from "./Content.module.css"
 import Chat from "../../components/Chat/Chat"
 import Profile from "../../components/Profile/Profile"
-import ContentButtons from "../../components/ContentButton/ContentButtons"
+import ContentButtons from "../../components/ContentButtons/ContentButtons"
 
 export default function Content() {
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [users, setUsers] = useState<UserProps[]>([])
     const [currentUser, setUser] = useState(-1)
-    const [myName, setMyName] = useState<string | null>("")
+    const [selected, setSelected] = useState<number>(-1)
 
-    const { socket, logout } = useSocket()
+    const { socket, logout, activeCall, setActiveCall, myName } = useSocket()
+
+    useEffect(() => {
+        if (!activeCall) return 
+
+        const name = activeCall.names[0];
+        const idx = users.findIndex(u => u.name === name)
+        if (idx !== -1) {
+            setSelected(idx)
+            setUser(idx)
+        }
+        
+        setActiveCall({
+            names: [name, myName],
+            roomId: activeCall.roomId,
+            incoming: activeCall.incoming
+        })
+    }, [])
+
+    useEffect(() => {
+        if (!location.state || !myName) return
+        const name = location.state.call?.name || location.state.name
+        if (!name) return
+
+        const idx = users.findIndex(u => u.name === name)
+        if (idx !== -1) {
+            setSelected(idx)
+            setUser(idx)
+        }
+    }, [location.state, users, myName])
 
     useEffect(() => {
         if (!socket) return
 
-        socket.emit("get:username", (username: string) => setMyName(username))
         socket.emit("friend:list", null, (list: FriendItem[]) => {
             const accepted = list.filter(f => f.status === "accepted")
-            setUsers(
-                accepted.map(v => ({
-                    name: v.friend_username
-                }))
-            )
+            setUsers(accepted.map(v => ({ name: v.friend_username, id: v.id, is_room: v.is_room })))
         })
-
-        const friendDeletes = (data: { from: string }) => {
-            setUsers(prev => prev.filter(u => u.name !== data.from))
-        }
+        const friendDeletes = (data: { from: string }) => setUsers(prev => prev.filter(u => u.name !== data.from))
 
         /*const updateLastMessageUser = (msg: { sender_username: string, receiver_username: string }) => {
             setUsers(prev => {
@@ -62,7 +84,7 @@ export default function Content() {
                     <ContentButtons />
                     <span className={styles.dialogsSpan}>Диалоги:</span>
                     <div className={styles.usersWrapper}>
-                        <Users setUser={setUser} users={users}/>
+                        <Users setUser={setUser} users={users} selected={selected} setSelected={setSelected}/>
                     </div>
                     <Profile username={myName} onDonate={() => navigate("/donate")} onOut={logout} />
                 </div>
@@ -70,9 +92,15 @@ export default function Content() {
                 <div className={styles.content}>
                     {
                         users[currentUser] ?
-                            <Chat name={users[currentUser].name} />
+                            <Chat
+                                name={users[currentUser]?.name || "Выберите пользователя"}
+                                is_room={users[currentUser]?.is_room || false}
+                                id={users[currentUser]?.id || 0}
+                                incomingCall={activeCall}
+                                onEndCall={() => setActiveCall(null)}
+                            />
                         :
-                            <Chat name="Выберите пользователя" />
+                            <Chat name="Выберите пользователя" is_room={false} id={0} />
                     }
                 </div>
             </div>

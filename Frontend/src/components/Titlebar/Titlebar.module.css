@@ -1,15 +1,37 @@
+@import url('../../colors.css');
+
 .titlebar {
     width: 100%;
-    height: 32px;
-    background-color: #0e0e0f;
-    color: #f0f0f0;
+    height: var(--title-bar-size);
+    background-color: var(--secondary-bg);
+    border-bottom: 4px solid var(--border);
+    color: var(--text);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    border-bottom: 1px solid #1f1f1f;
+    justify-content: space-between;
     -webkit-app-region: drag;
     user-select: none;
     z-index: 1000;
+}
+
+.titleWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 8px;
+}
+
+.titleImage {
+    width: 22px;
+    height: 22px;
+    border-radius: 12px;
+}
+
+.title {
+    margin-left: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    -webkit-app-region: drag;
 }
 
 .windowButtons {
@@ -23,18 +45,21 @@
     height: 100%;
     background: none;
     border: none;
-    color: #ccc;
-    font-size: 14px;
+    color: var(--quite-text);
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .windowButtons button:hover {
     background-color: #222;
-    color: #fff;
+    color: var(--text);
 }
 
-.close:hover {
-    background-color: #b20000;
-    color: #fff;
+.windowButtons button:last-child:hover {
+    background-color: #7d0000;
+    color: var(--text);
 }
