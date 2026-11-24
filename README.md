@@ -2,6 +2,8 @@
 
 Мессенджер со сквозным шифрованием переписки, комнатами, голосовыми звонками и демонстрацией экрана.
 
+<img width="1280" height="780" alt="image" src="https://github.com/user-attachments/assets/dff5a3b9-7eb4-47e6-b411-643956c5a183" />
+
 [Веб-клиент](https://smeruxa.ru/playtime/app/) · [Скачать приложение](https://smeruxa.ru/playtime/)
 
 ## Локальный запуск
