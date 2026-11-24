@@ -1,0 +1,362 @@
+@import url("../../colors.css");
+
+.body {
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 12px 20px 16px;
+    background:
+        radial-gradient(720px 420px at 50% -10%, rgba(58, 168, 255, 0.14), transparent 55%),
+        radial-gradient(500px 320px at 100% 40%, rgba(46, 231, 255, 0.06), transparent 50%), var(--bg);
+    color: var(--text);
+}
+
+.shell {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: rgba(18, 20, 24, 0.72);
+    border: 1px solid rgba(58, 168, 255, 0.12);
+    border-radius: 20px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+}
+
+.cardHeader {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12, 14, 18, 0.45);
+}
+
+.cardHeaderMain {
+    flex: 1;
+    min-width: 0;
+}
+
+.pageTitle {
+    margin: 0;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+    margin: 4px 0 0;
+    font-size: 0.78rem;
+    color: var(--quite-text);
+    line-height: 1.4;
+}
+
+.backToChats {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(32, 32, 32, 0.45);
+    color: var(--text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease,
+        color var(--motion-fast) ease;
+}
+
+.backToChats:hover {
+    border-color: rgba(58, 168, 255, 0.32);
+    background: rgba(58, 168, 255, 0.1);
+    color: var(--text);
+}
+
+.backToChatsIcon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.tabs {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    gap: 4px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tabActive {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text);
+    background: linear-gradient(145deg, rgba(58, 168, 255, 0.22), rgba(46, 200, 255, 0.1));
+    border: 1px solid rgba(58, 168, 255, 0.28);
+    box-shadow: 0 2px 12px rgba(58, 168, 255, 0.08);
+}
+
+.tabLink {
+    margin: 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--quite-text);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.tabLink:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.backBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(32, 32, 32, 0.4);
+    color: var(--text);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.backBtn:hover {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.08);
+}
+
+.backIcon {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.cardMain {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.hero {
+    flex: 1 1 0;
+    min-height: clamp(120px, 22vh, 280px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 32px) clamp(16px, 5vw, 48px);
+    background: linear-gradient(180deg, rgba(58, 168, 255, 0.05) 0%, transparent 100%);
+    overflow: hidden;
+}
+
+.formFooter {
+    flex-shrink: 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    background: rgba(12, 14, 18, 0.55);
+}
+
+.heroArt {
+    display: block;
+    width: min(100%, 62vw, 760px);
+    height: auto;
+    max-height: min(38vh, 360px, 100%);
+    aspect-ratio: 1280 / 659;
+    object-fit: contain;
+    margin: 0 auto;
+    flex-shrink: 1;
+}
+
+.tagline {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 12px 22px 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: rgba(220, 226, 235, 0.82);
+    text-align: center;
+    letter-spacing: 0.01em;
+}
+
+.formBlock {
+    flex-shrink: 0;
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fieldLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--quite-text);
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    padding: 12px 14px;
+    background: rgba(26, 30, 38, 0.85);
+    border: 1px solid rgba(58, 168, 255, 0.15);
+    border-radius: 12px;
+    font-size: var(--text-sm);
+    outline: none;
+    color: var(--text);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.input::placeholder {
+    color: var(--quite-text);
+}
+
+.input:hover {
+    border-color: rgba(58, 168, 255, 0.28);
+}
+
+.input:focus {
+    border-color: rgba(58, 168, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(58, 168, 255, 0.12);
+}
+
+.fieldHint {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--quite-text);
+}
+
+.error {
+    margin: 4px 0 0;
+    font-size: 0.8125rem;
+    color: var(--error);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btnPrimary {
+    flex: 1;
+    min-width: 160px;
+    height: 46px;
+    margin: 0;
+    padding: 0 18px;
+    border: none;
+    border-radius: 12px;
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: #0f1419;
+    cursor: pointer;
+    background: linear-gradient(145deg, #5ab8ff 0%, #3aa8ff 45%, #2ee7ff 130%);
+    box-shadow: none;
+    transition:
+        filter 0.15s ease,
+        transform 0.12s ease;
+}
+
+.btnPrimary:hover {
+    filter: brightness(1.06);
+}
+
+.btnPrimary:active {
+    transform: translateY(1px);
+}
+
+.btnGhost {
+    flex: 1;
+    min-width: 120px;
+    height: 46px;
+    margin: 0;
+    padding: 0 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    background: rgba(32, 36, 42, 0.6);
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.btnGhost:hover {
+    border-color: rgba(58, 168, 255, 0.25);
+    background: rgba(58, 168, 255, 0.08);
+}
+
+@media (max-width: 520px) {
+    .cardHeader {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .tabs {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .tabActive,
+    .tabLink {
+        flex: 1;
+        text-align: center;
+    }
+
+    .backBtn {
+        justify-content: center;
+    }
+}

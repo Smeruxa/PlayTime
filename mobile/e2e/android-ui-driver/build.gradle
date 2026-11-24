@@ -1,0 +1,15 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.playtime.uidriver'
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId 'com.playtime.uidriver'
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName '1.0'
+    }
+}

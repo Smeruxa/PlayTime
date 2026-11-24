@@ -1,0 +1,2 @@
+-keepclassmembers class org.webrtc.audio.JavaAudioDeviceModule { <fields>; }
+-keepclassmembers class org.webrtc.audio.WebRtcAudioRecord { <fields>; }

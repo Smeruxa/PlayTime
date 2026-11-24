@@ -1,0 +1,7 @@
+{
+    "name": "@playtime/gateway",
+    "private": true,
+    "scripts": {
+        "start": "node --import tsx main.ts"
+    }
+}

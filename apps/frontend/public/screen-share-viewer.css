@@ -1,0 +1,236 @@
+:root {
+    color-scheme: dark;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #f2f3f5;
+}
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #08090b;
+}
+button,
+input {
+    font: inherit;
+}
+button {
+    cursor: pointer;
+}
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #62b8ff;
+    outline-offset: 4px;
+}
+#frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+#overlay {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+        opacity 0.16s ease,
+        transform 0.16s ease;
+    pointer-events: none;
+}
+#overlay.visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+.toolbar {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    gap: 4px;
+    background: #191b20f5;
+    border: 1px solid #ffffff1f;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px #0006;
+}
+.toolbarButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 0;
+    border-radius: 7px;
+    padding: 10px;
+    background: transparent;
+    color: #d9dce3;
+    font-size: 13px;
+    line-height: 20px;
+}
+.toolbarButton:hover,
+.toolbarButton[aria-expanded="true"] {
+    background: #ffffff0f;
+    color: #fff;
+}
+.separator {
+    width: 1px;
+    height: 22px;
+    background: #ffffff1a;
+    margin-inline: 2px;
+}
+kbd {
+    border: 1px solid #ffffff26;
+    border-radius: 4px;
+    padding: 0 4px;
+    color: #9096a3;
+    font: inherit;
+    font-size: 10px;
+    line-height: 16px;
+    margin-left: 3px;
+}
+#mixer {
+    width: min(288px, calc(100vw - 32px));
+    padding: 18px 20px 8px;
+    border-radius: 14px;
+    border: 1px solid #ffffff1f;
+    background: #191b20fa;
+    box-shadow: 0 16px 50px #0007;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+}
+#mixer[hidden] {
+    display: none;
+}
+#mixer header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 5px;
+}
+h1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+h2 {
+    color: #9096a3;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 10px 0 6px;
+    padding-top: 16px;
+    border-top: 1px solid #ffffff14;
+}
+.iconButton {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #9096a3;
+    font-size: 23px;
+    line-height: 1;
+}
+.iconButton:hover {
+    color: #fff;
+    background: #ffffff0d;
+}
+.hint {
+    color: #9096a3;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+}
+.channel {
+    padding: 12px 0 14px;
+}
+.channelHead {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.channel label {
+    flex: 1;
+    min-width: 0;
+    color: #d9dce3;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.channel output {
+    color: #9096a3;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+.mute {
+    width: 27px;
+    height: 26px;
+    padding: 3px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: #b7bcc8;
+}
+.mute:hover {
+    background: #ffffff0f;
+    color: #fff;
+}
+.mute[aria-pressed="true"] {
+    color: #fa9191;
+}
+.channel input[type="range"] {
+    display: block;
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    accent-color: #69b8f5;
+    cursor: pointer;
+}
+.channel.disabled {
+    opacity: 0.45;
+}
+.channel.disabled input,
+.channel.disabled button {
+    cursor: default;
+}
+@media (max-width: 600px), (max-height: 500px) {
+    #overlay {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #overlay {
+        transition: none;
+    }
+}
+
+.channel input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(to right, #69b8f5 var(--level, 100%), #3c414b var(--level, 100%));
+}
+.channel input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    border: 0;
+    border-radius: 50%;
+    background: #8acaff;
+}
+
+#frame:not([src]) {
+    visibility: hidden;
+}

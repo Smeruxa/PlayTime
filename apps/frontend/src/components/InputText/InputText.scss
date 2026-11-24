@@ -1,0 +1,64 @@
+.ptInputContainer {
+    position: relative;
+    width: 100%;
+}
+
+.ptInput {
+    width: 100%;
+    height: 44px;
+    padding: 10px 44px 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--secondary-bg);
+    color: var(--text);
+    outline: none;
+    transition:
+        border-color 140ms ease,
+        box-shadow 140ms ease,
+        background 140ms ease;
+}
+
+.ptInput::placeholder {
+    color: var(--quite-text);
+}
+
+.ptInput:focus {
+    border-color: rgba(46, 231, 255, 0.55);
+    box-shadow: 0 0 0 4px var(--focus-ring);
+    background: rgba(32, 32, 32, 0.85);
+}
+
+.ptToggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--icons);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        color 140ms ease,
+        border-color 140ms ease,
+        background 140ms ease;
+}
+
+.ptToggle:hover {
+    color: var(--icons-hover);
+    border-color: rgba(58, 168, 255, 0.55);
+    background: rgba(58, 168, 255, 0.1);
+}
+
+.ptEye {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}

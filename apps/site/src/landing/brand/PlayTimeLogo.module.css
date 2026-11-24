@@ -1,0 +1,22 @@
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.icon {
+    display: block;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 104px;
+    object-fit: contain;
+    object-position: left center;
+    border-radius: 6px;
+}
+
+.wordmark {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: inherit;
+}

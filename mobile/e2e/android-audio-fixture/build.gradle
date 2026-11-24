@@ -1,0 +1,13 @@
+apply plugin: "com.android.application"
+
+android {
+    namespace "com.playtime.audiofixture"
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.playtime.audiofixture"
+        minSdkVersion 29
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+}

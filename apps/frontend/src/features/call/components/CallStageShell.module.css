@@ -1,0 +1,21 @@
+@import url("../../../colors.css");
+
+.shell {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px 12px 8px;
+}
+
+.volumeRow {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: min(280px, 100%);
+    margin: 0 auto;
+}
+
+.volumeRow > * {
+    width: 100%;
+}

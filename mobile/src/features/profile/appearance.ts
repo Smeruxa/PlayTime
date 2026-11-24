@@ -1,0 +1,38 @@
+export const avatarEffects = [
+    { id: 'none', title: 'Без эффекта' },
+    { id: 'halo', title: 'Ореол' },
+    { id: 'orbit', title: 'Орбита' },
+    { id: 'neon', title: 'Неон' },
+    { id: 'stars', title: 'Блики' },
+    { id: 'frost', title: 'Иней' },
+    { id: 'flare', title: 'Закат' },
+    { id: 'bloom', title: 'Лепестки' },
+    { id: 'prism', title: 'Призма' },
+];
+export const bannerEffects = [
+    { id: 'none', title: 'Без эффекта' },
+    { id: 'glow', title: 'Тихий свет' },
+    { id: 'sakura', title: 'Сакура' },
+    { id: 'snow', title: 'Снегопад' },
+    { id: 'stars', title: 'Светлячки' },
+    { id: 'ember', title: 'Искры' },
+];
+export const bannerStickers = [
+    { id: 'none', title: 'Нет' },
+    { id: 'grin', title: '😁' },
+    { id: 'heart_eyes', title: '😍' },
+    { id: 'star_struck', title: '🤩' },
+    { id: 'cool', title: '😎' },
+    { id: 'joy', title: '😂' },
+    { id: 'fire', title: '🔥' },
+    { id: 'sparkles', title: '✨' },
+    { id: 'hundred', title: '💯' },
+    { id: 'rocket', title: '🚀' },
+    { id: 'rainbow', title: '🌈' },
+    { id: 'moon', title: '🌙' },
+    { id: 'sun', title: '☀️' },
+    { id: 'cherry', title: '🍒' },
+    { id: 'cat', title: '🐱' },
+    { id: 'party', title: '🎉' },
+    { id: 'ghost', title: '👻' },
+];

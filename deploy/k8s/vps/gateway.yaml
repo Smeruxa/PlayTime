@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-vps-gateway
+spec:
+    serviceName: playtime-vps-pods
+    replicas: 1
+    revisionHistoryLimit: 2
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-vps-gateway
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-vps-gateway
+                app.kubernetes.io/part-of: playtime-vps
+        spec:
+            hostNetwork: true
+            dnsPolicy: Default
+            automountServiceAccountToken: false
+            enableServiceLinks: false
+            terminationGracePeriodSeconds: 25
+            securityContext:
+                runAsNonRoot: true
+                runAsUser: 1000
+                runAsGroup: 1000
+                seccompProfile:
+                    type: RuntimeDefault
+            containers:
+                - name: gateway
+                  image: playtime-gateway:vps-candidate
+                  imagePullPolicy: Never
+                  command: [/bin/sh, -ec, "umask 077; exec node --import tsx main.ts"]
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-vps-gateway-defaults
+                      - configMapRef:
+                            name: playtime-vps-postgres
+                      - secretRef:
+                            name: playtime-vps-gateway
+                      - secretRef:
+                            name: playtime-vps-redis
+                      - secretRef:
+                            name: playtime-vps-transport
+                      - configMapRef:
+                            name: playtime-vps-gateway-settings
+                      - configMapRef:
+                            name: playtime-vps-runtime
+                  securityContext:
+                      allowPrivilegeEscalation: false
+                      readOnlyRootFilesystem: true
+                      capabilities:
+                          drop: [ALL]
+                  resources:
+                      requests:
+                          cpu: 60m
+                          memory: 96Mi
+                      limits:
+                          cpu: 300m
+                          memory: 128Mi
+                  startupProbe:
+                      exec: &gateway-health
+                          command:
+                              - /bin/bash
+                              - -ec
+                              - >-
+                                  exec 3<>"/dev/tcp/127.0.0.1/$PORT";
+                                  printf 'GET /playtime/health HTTP/1.0\r\nHost: 127.0.0.1\r\n\r\n' >&3;
+                                  read -r -t 2 _ status _ <&3;
+                                  test "$status" = 200
+                      periodSeconds: 3
+                      timeoutSeconds: 3
+                      failureThreshold: 30
+                  readinessProbe:
+                      exec:
+                          command:
+                              - /bin/bash
+                              - -ec
+                              - >-
+                                  exec 3<>"/dev/tcp/127.0.0.1/$PORT";
+                                  printf 'GET /readyz HTTP/1.0\r\nHost: 127.0.0.1\r\n\r\n' >&3;
+                                  read -r -t 2 _ status _ <&3;
+                                  test "$status" = 200
+                      periodSeconds: 10
+                      timeoutSeconds: 3
+                  livenessProbe:
+                      exec: *gateway-health
+                      periodSeconds: 20
+                      timeoutSeconds: 3
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+                      - name: releases
+                        mountPath: /app/apps/data/releases
+            volumes:
+                - name: tmp
+                  emptyDir:
+                      sizeLimit: 32Mi
+                - name: releases
+                  hostPath:
+                      path: /srv/playtime-vps-preview/releases
+                      type: Directory

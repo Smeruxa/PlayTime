@@ -1,0 +1,40 @@
+.statement {
+    padding: clamp(5rem, 14vw, 9rem) var(--pad-x);
+    text-align: center;
+    border-block: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: linear-gradient(135deg, #e8edf5 0%, var(--bg-soft) 45%, var(--bg-muted) 100%);
+}
+
+.statementOrbs {
+    z-index: 0;
+}
+
+.statement__glow {
+    position: absolute;
+    width: min(90vw, 900px);
+    height: min(50vw, 400px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(0, 113, 227, 0.12), transparent 70%);
+    pointer-events: none;
+}
+
+.statement__line {
+    margin: 0 auto;
+    max-width: none;
+    font-size: clamp(2.25rem, 6.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    position: relative;
+    z-index: 1;
+}
+
+.statement__line .split-word {
+    display: inline-block;
+    margin-right: 0.22em;
+}

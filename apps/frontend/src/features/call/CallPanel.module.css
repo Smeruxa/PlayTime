@@ -1,0 +1,151 @@
+@import url("../../colors.css");
+
+.shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid rgba(58, 168, 255, 0.12);
+    background: rgba(18, 20, 24, 0.72);
+    backdrop-filter: blur(12px);
+}
+
+.partyInner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 12px 6px;
+}
+
+.partyCaption {
+    margin: 0;
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.2;
+    color: var(--quite-text);
+}
+
+.partyCaptionLabel {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.partyCaptionSep {
+    flex-shrink: 0;
+    opacity: 0.45;
+}
+
+.partyCaptionRoom {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.partyVolume {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: min(280px, 100%);
+    margin: 0 auto;
+}
+
+.partyVolume > * {
+    width: 100%;
+}
+
+.volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    min-height: 28px;
+}
+
+.volumeControlWide {
+    flex: 1;
+    min-width: min(220px, 100%);
+    max-width: 100%;
+}
+
+.volumeIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    color: var(--quite-text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+}
+
+.volumeSliderTrack {
+    flex: 1;
+    width: min(112px, 24vw);
+    min-width: 72px;
+    max-width: 140px;
+}
+
+.volumeControlWide .volumeSliderTrack {
+    width: auto;
+    max-width: none;
+}
+
+.volumeBadge {
+    flex-shrink: 0;
+    min-width: 2rem;
+    padding: 3px 7px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--text);
+    background: rgba(32, 36, 44, 0.9);
+    border: 1px solid var(--border);
+}
+
+.controlsRow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 4px 10px 10px 6px;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    background: rgba(12, 14, 18, 0.45);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.pingInline {
+    margin-left: auto;
+    padding: 2px 8px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.pingInline_good {
+    color: #8ce99a;
+}
+
+.pingInline_ok {
+    color: #a5d8ff;
+}
+
+.pingInline_warn {
+    color: #ffd43b;
+}
+
+.pingInline_bad {
+    color: #ffa8a8;
+}

@@ -1,0 +1,16 @@
+@import url("../../../colors.css");
+
+.panel {
+    width: min(360px, 100%);
+}
+
+.hint {
+    margin: 0 0 14px;
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--quite-text);
+}
+
+.volumeControl {
+    width: 100%;
+}

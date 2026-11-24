@@ -1,0 +1,25 @@
+@import "../../colors.css";
+
+.bone {
+    display: block;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+    animation: skelPulse 1.15s ease-in-out infinite;
+}
+
+@keyframes skelPulse {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+    50% {
+        opacity: 0.42;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bone {
+        animation: none;
+        opacity: 0.25;
+    }
+}

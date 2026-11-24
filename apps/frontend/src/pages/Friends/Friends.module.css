@@ -1,0 +1,562 @@
+@import url("../../colors.css");
+
+.body {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 12px 20px 16px;
+    background:
+        radial-gradient(780px 420px at 50% -20%, rgba(58, 168, 255, 0.14), transparent 55%),
+        radial-gradient(520px 360px at 100% 60%, rgba(46, 231, 255, 0.06), transparent 50%), var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sheet {
+    width: 100%;
+    margin: 0;
+    border: 1px solid rgba(58, 168, 255, 0.12);
+    border-radius: var(--radius-lg);
+    background: rgba(18, 20, 24, 0.65);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    max-height: 100%;
+    box-shadow: var(--shadow-panel);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12, 14, 18, 0.55);
+    flex-shrink: 0;
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 11px;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: rgba(32, 32, 32, 0.45);
+    color: var(--text);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.back:hover {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.08);
+}
+
+.backIcon {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.headerMain {
+    flex: 1;
+    min-width: 0;
+}
+
+.title {
+    margin: 0;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+
+.headerSubtitle {
+    margin: 4px 0 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--quite-text);
+}
+
+.addBar {
+    flex-shrink: 0;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.mainGrid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.25fr);
+    gap: 0;
+    overflow: hidden;
+}
+
+.colRequests {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.block {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.block + .block {
+    border-top: 1px solid var(--border);
+}
+
+.blockFriends {
+    min-height: 0;
+}
+
+.blockHead {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px 10px;
+    flex-shrink: 0;
+}
+
+.blockIcon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: rgba(120, 200, 255, 0.9);
+}
+
+.blockTitle {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: rgba(240, 248, 255, 0.95);
+    background: rgba(58, 168, 255, 0.18);
+    border: 1px solid rgba(58, 168, 255, 0.28);
+}
+
+.blockList {
+    flex: 1;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 14px 14px;
+    overscroll-behavior: contain;
+}
+
+.blockListFriends {
+    padding-bottom: 18px;
+}
+
+.addRow {
+    width: 100%;
+}
+
+.feedbackOk,
+.feedbackErr {
+    margin: 8px 0 0;
+    font-size: 0.8125rem;
+}
+
+.feedbackOk {
+    color: var(--success);
+}
+
+.feedbackErr {
+    color: var(--error);
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-sizing: border-box;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.row:hover {
+    background: rgba(58, 168, 255, 0.06);
+    border-color: rgba(58, 168, 255, 0.14);
+}
+
+.rowLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.avatarSlot {
+    position: relative;
+    width: 56px;
+    min-width: 56px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.avatarFxFill {
+    flex-shrink: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(58, 168, 255, 0.22);
+}
+
+.rowLeft .avatarFxFill {
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+    max-height: 36px;
+    box-sizing: border-box;
+}
+
+.avatarInitial {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(58, 168, 255, 0.35), rgba(46, 231, 255, 0.18));
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.avatarImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+}
+
+.rowText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.rowName {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rowMeta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+    color: var(--quite-text);
+    text-transform: lowercase;
+}
+
+.rowMetaLabel {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    display: block;
+}
+
+.rowMetaMuted {
+    font-size: 0.8125rem;
+    color: var(--quite-text);
+}
+
+.dotOnline,
+.dotOffline {
+    box-sizing: border-box;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transform: translateY(1px);
+}
+
+.dotOnline {
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+}
+
+.dotOffline {
+    border: 1.5px solid var(--quite-text);
+    background: transparent;
+}
+
+.rowActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btnGhost {
+    padding: 7px 12px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.btnGhost:hover {
+    background: rgba(58, 168, 255, 0.12);
+    border-color: rgba(58, 168, 255, 0.28);
+}
+
+.iconDanger {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid rgba(255, 77, 77, 0.25);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 77, 77, 0.12);
+    color: var(--error);
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.iconDanger:hover {
+    background: rgba(255, 77, 77, 0.22);
+    border-color: rgba(255, 77, 77, 0.4);
+}
+
+.emptyMuted {
+    margin: 0;
+    padding: 12px 14px;
+    font-size: 0.8125rem;
+    color: var(--quite-text);
+    line-height: 1.45;
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalBox {
+    background: rgba(28, 30, 34, 0.96);
+    border: 1px solid rgba(58, 168, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: var(--shadow-panel);
+}
+
+.modalText {
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.modalText strong {
+    color: var(--accent);
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modalBtnCancel,
+.modalBtnConfirm {
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.modalBtnCancel {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.modalBtnCancel:hover {
+    background: var(--hover-bg);
+}
+
+.modalBtnConfirm {
+    border: 1px solid rgba(255, 77, 77, 0.45);
+    background: rgba(255, 77, 77, 0.16);
+    color: var(--text);
+}
+
+.modalBtnConfirm:hover {
+    background: rgba(255, 77, 77, 0.26);
+    border-color: rgba(255, 77, 77, 0.6);
+}
+
+@media (max-width: 900px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+
+    .colRequests {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex: none;
+        max-height: none;
+    }
+
+    .block {
+        flex: none;
+        max-height: min(42vh, 360px);
+    }
+
+    .blockFriends {
+        flex: 1;
+        min-height: min(50vh, 480px);
+        max-height: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .body {
+        padding: 10px 12px 12px;
+    }
+
+    .mainGrid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .colRequests,
+    .block,
+    .blockFriends {
+        flex: 0 0 auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .blockList {
+        flex: 0 0 auto;
+        overflow: visible;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .rowLeft {
+        width: 100%;
+    }
+
+    .rowText {
+        flex: 1;
+    }
+
+    .rowMetaLabel {
+        white-space: nowrap;
+    }
+
+    .rowActions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .rowActions .btnGhost {
+        flex: 1;
+        min-height: 36px;
+    }
+
+    .iconDanger {
+        width: 36px;
+        height: 36px;
+    }
+}

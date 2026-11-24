@@ -1,0 +1,64 @@
+.adminRoot {
+    --bg: #191b20;
+    --bg-soft: #202329;
+    --bg-muted: #252930;
+    --bg-raise: #252930;
+    --bg-elevated: #2d323b;
+    --bg-card: #191b20;
+    --bg-sidebar: #14161a;
+    --bg-hover: #24282f;
+    --fg: #e4e7ed;
+    --fg-dim: #a0a8b5;
+    --fg-muted: #8a94a3;
+    --line: #2c313a;
+    --line-strong: #444c59;
+    --accent: #8fb8ef;
+    --accent-hover: #bdd6f7;
+    --accent-2: #8fb8ef;
+    --accent-soft: #243246;
+    --button-bg: #356db8;
+    --button-hover: #3c7bce;
+    --success: #83c49e;
+    --success-soft: #1e2d26;
+    --warning: #d9b66d;
+    --warning-soft: #302a1e;
+    --danger: #ee969f;
+    --danger-soft: #332328;
+    --danger-line: #75434e;
+    --r: 6px;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    color-scheme: dark;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+.adminRoot * {
+    box-sizing: border-box;
+}
+.adminRoot a {
+    color: var(--accent);
+}
+.adminRoot a:hover {
+    color: var(--accent-hover);
+}
+.adminRoot button,
+.adminRoot input,
+.adminRoot select,
+.adminRoot textarea {
+    font: inherit;
+}
+.adminRoot button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+.adminRoot :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+.adminRoot ::selection {
+    background: #375478;
+    color: var(--fg);
+}

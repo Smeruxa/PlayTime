@@ -1,0 +1,102 @@
+.draft-appearance-plans {
+    margin-top: 38px;
+    padding: 34px 38px 28px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--secondary-bg);
+    scroll-margin-top: 100px;
+}
+.draft-appearance-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 46px;
+    align-items: center;
+    margin-bottom: 36px;
+}
+.draft-appearance-intro .draft-eyebrow {
+    margin-bottom: 8px;
+    color: #94c9e5;
+}
+.draft-appearance-intro h3 {
+    margin: 0 0 10px;
+    font-size: clamp(28px, 3vw, 37px);
+    font-weight: 550;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+}
+.draft-appearance-intro p:last-child {
+    max-width: 650px;
+    margin: 0;
+    color: var(--quite-text);
+    font-size: 13px;
+    line-height: 1.9;
+}
+.draft-appearance-table-wrap {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #68503f transparent;
+}
+.draft-appearance-table-wrap:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+.draft-appearance-table-wrap table {
+    width: 100%;
+    min-width: 540px;
+    border-collapse: collapse;
+    font-size: 12px;
+    line-height: 1.7;
+}
+.draft-appearance-table-wrap th,
+.draft-appearance-table-wrap td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    font-weight: 400;
+}
+.draft-appearance-table-wrap th:first-child {
+    padding-left: 0;
+    text-align: left;
+    color: var(--quite-text);
+}
+.draft-appearance-table-wrap thead th {
+    font-weight: 500;
+    color: #ffc08d;
+}
+.draft-appearance-plan-price {
+    display: block;
+    margin-top: 3px;
+    color: var(--quite-text);
+    font-size: 11px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+.draft-appearance-table-wrap tbody tr:last-child > * {
+    border-bottom: 0;
+}
+.draft-appearance-note {
+    margin: 18px 0 0;
+    color: var(--quite-text);
+    font-size: 11px;
+    line-height: 1.8;
+}
+@media (max-width: 900px) {
+    .draft-appearance-plans {
+        padding: 28px 24px;
+    }
+    .draft-appearance-intro {
+        gap: 24px;
+    }
+}
+@media (max-width: 650px) {
+    .draft-appearance-plans {
+        padding: 22px 18px;
+    }
+    .draft-appearance-intro {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+    .draft-appearance-intro h3 {
+        font-size: 28px;
+    }
+}

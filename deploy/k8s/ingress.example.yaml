@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: playtime
+    namespace: playtime
+spec:
+    ingressClassName: example
+    tls:
+        - hosts:
+              - playtime.example.test
+          secretName: playtime-tls
+    rules:
+        - host: playtime.example.test
+          http:
+              paths:
+                  - path: /
+                    pathType: Exact
+                    backend:
+                        service:
+                            name: playtime-gateway
+                            port:
+                                name: http
+                  - path: /playtime
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: playtime-gateway
+                            port:
+                                name: http

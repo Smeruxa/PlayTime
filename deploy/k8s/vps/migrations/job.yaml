@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: playtime-vps-migrate
+spec:
+    activeDeadlineSeconds: 600
+    backoffLimit: 1
+    template:
+        spec:
+            hostNetwork: true
+            dnsPolicy: Default
+            automountServiceAccountToken: false
+            enableServiceLinks: false
+            restartPolicy: Never
+            securityContext:
+                runAsNonRoot: true
+                runAsUser: 1000
+                runAsGroup: 1000
+                seccompProfile:
+                    type: RuntimeDefault
+            containers:
+                - name: migrate
+                  image: playtime-database:vps-candidate
+                  imagePullPolicy: Never
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-vps-postgres
+                      - secretRef:
+                            name: playtime-vps-database
+                  securityContext:
+                      allowPrivilegeEscalation: false
+                      readOnlyRootFilesystem: true
+                      capabilities:
+                          drop: [ALL]
+                  resources:
+                      requests:
+                          cpu: 50m
+                          memory: 96Mi
+                      limits:
+                          cpu: 250m
+                          memory: 128Mi
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+            volumes:
+                - name: tmp
+                  emptyDir:
+                      sizeLimit: 32Mi

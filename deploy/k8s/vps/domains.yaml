@@ -1,0 +1,164 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-vps-domains
+spec:
+    serviceName: playtime-vps-pods
+    replicas: 1
+    revisionHistoryLimit: 2
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-vps-domains
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-vps-domains
+                app.kubernetes.io/part-of: playtime-vps
+        spec:
+            hostNetwork: true
+            dnsPolicy: Default
+            automountServiceAccountToken: false
+            enableServiceLinks: false
+            terminationGracePeriodSeconds: 25
+            securityContext:
+                runAsNonRoot: true
+                runAsUser: 1000
+                runAsGroup: 1000
+                seccompProfile:
+                    type: RuntimeDefault
+            containers:
+                - name: auth
+                  image: playtime-auth-api:vps-candidate
+                  imagePullPolicy: Never
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-vps-postgres
+                      - secretRef:
+                            name: playtime-vps-auth
+                      - secretRef:
+                            name: playtime-vps-redis
+                      - secretRef:
+                            name: playtime-vps-transport
+                      - configMapRef:
+                            name: playtime-vps-runtime
+                  securityContext: &domain-security
+                      allowPrivilegeEscalation: false
+                      readOnlyRootFilesystem: true
+                      capabilities:
+                          drop: [ALL]
+                  resources:
+                      requests:
+                          cpu: 40m
+                          memory: 96Mi
+                      limits:
+                          cpu: 200m
+                          memory: 128Mi
+                  startupProbe:
+                      tcpSocket: &auth-listener
+                          host: 127.0.0.1
+                          port: 1511
+                      periodSeconds: 3
+                      failureThreshold: 30
+                  readinessProbe:
+                      tcpSocket: *auth-listener
+                      periodSeconds: 5
+                  livenessProbe:
+                      tcpSocket: *auth-listener
+                      periodSeconds: 10
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+                - name: chat
+                  image: playtime-chat-api:vps-candidate
+                  imagePullPolicy: Never
+                  command: [/bin/sh, -ec, "umask 077; exec node --import tsx main.ts"]
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-vps-postgres
+                      - secretRef:
+                            name: playtime-vps-chat
+                      - secretRef:
+                            name: playtime-vps-redis
+                      - secretRef:
+                            name: playtime-vps-transport
+                      - configMapRef:
+                            name: playtime-vps-chat-storage
+                      - configMapRef:
+                            name: playtime-vps-runtime
+                  securityContext: *domain-security
+                  resources:
+                      requests:
+                          cpu: 50m
+                          memory: 96Mi
+                      limits:
+                          cpu: 250m
+                          memory: 128Mi
+                  startupProbe:
+                      tcpSocket: &chat-listener
+                          host: 127.0.0.1
+                          port: 1512
+                      periodSeconds: 3
+                      failureThreshold: 30
+                  readinessProbe:
+                      tcpSocket: *chat-listener
+                      periodSeconds: 5
+                  livenessProbe:
+                      tcpSocket: *chat-listener
+                      periodSeconds: 10
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+                      - name: attachments
+                        mountPath: /app/apps/data/attachments
+                      - name: voices
+                        mountPath: /app/apps/data/voices
+                - name: room
+                  image: playtime-room-api:vps-candidate
+                  imagePullPolicy: Never
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-vps-room-defaults
+                      - secretRef:
+                            name: playtime-vps-room
+                            optional: true
+                      - secretRef:
+                            name: playtime-vps-redis
+                      - secretRef:
+                            name: playtime-vps-transport
+                      - configMapRef:
+                            name: playtime-vps-runtime
+                  securityContext: *domain-security
+                  resources:
+                      requests:
+                          cpu: 50m
+                          memory: 96Mi
+                      limits:
+                          cpu: 250m
+                          memory: 128Mi
+                  startupProbe:
+                      tcpSocket: &room-listener
+                          host: 127.0.0.1
+                          port: 1513
+                      periodSeconds: 3
+                      failureThreshold: 30
+                  readinessProbe:
+                      tcpSocket: *room-listener
+                      periodSeconds: 5
+                  livenessProbe:
+                      tcpSocket: *room-listener
+                      periodSeconds: 10
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+            volumes:
+                - name: tmp
+                  emptyDir:
+                      sizeLimit: 32Mi
+                - name: attachments
+                  hostPath:
+                      path: /srv/playtime-vps-preview/attachments
+                      type: Directory
+                - name: voices
+                  hostPath:
+                      path: /srv/playtime-vps-preview/voices
+                      type: Directory

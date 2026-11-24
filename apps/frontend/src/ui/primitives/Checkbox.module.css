@@ -1,0 +1,49 @@
+.label {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+.input {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    opacity: 0;
+}
+.box {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--bg);
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+}
+.box svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+}
+.input:checked + .box {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+.input:checked + .box svg {
+    opacity: 1;
+}
+.input:focus-visible + .box {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+.input:disabled ~ span {
+    opacity: 0.5;
+    cursor: default;
+}

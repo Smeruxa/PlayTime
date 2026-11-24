@@ -1,0 +1,56 @@
+:root {
+    --bg: #161616;
+    --secondary-bg: #202020;
+    --third-bg: #2a2a2a;
+    --active-bg: #6b6b6b;
+    --border: #3a3a3a;
+    --hover-bg: #2f2f2f;
+
+    --text: #fdfdfd;
+    --secondary-text: #3aa8ff;
+    --quite-text: #9b9b9b;
+    --icons: #b8b8b8;
+    --icons-hover: #fdfdfd;
+    --icons-active: #3aa8ff;
+    --error: #ff4d4d;
+    --success: #4caf50;
+
+    --accent: #3aa8ff;
+    --accent-2: #2ee7ff;
+    --accent-hover: #1f8fff;
+    --accent-soft: rgba(58, 168, 255, 0.16);
+    --focus-ring: rgba(46, 231, 255, 0.35);
+
+    --text-xs: 0.8125rem;
+    --text-sm: 0.875rem;
+    --text-md: 1.0625rem;
+    --text-lg: 1.1875rem;
+    --text-xl: 1.3125rem;
+    --text-2xl: 1.5625rem;
+
+    --modal-bg: rgb(22, 22, 22);
+    --modal-secondary-bg: rgb(15, 15, 15);
+
+    --title-bar-size: 34px;
+
+    --surface-0: var(--bg);
+    --surface-1: var(--secondary-bg);
+    --surface-2: var(--third-bg);
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    --gradient-accent-soft: linear-gradient(
+        135deg,
+        rgba(58, 168, 255, 0.22) 0%,
+        rgba(46, 231, 255, 0.12) 100%
+    );
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --motion-fast: 0.15s;
+    --motion-normal: 0.28s;
+    --rail-width: 64px;
+    --list-width: 320px;
+    --list-width-min: 280px;
+    --list-width-max: 360px;
+    --drawer-width: 300px;
+}

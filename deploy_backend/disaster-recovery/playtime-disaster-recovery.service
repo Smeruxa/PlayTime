@@ -1,0 +1,17 @@
+[Unit]
+Description=Pull a verified PlayTime disaster recovery snapshot
+Wants=network-online.target
+After=network-online.target wg-quick@ptwg0.service docker.service
+Requires=wg-quick@ptwg0.service docker.service
+StartLimitIntervalSec=45min
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -BEs /usr/local/lib/playtime-disaster-recovery/pull.py
+TimeoutStartSec=15min
+Restart=on-failure
+RestartSec=3min
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes

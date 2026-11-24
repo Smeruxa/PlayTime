@@ -1,0 +1,17 @@
+[Unit]
+Description=PlayTime Gateway HTTP failover
+After=nginx.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 /etc/playtime-cluster/gateway-watch/gateway-edge.py watch --template /etc/playtime-cluster/gateway-watch/nginx-routing.conf.template --origin ${PLAYTIME_EDGE_ORIGIN}
+NoNewPrivileges=yes
+PrivateTmp=yes
+UMask=0077
+Restart=on-failure
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target

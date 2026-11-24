@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: playtime-pods
+spec:
+    clusterIP: None
+    selector:
+        app.kubernetes.io/part-of: playtime
+    ports:
+        - name: gateway
+          port: 1501
+        - name: auth
+          port: 1511
+        - name: chat
+          port: 1512
+        - name: room
+          port: 1513
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: playtime-gateway
+spec:
+    type: ClusterIP
+    selector:
+        app.kubernetes.io/name: playtime-gateway
+    ports:
+        - name: http
+          port: 1501
+          targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: playtime-auth-api
+spec:
+    selector:
+        app.kubernetes.io/name: playtime-auth-api
+    ports:
+        - name: http
+          port: 1511
+          targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: playtime-chat-api
+spec:
+    selector:
+        app.kubernetes.io/name: playtime-chat-api
+    ports:
+        - name: http
+          port: 1512
+          targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: playtime-room-api
+spec:
+    selector:
+        app.kubernetes.io/name: playtime-room-api
+    ports:
+        - name: http
+          port: 1513
+          targetPort: http

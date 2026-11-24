@@ -1,0 +1,207 @@
+.picker {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+    width: 100%;
+}
+.limited.avatar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 520px;
+}
+.limited.sticker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 220px;
+}
+.avatar {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.banner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.sticker {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+.option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 0;
+    padding: 14px 5px 10px;
+    border: 1px solid #2a303b;
+    border-radius: 11px;
+    background: #13161b;
+    color: var(--quite-text);
+    font: inherit;
+    font-size: 0.6875rem;
+    line-height: 1.45;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease,
+        color var(--motion-fast) ease;
+}
+.option:hover:not(:disabled) {
+    border-color: #57bcff;
+    color: var(--text);
+}
+.option:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+.option:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.selected {
+    border-color: #57bcff;
+    background: #182e40;
+    color: var(--text);
+}
+.preview {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-width: 0;
+}
+.label {
+    overflow-wrap: anywhere;
+}
+.marker {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    color: #57bcff;
+}
+.option:disabled .marker {
+    color: var(--quite-text);
+}
+.more {
+    overflow: hidden;
+    isolation: isolate;
+    border-color: #8e5938;
+    background: linear-gradient(145deg, #2d2119, #1b1817);
+    color: #ffc391;
+}
+.more::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -20%;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 175, 95, 0.14) 48%, transparent 65%);
+    transform: translateX(-100%);
+    animation: moreShimmer 6s ease-in-out infinite;
+    pointer-events: none;
+}
+.more:hover:not(:disabled) {
+    border-color: #ffb570;
+    color: #ffdbb6;
+}
+.more .marker {
+    color: #ffb570;
+}
+@keyframes moreShimmer {
+    0%,
+    25% {
+        transform: translateX(-100%);
+    }
+    70%,
+    100% {
+        transform: translateX(100%);
+    }
+}
+.mini {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+.miniPh {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(58, 168, 255, 0.35), rgba(46, 231, 255, 0.16));
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+}
+.previewImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+.banner .option {
+    gap: 7px;
+    padding: 7px 7px 9px;
+}
+.bannerMini {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 7px;
+    background: var(--gradient-accent-soft);
+}
+.bannerMiniPh {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-accent-soft);
+}
+.sticker .option {
+    gap: 5px;
+    padding: 10px 3px 8px;
+}
+.sticker .preview {
+    min-height: 29px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+@media (max-width: 900px) {
+    .avatar {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .banner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .sticker {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+@media (max-width: 700px) {
+    .avatar {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .sticker {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+@media (max-width: 460px) {
+    .avatar {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .sticker {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .sticker .label {
+        display: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .more::before {
+        animation: none;
+        transform: none;
+        opacity: 0.5;
+    }
+    .option {
+        transition: none;
+    }
+}

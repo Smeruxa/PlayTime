@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: statefulset
+spec:
+    template:
+        spec:
+            containers:
+                - name: app
+                  startupProbe:
+                      tcpSocket:
+                          port: http
+                      periodSeconds: 2
+                      failureThreshold: 45
+                  readinessProbe:
+                      tcpSocket:
+                          port: http
+                      periodSeconds: 5
+                  livenessProbe:
+                      tcpSocket:
+                          port: http
+                      periodSeconds: 10

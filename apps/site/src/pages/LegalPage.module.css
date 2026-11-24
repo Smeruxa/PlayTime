@@ -1,0 +1,105 @@
+.wrap {
+    min-height: 100dvh;
+    padding: 1.5rem var(--pad-x) 3rem;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.back {
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back:hover {
+    color: var(--accent);
+}
+
+.meta {
+    margin: 0;
+    color: var(--fg-dim);
+    font-size: 0.88rem;
+}
+
+.doc h1 {
+    font-family: "Unbounded", system-ui, sans-serif;
+    font-size: clamp(1.35rem, 4vw, 1.75rem);
+    margin: 0 0 1rem;
+    line-height: 1.2;
+}
+
+.lead {
+    margin: 0 0 2rem;
+    color: var(--fg-dim);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.toc {
+    margin-bottom: 2rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: rgba(14, 14, 17, 0.5);
+}
+
+.tocTitle {
+    margin: 0 0 0.65rem;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-dim);
+}
+
+.toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.toc a {
+    color: var(--fg);
+}
+
+.section {
+    margin-bottom: 1.75rem;
+}
+
+.section h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.65rem;
+    font-weight: 700;
+}
+
+.section p {
+    margin: 0 0 0.75rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--fg);
+}
+
+.footer {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--accent);
+}
+
+.dot {
+    margin: 0 0.5rem;
+    color: var(--fg-dim);
+}

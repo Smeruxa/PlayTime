@@ -1,0 +1,61 @@
+.pending,
+.sent,
+.read,
+.retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 16px;
+    min-height: 16px;
+    color: #a9b4bf;
+    vertical-align: middle;
+}
+
+.sent svg,
+.read svg,
+.retry svg {
+    width: 16px;
+    height: 16px;
+}
+
+.read {
+    color: #3aa8ff;
+}
+
+.spinner {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: messageSending 0.8s linear infinite;
+}
+
+.retry {
+    gap: 4px;
+    padding: 2px;
+    border: 0;
+    background: transparent;
+    color: #ff9c9c;
+    font: inherit;
+    cursor: pointer;
+}
+
+.retry:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@keyframes messageSending {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+}

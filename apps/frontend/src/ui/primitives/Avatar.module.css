@@ -1,0 +1,64 @@
+.wrap {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: visible;
+}
+
+.sizeSm {
+    width: 34px;
+    height: 34px;
+}
+
+.sizeMd {
+    width: 44px;
+    height: 44px;
+}
+
+.sizeLg {
+    width: 72px;
+    height: 72px;
+}
+
+.fxFill {
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.initial {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(58, 168, 255, 0.22);
+    color: var(--text);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sizeSm .initial {
+    font-size: 14px;
+}
+
+.sizeMd .initial {
+    font-size: 17px;
+}
+
+.sizeLg .initial {
+    font-size: 28px;
+}
+
+.room {
+    background: linear-gradient(135deg, rgba(58, 168, 255, 0.35), rgba(46, 231, 255, 0.22));
+    border: 1px solid rgba(46, 231, 255, 0.25);
+}

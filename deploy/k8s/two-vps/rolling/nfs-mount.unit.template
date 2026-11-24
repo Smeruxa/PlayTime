@@ -1,0 +1,16 @@
+[Unit]
+Description=PlayTime release files on the secondary node
+Wants=network-online.target
+Requires=wg-quick@ptwg0.service
+After=network-online.target wg-quick@ptwg0.service
+Before=k3s-agent.service
+
+[Mount]
+What=${PLAYTIME_PRIMARY_WG_IP}:/srv/playtime-cluster/release-data
+Where=/srv/playtime-cluster/gateway-release-share
+Type=nfs
+Options=ro,vers=4.2,proto=tcp,nodev,nosuid,noexec,_netdev
+TimeoutSec=20
+
+[Install]
+WantedBy=multi-user.target

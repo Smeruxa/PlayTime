@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_avatar_effect VARCHAR(32) NOT NULL DEFAULT 'none';

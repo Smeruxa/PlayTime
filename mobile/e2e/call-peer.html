@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'unsafe-inline'; connect-src http://127.0.0.1:* ws://127.0.0.1:* http://localhost:* ws://localhost:*; media-src blob:;"
+        />
+        <title>PlayTime · WebRTC test peer</title>
+        <style>
+            body {
+                background: #161616;
+                color: #fdfdfd;
+                font: 16px system-ui;
+                margin: 28px;
+            }
+            h1 {
+                font-size: 26px;
+                color: #3aa8ff;
+            }
+            p {
+                color: #a6a6a6;
+            }
+            canvas {
+                width: 100%;
+                border-radius: 18px;
+                margin: 10px 0;
+            }
+            video {
+                width: 100%;
+                max-height: 440px;
+                background: #000;
+                object-fit: contain;
+                border-radius: 18px;
+            }
+            pre {
+                white-space: pre-wrap;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>PlayTime WebRTC peer</h1>
+        <p>Local fixture · real audio/video RTP · no production account</p>
+        <div id="received-screens"></div>
+        <canvas
+            id="screen"
+            width="640"
+            height="360"
+        ></canvas>
+        <pre id="status">Connecting…</pre>
+        <script src="call-peer-renderer.js"></script>
+    </body>
+</html>

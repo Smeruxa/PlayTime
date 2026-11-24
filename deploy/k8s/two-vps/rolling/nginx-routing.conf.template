@@ -1,0 +1,20 @@
+map $host $playtime_active_slot {
+    default ${PLAYTIME_ACTIVE_SLOT};
+}
+
+map $arg_sid $playtime_socket_slot {
+    "~^p_[A-Za-z0-9_-]{24}$" primary;
+    "~^s_[A-Za-z0-9_-]{24}$" secondary;
+    "" $playtime_active_slot;
+    default primary;
+}
+
+map $playtime_active_slot $playtime_http_gateway {
+    primary playtime-gateway-0.playtime-pods.playtime.svc.cluster.local:1501;
+    secondary playtime-gateway-secondary-0.playtime-pods.playtime.svc.cluster.local:1501;
+}
+
+map $playtime_socket_slot $playtime_socket_gateway {
+    primary playtime-gateway-0.playtime-pods.playtime.svc.cluster.local:1501;
+    secondary playtime-gateway-secondary-0.playtime-pods.playtime.svc.cluster.local:1501;
+}

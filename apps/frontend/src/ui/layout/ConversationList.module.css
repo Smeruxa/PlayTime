@@ -1,0 +1,116 @@
+@import "../../colors.css";
+
+.column {
+    width: var(--list-width);
+    min-width: var(--list-width-min);
+    max-width: var(--list-width-max);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(18, 20, 24, 0.88);
+    border-right: 1px solid var(--border);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.searchWrap {
+    flex-shrink: 0;
+    padding: 12px 12px 8px;
+}
+
+.listScroll {
+    flex: 1;
+    min-height: 0;
+    padding: 0 8px 12px;
+}
+
+.sectionTitle {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--quite-text);
+    padding: 10px 8px 6px;
+}
+
+.empty {
+    font-size: var(--text-sm);
+    color: var(--quite-text);
+    padding: 12px 8px;
+    line-height: 1.7;
+}
+
+.empty p + p {
+    margin-top: 8px;
+}
+.emptyAction {
+    padding: 8px 0;
+    margin-top: 8px;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font-size: 13px;
+    cursor: pointer;
+}
+.emptyAction:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.skeletonList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.skeletonRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+}
+
+.skeletonAvatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    animation: listPulse 1.15s ease-in-out infinite;
+}
+
+.skeletonLine {
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: listPulse 1.15s ease-in-out infinite;
+}
+
+.skeletonLineWide {
+    height: 10px;
+    width: 72%;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: listPulse 1.15s ease-in-out infinite;
+}
+
+.skeletonLineNarrow {
+    height: 10px;
+    width: 44%;
+    margin-top: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: listPulse 1.15s ease-in-out infinite;
+    animation-delay: 0.08s;
+}
+
+@keyframes listPulse {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+    50% {
+        opacity: 0.42;
+    }
+}

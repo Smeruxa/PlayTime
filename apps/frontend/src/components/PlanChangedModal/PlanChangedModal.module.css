@@ -1,0 +1,74 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+}
+
+.dialog {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(165deg, rgba(28, 32, 40, 0.98), rgba(16, 18, 22, 0.99));
+    padding: 24px 22px 22px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.title {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f4f0e8;
+}
+
+.text {
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(244, 240, 232, 0.82);
+}
+
+.plan {
+    color: #7dd3fc;
+    font-weight: 600;
+}
+
+.count {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    color: #3dff9d;
+    margin: 8px 0 4px;
+    font-variant-numeric: tabular-nums;
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgba(244, 240, 232, 0.45);
+    text-align: center;
+}
+
+.btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(61, 255, 157, 0.18);
+    color: #b6ffd9;
+}
+
+.btn:hover {
+    background: rgba(61, 255, 157, 0.28);
+}

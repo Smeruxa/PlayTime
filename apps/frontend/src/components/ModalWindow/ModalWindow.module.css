@@ -1,0 +1,199 @@
+@import url("../../colors.css");
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    box-sizing: border-box;
+}
+
+.card {
+    width: min(100%, 380px);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 22px 20px;
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    animation: cardEnter 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(0.92);
+    }
+}
+
+.avatarBlock {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.avatarRing {
+    position: relative;
+    width: min(112px, 28vw);
+    height: min(112px, 28vw);
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(145deg, rgba(58, 168, 255, 0.55), rgba(46, 231, 255, 0.25));
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.avatarInner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--third-bg);
+    border: 2px solid var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatarFallback {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    font-weight: 700;
+    color: var(--quite-text);
+    user-select: none;
+}
+
+.name {
+    margin: 0 0 6px;
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.25;
+    word-break: break-word;
+}
+
+.subtitle {
+    margin: 0 0 22px;
+    font-size: var(--text-sm);
+    color: var(--quite-text);
+    text-align: center;
+    line-height: 1.45;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 14px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.15s ease;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.btnAccept {
+    background: rgba(76, 175, 80, 0.22);
+    border-color: rgba(76, 175, 80, 0.45);
+    color: #b8f0bc;
+}
+
+.btnAccept:hover {
+    background: rgba(76, 175, 80, 0.32);
+    border-color: rgba(103, 228, 103, 0.55);
+    color: var(--text);
+}
+
+.btnReject {
+    background: rgba(207, 33, 33, 0.12);
+    border-color: rgba(207, 33, 33, 0.35);
+    color: #f0a8a8;
+}
+
+.btnReject:hover {
+    background: rgba(207, 33, 33, 0.2);
+    border-color: rgba(207, 33, 33, 0.5);
+    color: #fff;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 420px) {
+    .card {
+        padding: 18px 16px 16px;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,17 @@
+.backdrop {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 113, 227, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 113, 227, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 15%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 15%, transparent 72%);
+}

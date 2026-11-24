@@ -1,0 +1,55 @@
+{
+    "appId": 2063785572,
+    "versionId": 2064943651,
+    "url": "https://console.rustore.ru/apps/2063785572/versions/2064943651",
+    "status": "DRAFT",
+    "publishType": "MANUAL",
+    "savedFields": [
+        "name",
+        "shortDescription",
+        "fullDescription",
+        "category",
+        "ageRating",
+        "website",
+        "privacyDataTypes",
+        "privacyExplanation",
+        "icon",
+        "screenshots",
+        "moderatorInstructions",
+        "finalSignedApk"
+    ],
+    "pending": [],
+    "moderationSubmitted": false,
+    "screenshotCount": 4,
+    "packageName": "com.playtimemobile",
+    "versionName": "2.0.17",
+    "versionCode": 20017,
+    "apk": {
+        "file": "artifacts/PlayTime-2.0.17.apk",
+        "bytes": 72228431,
+        "sha256": "e583ea1d1e5f5b95740a36dca80e9f001a51b4c4ef5b7f6437925c2d51f06370",
+        "abis": [
+            "arm64-v8a",
+            "x86_64"
+        ],
+        "nativeLibraries": 30,
+        "elfAlignment": 16384,
+        "embeddedHermesBytes": 1966020,
+        "uploadStatus": "saved-and-reopened-in-console"
+    },
+    "verifiedAt": "2026-11-10T14:03:24.460Z",
+    "verification": {
+        "formValidation": "All steps continued successfully through publication settings; draft saved.",
+        "consoleReadback": "Exact e583 final APK selected after browser SHA/signature verification; draft saved, reopened Files shows the single PlayTime-2.0.17.apk, 68.88 MB, dated 10.11.2026. All form steps revalidated after APK detection, the reset 383-character permission explanation restored, and DRAFT/MANUAL saved again without moderation.",
+        "publicApiReadback": "DRAFT/MANUAL, new icon, four new screenshots, 383-character permission explanation and 136-character moderator instructions verified after final save.",
+        "publicApiLimitation": "The draft API still returns empty packages and null versionName/minAndroidVersion. APK persistence is verified in the reopened Console UI; local manifest and signature are verified separately in artifacts/verification.json.",
+        "finalSaveConfirmation": "All steps validated; final save returned to the versions URL (native tab property) and official API readback confirms DRAFT/MANUAL plus the restored 383-character explanation. A post-navigation DOM read timed out; the last successful reopened Files read, before the final metadata-only save, showed the single final APK."
+    },
+    "pushProjectId": "tgS4NNHK2jlWOSGUGZdW3XGiH8xpRgCO",
+    "pushDeliveryStatus": "Verified: exact final e583 APK, normal production outbox message12 with stable RuStore broker, absent app PID, private notification, actual cold tap into correct chat and decrypted unique message. Message11 host-offline miss and explicit diagnostic retry are retained separately; automatic offline redelivery is not claimed.",
+    "pushEvidence": "../../e2e/artifacts/production-push-e2e/final17-message12-observation.json",
+    "keyboardEvidence": "../../e2e/artifacts/final-signed-keyboard-review/report.json",
+    "baselineProvenance": "Keyboard and guarded cold-call evidence uses bb625573 baseline; final e583 changes only the profile version caption to the existing native version constant. Exact final profile caption and production Push are verified separately.",
+    "qaCleanup": "Completed after explicit user authorization: only temporary QA users12/13 deleted with exact identity guards; all related references are zero, health200/Push401 passed. One-time QA/probe credentials removed; permanent RuStore/Android signing credentials retained.",
+    "qaCleanupEvidence": "../../e2e/artifacts/production-push-e2e/qa-reference-counts-after-cleanup.json"
+}

@@ -1,0 +1,10 @@
+@import "../../colors.css";
+
+.chatEmojiInline {
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    vertical-align: -0.2em;
+    object-fit: contain;
+    line-height: 1;
+}

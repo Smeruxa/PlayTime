@@ -1,0 +1,107 @@
+@import url("../../../colors.css");
+
+.empty {
+    margin: 0;
+    padding: 8px 0 4px;
+    font-size: var(--text-sm);
+    color: var(--quite-text);
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    max-width: min(520px, 100%);
+    margin: 0 auto;
+    gap: 8px 12px;
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+    max-width: 112px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    border-radius: var(--radius-md);
+}
+
+.tileInteractive {
+    cursor: context-menu;
+    transition: background 0.15s ease;
+}
+
+.tileInteractive:hover {
+    background: rgba(58, 168, 255, 0.06);
+}
+
+.tileInteractive:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.layout1 {
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: center;
+    max-width: 140px;
+}
+
+.layout2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 280px;
+    column-gap: 20px;
+}
+
+.layout2Duo {
+    align-items: center;
+}
+
+.layout2Duo > .tile {
+    align-self: center;
+}
+
+.layout2Duo > :first-child {
+    justify-self: end;
+}
+
+.layout2Duo > :last-child {
+    justify-self: start;
+}
+
+.layout3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 280px;
+}
+
+.layout3 > :nth-child(1) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.layout4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 300px;
+}
+
+.layoutFlex,
+.layoutMany {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px 12px;
+    max-width: 100%;
+}
+
+.layoutFlex > *,
+.layoutMany > * {
+    flex: 0 1 108px;
+}

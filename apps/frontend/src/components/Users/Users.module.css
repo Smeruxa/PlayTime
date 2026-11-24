@@ -1,0 +1,123 @@
+@import "../../colors.css";
+
+.users {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+    padding: 8px;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+.sectionTitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--quite-text);
+    padding: 10px 4px 6px;
+    margin-top: 4px;
+}
+
+.sectionTitle:first-child {
+    margin-top: 0;
+}
+
+.empty {
+    font-size: 13px;
+    color: var(--quite-text);
+    padding: 8px 4px;
+}
+
+.userWrapper {
+    position: relative;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        transform 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+    border: 1px solid transparent;
+}
+
+.selectedUser::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    z-index: 0;
+    transition: background 0.3s ease;
+}
+
+.selectedUser {
+    background: rgba(58, 168, 255, 0.1);
+    border-color: rgba(58, 168, 255, 0.22);
+    transition: background 0.3s ease;
+}
+
+.userWrapper > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes usersSkeletonPulse {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+    50% {
+        opacity: 0.42;
+    }
+}
+
+.skeletonList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 4px 0;
+}
+
+.skeletonUserRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border-radius: 12px;
+}
+
+.skeletonAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.14);
+    animation: usersSkeletonPulse 1.15s ease-in-out infinite;
+}
+
+.skeletonTextCol {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeletonLineWide {
+    height: 10px;
+    border-radius: 5px;
+    width: 72%;
+    background: rgba(255, 255, 255, 0.16);
+    animation: usersSkeletonPulse 1.15s ease-in-out infinite;
+    animation-delay: 0.08s;
+}
+
+.skeletonLineNarrow {
+    height: 8px;
+    border-radius: 4px;
+    width: 44%;
+    background: rgba(255, 255, 255, 0.12);
+    animation: usersSkeletonPulse 1.15s ease-in-out infinite;
+    animation-delay: 0.16s;
+}

@@ -1,0 +1,124 @@
+@import "../../colors.css";
+
+.row {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease;
+}
+
+.row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.selectedBg {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    background: var(--accent-soft);
+    border: 1px solid rgba(58, 168, 255, 0.35);
+    box-sizing: border-box;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.row:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.row:has(.selectedBg) .name {
+    color: var(--text);
+}
+
+.row:has(.selectedBg) {
+    border-color: rgba(58, 168, 255, 0.28);
+}
+
+.body {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.row > :not(.selectedBg) {
+    position: relative;
+    z-index: 1;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+}
+
+.name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.time {
+    font-size: 11px;
+    color: var(--quite-text);
+    flex-shrink: 0;
+}
+
+.preview {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--quite-text);
+}
+
+.previewFrom {
+    color: var(--quite-text);
+}
+
+.previewText {
+    color: var(--quite-text);
+}
+
+.statusSlot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    margin-left: auto;
+}
+
+.dotOnline,
+.dotOffline {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dotOnline {
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+}
+
+.dotOffline {
+    border: 1.5px solid var(--quite-text);
+    background: transparent;
+}

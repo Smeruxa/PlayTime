@@ -1,0 +1,76 @@
+map $http_upgrade $playtime_connection {
+    default upgrade;
+    ''      close;
+}
+
+limit_req_zone $binary_remote_addr zone=playtime_auth:10m rate=5r/s;
+limit_req_zone $binary_remote_addr zone=playtime_api:10m rate=30r/s;
+
+server {
+    listen 80;
+    server_name ${PLAYTIME_EDGE_HOST};
+    server_tokens off;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/lib/playtime-acme;
+    }
+
+    location / {
+        return 308 https://${PLAYTIME_EDGE_HOST}$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name ${PLAYTIME_EDGE_HOST};
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/${PLAYTIME_EDGE_HOST}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${PLAYTIME_EDGE_HOST}/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+    add_header X-Frame-Options DENY always;
+    add_header Content-Security-Policy "frame-ancestors 'none'" always;
+
+    client_max_body_size 16m;
+    limit_req_status 429;
+    resolver ${PLAYTIME_CLUSTER_DNS} valid=5s ipv6=off;
+    set $playtime_gateway ${PLAYTIME_GATEWAY_UPSTREAM};
+    proxy_bind ${PLAYTIME_EDGE_PRIVATE_IP};
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $playtime_connection;
+
+    location ^~ /playtime/app/ {
+        return 307 ${PLAYTIME_WEB_ORIGIN}$request_uri;
+    }
+
+    location /playtime/auth/ {
+        limit_req zone=playtime_auth burst=12 nodelay;
+        proxy_pass http://$playtime_gateway;
+    }
+
+    location /playtime/socket.io/ {
+        proxy_pass http://$playtime_gateway;
+        proxy_buffering off;
+        proxy_read_timeout 1h;
+        proxy_send_timeout 1h;
+    }
+
+    location /playtime/ {
+        limit_req zone=playtime_api burst=80 nodelay;
+        proxy_pass http://$playtime_gateway;
+        proxy_read_timeout 5m;
+    }
+
+    location / {
+        return 404;
+    }
+}

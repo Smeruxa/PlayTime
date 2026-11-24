@@ -1,0 +1,81 @@
+.trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--third-bg);
+    color: var(--text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.trigger:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.trigger:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.value,
+.optionLabel {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.arrow {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.list {
+    position: fixed;
+    z-index: 11000;
+    box-sizing: border-box;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--secondary-bg, #202020);
+    color: var(--text, #fff);
+    box-shadow: 0 12px 32px #0008;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 36px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: var(--text-sm);
+}
+
+.active {
+    background: var(--hover-bg);
+}
+
+.option[aria-selected="true"] {
+    color: var(--accent, #69b8f5);
+}
+
+.option[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: default;
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#141414" />
+        <style>
+            html {
+                background: #141414;
+            }
+            body {
+                margin: 0;
+            }
+            :root:has(.site-loading) {
+                color-scheme: dark;
+            }
+            body:has(.site-loading),
+            body:has(#root:empty) {
+                background: #141414;
+            }
+            .site-loading {
+                display: grid;
+                place-items: center;
+                min-height: 100vh;
+                min-height: 100dvh;
+                padding: 32px 24px;
+                box-sizing: border-box;
+                background: #141414;
+                color: #94a0af;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                text-align: center;
+                letter-spacing: 0;
+            }
+            .site-loading__content {
+                display: grid;
+                justify-items: center;
+                gap: 12px;
+                max-width: 280px;
+            }
+            .site-loading__brand {
+                margin: 0;
+                color: #b8c7d4;
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 1.4;
+                letter-spacing: -0.035em;
+            }
+            .site-loading__text {
+                margin: 0;
+                color: #94a0af;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 1.7;
+            }
+            .site-loading__line {
+                width: 44px;
+                height: 2px;
+                margin-bottom: 4px;
+                border-radius: 2px;
+                background: #3aa8ff;
+                opacity: 0.65;
+                animation: site-loading-pulse 1.8s ease-in-out infinite;
+            }
+            @keyframes site-loading-pulse {
+                50% {
+                    opacity: 0.3;
+                    transform: scaleX(0.65);
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .site-loading__line {
+                    animation: none;
+                }
+            }
+        </style>
+        <link rel="icon" type="image/x-icon" href="%BASE_URL%playtime-icon.ico" />
+        <link rel="apple-touch-icon" sizes="192x192" href="%BASE_URL%playtime-touch-icon.png" />
+        <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="PlayTime — мессенджер для команд и друзей: чаты, звонки и совместная работа на Mac и Windows."
+        />
+        <title>PlayTime — на одной волне</title>
+    </head>
+    <body>
+        <div id="root">
+            <div
+                class="site-loading"
+                data-site-loading="bootstrap"
+                role="status"
+                aria-live="polite"
+            >
+                <div class="site-loading__content">
+                    <span class="site-loading__line" aria-hidden="true"></span>
+                    <p class="site-loading__brand">PlayTime</p>
+                    <p class="site-loading__text">Загружаем сайт…</p>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

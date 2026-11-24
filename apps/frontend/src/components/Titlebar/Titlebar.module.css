@@ -1,0 +1,106 @@
+@import "../../colors.css";
+
+.titlebar {
+    width: 100%;
+    height: var(--title-bar-size);
+    min-height: var(--title-bar-size);
+    background: rgba(20, 20, 20, 0.85);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-app-region: drag;
+    user-select: none;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+}
+
+.titleWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 12px;
+    gap: 10px;
+}
+
+.titleImage {
+    height: 26px;
+    width: auto;
+    max-width: 104px;
+    object-fit: contain;
+    object-position: left center;
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    -webkit-app-region: drag;
+    background: linear-gradient(90deg, var(--text), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.windowButtons {
+    display: flex;
+    height: 100%;
+    -webkit-app-region: no-drag;
+}
+
+.windowButtons button {
+    width: 46px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--icons);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        color 160ms ease;
+}
+
+.windowButtons button:hover {
+    background: var(--hover-bg);
+    color: var(--icons-hover);
+}
+
+.windowButtons button:last-child:hover {
+    background: rgba(255, 77, 77, 0.25);
+    color: var(--text);
+}
+
+.winIcon {
+    width: 11px;
+    height: 11px;
+    font-size: 11px;
+}
+
+.updateBtn {
+    -webkit-app-region: no-drag;
+    margin-left: 8px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: rgba(58, 168, 255, 0.15);
+    color: var(--text);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.updateBtn:hover {
+    background: rgba(58, 168, 255, 0.28);
+}
+
+.updateHint {
+    margin-left: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    -webkit-app-region: no-drag;
+}

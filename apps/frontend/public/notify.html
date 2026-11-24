@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Уведомления PlayTime</title>
+        <link rel="stylesheet" href="assets/fonts/fonts.css" />
+        <link rel="stylesheet" href="scrollbars.css" />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                overflow: hidden;
+                background: transparent;
+                color: #fdfdfd;
+                font-family:
+                    "Plus Jakarta Sans",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            button {
+                color: inherit;
+                font: inherit;
+                cursor: pointer;
+            }
+
+            button:focus-visible {
+                outline: 2px solid #81ccff;
+                outline-offset: -2px;
+            }
+
+            #panel {
+                overflow: hidden;
+                border: 1px solid #45484c;
+                border-radius: 14px;
+                background: #181a1d;
+            }
+
+            #header {
+                display: flex;
+                height: 40px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 13px;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                color: #e7edf3;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .brand img {
+                width: 17px;
+                height: 17px;
+                border-radius: 5px;
+                object-fit: contain;
+            }
+
+            #clearAll {
+                padding: 4px;
+                border: 0;
+                border-radius: 6px;
+                background: transparent;
+                color: #b7bdc5;
+                font-size: 12px;
+                line-height: 17px;
+            }
+
+            #clearAll:hover {
+                background: #292e34;
+                color: #fdfdfd;
+            }
+
+            #list {
+                display: grid;
+                max-height: min(320px, var(--list-height, 320px));
+                overflow-x: hidden;
+                overflow-y: auto;
+                gap: 5px;
+                padding: 0 6px 6px;
+            }
+
+            .card {
+                display: grid;
+                min-height: 72px;
+                grid-template-columns: 36px minmax(0, 1fr) 17px;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 10px;
+                border: 1px solid #363d43;
+                border-radius: 9px;
+                background: #22262a;
+                text-align: left;
+                transition:
+                    background 0.15s,
+                    border-color 0.15s,
+                    opacity 0.25s ease;
+            }
+
+            .card:hover {
+                border-color: #4b5966;
+                background: #2a3138;
+            }
+
+            .card-fade-out {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .avatar {
+                display: grid;
+                width: 36px;
+                height: 36px;
+                place-items: center;
+                border: 1px solid #38536a;
+                border-radius: 50%;
+                background: #182a38;
+                color: #dceffc;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .card-room .avatar {
+                border-color: #2f6075;
+                background: #1b4050;
+            }
+
+            .content {
+                display: grid;
+                min-width: 0;
+                gap: 2px;
+            }
+
+            .kind {
+                color: #a6b7c6;
+                font-size: 11px;
+                line-height: 14px;
+            }
+
+            .name,
+            .text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .name {
+                font-size: 15px;
+                line-height: 18px;
+            }
+
+            .text {
+                color: #ced3d9;
+                font-size: 13px;
+                line-height: 17px;
+            }
+
+            .arrow {
+                display: block;
+                width: 7px;
+                height: 7px;
+                margin: auto;
+                transform: translateX(-2px) rotate(-45deg);
+                border-right: 1.5px solid #8da6b9;
+                border-bottom: 1.5px solid #8da6b9;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .card {
+                    transition: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="notifySound" src="assets/sounds/notification.mp3" preload="auto"></audio>
+        <main id="panel" aria-label="Уведомления о сообщениях">
+            <header id="header">
+                <span class="brand"><img src="assets/PlayTime.png" alt="" />PlayTime</span>
+                <button type="button" id="clearAll">Скрыть</button>
+            </header>
+            <div id="list"></div>
+        </main>
+        <template id="notificationCard">
+            <button type="button" class="card">
+                <span class="avatar" aria-hidden="true"></span>
+                <span class="content">
+                    <span class="kind"></span>
+                    <strong class="name"></strong>
+                    <span class="text"></span>
+                </span>
+                <span class="arrow" aria-hidden="true"></span>
+            </button>
+        </template>
+        <script>
+            const api = window.notifyAPI
+            if (api) {
+                const panel = document.getElementById("panel")
+                const list = document.getElementById("list")
+                const clearAll = document.getElementById("clearAll")
+                const sound = document.getElementById("notifySound")
+                const cardTemplate = document.getElementById("notificationCard")
+                const cards = new Map()
+                let hadNotification = false
+
+                function updateDismissLabel() {
+                    const activeCount = Array.from(cards.values()).filter((card) => !card.disabled).length
+                    clearAll.textContent = activeCount > 1 ? "Скрыть все" : "Скрыть"
+                }
+
+                function markLeaving(card) {
+                    card.classList.add("card-fade-out")
+                    card.disabled = true
+                }
+
+                function renderCard(item) {
+                    const card = cardTemplate.content.firstElementChild.cloneNode(true)
+                    const name = (item.isRoom && item.roomName) || item.name || (item.isRoom ? "Комната" : "Собеседник")
+                    if (item.isRoom) card.classList.add("card-room")
+                    card.querySelector(".avatar").textContent = Array.from(name.trim())[0]?.toUpperCase() || "?"
+                    card.querySelector(".kind").textContent = item.isRoom ? "Сообщение в комнате" : "Личное сообщение"
+                    card.querySelector(".name").textContent = name
+                    card.querySelector(".text").textContent = item.text
+                    if (item.leaving) markLeaving(card)
+                    card.addEventListener("click", () => api.send("notification-clicked", item.id))
+                    return card
+                }
+
+                clearAll.addEventListener("click", () => api.send("close-all-notifications"))
+                panel.addEventListener("click", (event) => {
+                    if (!event.target.closest("button")) api.send("notification-panel-clicked")
+                })
+                api.on("set-notifications", (items, maxHeight) => {
+                    if (typeof maxHeight === "number") list.style.setProperty("--list-height", `${maxHeight - 42}px`)
+                    const shownIds = new Set(items.map((item) => item.id))
+                    for (const [id, card] of cards) {
+                        if (shownIds.has(id)) continue
+                        card.remove()
+                        cards.delete(id)
+                    }
+                    for (const item of items) {
+                        if (cards.has(item.id)) continue
+                        const card = renderCard(item)
+                        cards.set(item.id, card)
+                        list.appendChild(card)
+                    }
+                    updateDismissLabel()
+                    if (items.length && !hadNotification) {
+                        hadNotification = true
+                        sound.play().catch(() => {})
+                    }
+                    requestAnimationFrame(() => api.send("notification-panel-height", panel.offsetHeight))
+                })
+                api.on("remove-notification", (id) => {
+                    const card = cards.get(id)
+                    if (!card) return
+                    markLeaving(card)
+                    updateDismissLabel()
+                })
+            }
+        </script>
+    </body>
+</html>

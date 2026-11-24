@@ -1,0 +1,102 @@
+.downloadWrap {
+    position: relative;
+    width: 100%;
+}
+
+.download {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(58, 168, 255, 0.14), transparent 55%),
+        linear-gradient(180deg, #2a3038 0%, #1e2228 42%, #161616 100%);
+    color: var(--fg-on-dark);
+}
+
+.download h2,
+.download .display {
+    color: #fdfdfd;
+}
+
+.download .lead,
+.download .eyebrow {
+    color: #9b9b9b;
+}
+
+.download .eyebrow {
+    color: #3aa8ff;
+}
+
+.download__grid {
+    list-style: none;
+    margin: 2rem auto 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .download__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.download__card {
+    border: 1px solid rgba(58, 168, 255, 0.18);
+    border-radius: var(--r-lg);
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    background: rgba(22, 24, 28, 0.92);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.download__card:hover {
+    border-color: rgba(58, 168, 255, 0.35);
+    box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.45),
+        0 0 32px rgba(58, 168, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.download__platform {
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    margin: 0 0 0.55rem;
+    letter-spacing: -0.03em;
+    color: #fdfdfd;
+}
+
+.download__detail {
+    margin: 0 0 0.45rem;
+    color: #c8c8c8;
+    font-size: 1rem;
+}
+
+.download__hint {
+    margin: 0.75rem 0 0;
+    color: #9b9b9b;
+    font-size: 0.9375rem;
+}
+
+.download__btn {
+    margin-top: 0.65rem;
+    display: inline-flex;
+}
+
+.download__footnote {
+    margin: 1.85rem auto 0;
+    max-width: 32rem;
+    color: #9b9b9b;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .download__card:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: playtime-primary-media
+spec:
+    storageClassName: ""
+    capacity:
+        storage: 20Gi
+    accessModes: [ReadWriteOnce]
+    persistentVolumeReclaimPolicy: Retain
+    local:
+        path: /srv/playtime-cluster/media
+    nodeAffinity:
+        required:
+            nodeSelectorTerms:
+                - matchExpressions:
+                      - key: playtime.io/node
+                        operator: In
+                        values: [primary]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: playtime-primary-releases
+spec:
+    storageClassName: ""
+    capacity:
+        storage: 20Gi
+    accessModes: [ReadWriteOnce]
+    persistentVolumeReclaimPolicy: Retain
+    local:
+        path: /srv/playtime-cluster/release-data
+    nodeAffinity:
+        required:
+            nodeSelectorTerms:
+                - matchExpressions:
+                      - key: playtime.io/node
+                        operator: In
+                        values: [primary]

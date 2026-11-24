@@ -1,0 +1,104 @@
+name: PlayTime CI
+
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: playtime-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: Determine affected applications
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      lanes: ${{ steps.plan.outputs.lanes }}
+      has_work: ${{ steps.plan.outputs.has_work }}
+      service_scopes: ${{ steps.plan.outputs.service_scopes }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: node --test .github/ci/affected.test.cjs
+      - id: plan
+        run: node .github/ci/affected.cjs
+
+  checks:
+    needs: changes
+    if: needs.changes.outputs.has_work == 'true'
+    name: Check ${{ matrix.lane }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: ${{ fromJSON(needs.changes.outputs.lanes) }}
+    env:
+      CI: "true"
+      DOTENV_CONFIG_PATH: /dev/null
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            apps/package-lock.json
+            apps/site/package-lock.json
+            mobile/package-lock.json
+      - name: Keep PlayTime requests on the runner
+        run: printf '127.0.0.1 smeruxa.ru www.smeruxa.ru playtime.smeruxa.ru\n::1 smeruxa.ru www.smeruxa.ru playtime.smeruxa.ru\n' | sudo tee -a /etc/hosts >/dev/null
+      - name: Install Kotlin check prerequisites
+        if: matrix.lane == 'android'
+        run: |
+          if ! command -v rg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ripgrep
+          fi
+      - name: Install deployment test prerequisites
+        if: matrix.lane == 'archive'
+        run: |
+          if ! python3 -c 'import yaml'; then
+            sudo apt-get update
+            sudo apt-get install -y python3-yaml
+          fi
+      - name: Run checks
+        env:
+          CI_LANE: ${{ matrix.lane }}
+          CI_SERVICE_SCOPES: ${{ needs.changes.outputs.service_scopes }}
+        run: bash .github/ci/check.sh "$CI_LANE"
+
+  result:
+    name: CI result
+    if: always()
+    needs: [changes, checks]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      PLAN_RESULT: ${{ needs.changes.result }}
+      HAS_WORK: ${{ needs.changes.outputs.has_work }}
+      CHECK_RESULT: ${{ needs.checks.result }}
+    steps:
+      - run: |
+          test "$PLAN_RESULT" = success
+          if [[ "$HAS_WORK" == true ]]; then
+            test "$CHECK_RESULT" = success
+          else
+            test "$CHECK_RESULT" = skipped
+          fi

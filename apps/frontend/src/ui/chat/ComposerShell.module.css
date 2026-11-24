@@ -1,0 +1,807 @@
+@import "../../colors.css";
+
+.composerEditBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(58, 168, 255, 0.25);
+    background: rgba(58, 168, 255, 0.08);
+    font-size: 0.8rem;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.composerEditCancel {
+    border: none;
+    background: transparent;
+    color: var(--quite-text);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.composerEditCancel:hover {
+    color: var(--text);
+}
+
+.inputBody {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 10px 12px 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    background: rgba(14, 16, 20, 0.88);
+}
+
+.composerStack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+}
+
+.composerRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    position: relative;
+    padding: 6px 8px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: rgba(24, 26, 32, 0.95);
+    box-shadow: var(--shadow-panel);
+}
+
+.composerInputWrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.composerEmojiAnchor {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.emojiToggle {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(32, 32, 32, 0.55);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.emojiToggle:hover {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.08);
+    color: var(--icons-hover);
+}
+
+.emojiToggle:active {
+    transform: translateY(1px);
+}
+
+.emojiToggleImg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.emojiPicker,
+.emojiPickerFloating {
+    width: min(292px, calc(100vw - 24px));
+    max-height: min(260px, 42vh);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(22, 22, 22, 0.96);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.emojiPicker {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    z-index: 40;
+}
+
+.emojiPickerFloating {
+    position: fixed;
+    z-index: 10070;
+}
+
+.emojiPickerScroll {
+    max-height: min(260px, 42vh);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 6px 10px;
+    box-sizing: border-box;
+}
+
+.emojiPickerSectionLabel {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--quite-text);
+    padding: 2px 4px 6px;
+}
+
+.emojiPickerSeparator {
+    height: 1px;
+    margin: 8px 2px 10px;
+    background: var(--border);
+    border: none;
+}
+
+.emojiPickerGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px 4px;
+    width: 100%;
+}
+
+.emojiPickerCell {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px 0;
+    border-radius: 8px;
+    color: inherit;
+    transition: background 120ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+}
+
+.emojiPickerImg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.emojiPickerCell:hover {
+    background: rgba(58, 168, 255, 0.12);
+}
+
+.emojiPickerCell:active {
+    background: rgba(58, 168, 255, 0.2);
+}
+
+.emojiPickerSentinel {
+    height: 2px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.composerReply {
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(32, 32, 32, 0.65);
+}
+
+.composerReplyMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.composerReplyLabel {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--quite-text);
+}
+
+.composerReplyCancel {
+    border: none;
+    background: transparent;
+    color: var(--quite-text);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.composerReplyCancel:hover {
+    color: var(--text);
+}
+
+.composerReplySnippet {
+    font-size: var(--text-sm);
+    color: var(--text);
+    line-height: 1.35;
+    max-height: 2.8em;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+.bubbleReply {
+    margin: 0 0 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border-left: 2px solid var(--accent);
+    background: rgba(0, 0, 0, 0.18);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    max-height: 3.8em;
+    overflow: hidden;
+}
+
+.bubbleMine .bubbleReply {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.bubbleReplyAuthor {
+    font-weight: 600;
+    color: var(--secondary-text);
+    margin-right: 6px;
+}
+
+.bubbleReplyText {
+    color: var(--quite-text);
+    white-space: pre-wrap;
+}
+
+.composerInput {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 36px;
+    max-height: 120px;
+    padding: 8px 10px;
+    font-size: var(--text-sm);
+    font-family: "Plus Jakarta Sans", "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+    line-height: 1.4;
+    color: var(--text);
+    outline: none;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    resize: none;
+    overflow-y: auto;
+}
+
+.composerInput::placeholder {
+    color: var(--quite-text);
+}
+
+.composerInput:focus {
+    border-color: rgba(58, 168, 255, 0.35);
+}
+
+.composerInput::selection {
+    background: var(--third-bg);
+    color: var(--quite-text);
+}
+
+.sendButton {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    font-size: 14px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--gradient-accent);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+        filter 160ms ease,
+        transform 160ms ease;
+}
+
+.sendIcon {
+    display: block;
+    flex-shrink: 0;
+    margin-left: 2px;
+    margin-top: 1px;
+}
+
+.sendButton:hover {
+    filter: brightness(1.08);
+}
+
+.sendButton:active {
+    transform: translateY(1px);
+}
+
+.voiceNote {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 6px 8px;
+    align-items: center;
+    width: 100%;
+    max-width: min(248px, 100%);
+    box-sizing: border-box;
+    padding: 5px 8px;
+    margin-top: 2px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.voiceNoteMine,
+.voiceNoteOther {
+    padding: 0;
+    margin-top: 0;
+    max-width: 100%;
+    border: 0;
+    background: transparent;
+}
+
+.voiceNoteComposer {
+    max-width: min(260px, 100%);
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 0;
+}
+
+.voiceNote.voiceNotePending {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    grid-template-columns: none;
+}
+
+.voiceNotePendingInner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    width: 100%;
+}
+
+.voiceNotePendingLabel {
+    font-size: 0.68rem;
+    color: var(--quite-text);
+    letter-spacing: 0.02em;
+}
+
+.voiceNoteAudioEl {
+    display: none;
+}
+
+.voiceNotePlay {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(58, 168, 255, 0.35);
+    background: rgba(58, 168, 255, 0.14);
+    color: rgba(230, 245, 255, 0.95);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 120ms ease;
+}
+
+.voiceNoteOther .voiceNotePlay {
+    border-color: var(--border);
+    background: rgba(40, 40, 40, 0.85);
+    color: var(--text);
+}
+
+.voiceNotePlay:hover {
+    border-color: rgba(46, 231, 255, 0.4);
+    background: rgba(58, 168, 255, 0.22);
+}
+
+.voiceNoteOther .voiceNotePlay:hover {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.1);
+}
+
+.voiceNotePlay:active {
+    transform: scale(0.96);
+}
+
+.voiceNotePlayGlyph {
+    display: block;
+}
+
+.voiceNotePlayGlyphPlay {
+    margin-left: 3px;
+}
+
+.voiceNoteTrackCol {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.voiceNoteTrack {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.voiceNoteTrack:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.voiceNoteTrackFill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    pointer-events: none;
+    transition: width 80ms linear;
+}
+
+.voiceNoteTimes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+    font-size: 0.65rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--quite-text);
+}
+
+.voiceNoteTimesSep {
+    opacity: 0.55;
+}
+
+.voiceNotePendingTrack {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    background-size: 180% 100%;
+    animation: voiceNoteShimmer 1.15s ease-in-out infinite;
+}
+
+@keyframes voiceNoteShimmer {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -80% 0;
+    }
+}
+
+.voiceNoteError {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: #e07070;
+}
+
+.voiceComposerBar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    padding: 2px 0 4px;
+}
+
+.voiceComposerBarPreview {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+}
+
+.voiceComposerPreviewRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.voiceComposerActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.voiceRecordingRow {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.voiceRecordingMeta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.voiceRecordingPulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e05050;
+    flex-shrink: 0;
+    animation: voiceRecordingPulseDot 1.1s ease-in-out infinite;
+}
+
+@keyframes voiceRecordingPulseDot {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.45;
+    }
+}
+
+.voiceRecordingTitle {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--quite-text);
+}
+
+.voiceRecordingTime {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 3.2em;
+}
+
+.voiceRecordingGrow {
+    flex: 1 1 12px;
+    min-width: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .voiceRecordingPulse {
+        animation: none;
+        opacity: 0.85;
+    }
+}
+
+.voiceRecordingBtnDone {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(58, 168, 255, 0.35);
+    background: rgba(58, 168, 255, 0.12);
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 140ms ease,
+        border-color 140ms ease,
+        transform 120ms ease;
+}
+
+.voiceRecordingBtnDone:hover {
+    background: rgba(58, 168, 255, 0.2);
+    border-color: rgba(46, 231, 255, 0.35);
+}
+
+.voiceRecordingBtnDone:active {
+    transform: translateY(1px);
+}
+
+.voiceRecordingBtnCancel {
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--quite-text);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition:
+        color 140ms ease,
+        background 140ms ease;
+}
+
+.voiceRecordingBtnCancel:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.micButton {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(32, 32, 32, 0.55);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.micButton:hover:not(:disabled) {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.08);
+    color: var(--icons-hover);
+}
+
+.micButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.micButtonGlyph {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: inherit;
+}
+
+.voiceBarButton {
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(36, 36, 36, 0.75);
+    color: var(--text);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.voiceBarButton:hover:not(:disabled) {
+    border-color: rgba(58, 168, 255, 0.3);
+}
+
+.voiceBarButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.voiceBarButtonPrimary {
+    border-color: rgba(58, 168, 255, 0.35);
+    background: rgba(58, 168, 255, 0.12);
+}
+
+.hiddenFileInput {
+    display: none;
+}
+
+.attachButton {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(32, 32, 32, 0.55);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.attachButton:hover:not(:disabled) {
+    border-color: rgba(58, 168, 255, 0.28);
+    background: rgba(58, 168, 255, 0.08);
+}
+
+.attachButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.attachButtonGlyph {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: inherit;
+}
+
+@media (max-width: 760px) {
+    .inputBody {
+        padding: 8px;
+    }
+
+    .composerRow {
+        display: grid;
+        grid-template-columns: 38px 38px 38px minmax(0, 1fr) 38px;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 8px 8px;
+    }
+
+    .composerInputWrap {
+        display: contents;
+    }
+
+    .composerInput {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        width: 100%;
+        min-height: 40px;
+        padding: 8px 4px;
+    }
+
+    .composerEmojiAnchor {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .attachButton {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .micButton {
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    .sendButton {
+        grid-column: 5;
+        grid-row: 2;
+        justify-self: end;
+    }
+}

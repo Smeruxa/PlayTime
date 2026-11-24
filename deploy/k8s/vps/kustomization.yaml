@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: playtime-vps
+resources:
+    - namespace.yaml
+    - service.yaml
+    - gateway.yaml
+    - domains.yaml
+configMapGenerator:
+    - name: playtime-vps-runtime
+      literals:
+          - NODE_ENV=production
+          - LISTEN_HOST=127.0.0.1
+          - PLAYTIME_SKIP_DOTENV=1
+          - PLAYTIME_AUTH_PORT=1511
+          - PLAYTIME_CHAT_PORT=1512
+          - PLAYTIME_ROOM_PORT=1513
+          - PLAYTIME_AUTH_URL=http://127.0.0.1:1511
+          - PLAYTIME_CHAT_URL=http://127.0.0.1:1512
+          - PLAYTIME_ROOM_URL=http://127.0.0.1:1513
+          - PG_POOL_MAX=2
+    - name: playtime-vps-gateway-defaults
+      literals:
+          - PORT=1503
+          - RELEASES_DIR=/app/apps/data/releases
+    - name: playtime-vps-chat-storage
+      literals:
+          - ATTACHMENT_STORAGE_DIR=/app/apps/data/attachments
+          - VOICE_STORAGE_DIR=/app/apps/data/voices
+    - name: playtime-vps-room-defaults
+      literals:
+          - SERVER_DENOISE_ENABLED=0

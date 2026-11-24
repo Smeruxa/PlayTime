@@ -1,0 +1,58 @@
+[
+    {
+        "file": "screenshots/01-conversations.png",
+        "description": "Диалоги и комнаты в одном списке",
+        "source": "e2e/artifacts/store-screens-2.0.16-final/001-01-conversations.png",
+        "captureBounds": [
+            0,
+            123,
+            1080,
+            2043
+        ],
+        "device": "Android API 36 emulator; 420 dpi; actual application viewport captured by native test driver",
+        "processing": "No scaling, retouching or generated UI. System bars excluded by measured capture bounds.",
+        "capturedAt": "2026-11-10T12:04:57.746721+00:00"
+    },
+    {
+        "file": "screenshots/02-chat.png",
+        "description": "Зашифрованная переписка, ответы и реакции",
+        "source": "e2e/artifacts/store-screens-2.0.16-final/002-02-chat.png",
+        "captureBounds": [
+            0,
+            123,
+            1080,
+            2043
+        ],
+        "device": "Android API 36 emulator; 420 dpi; actual application viewport captured by native test driver",
+        "processing": "No scaling, retouching or generated UI. System bars excluded by measured capture bounds.",
+        "capturedAt": "2026-11-10T12:05:01.023709+00:00"
+    },
+    {
+        "file": "screenshots/03-room.png",
+        "description": "Переписка компании в комнате",
+        "source": "e2e/artifacts/store-screens-2.0.16-final/003-03-room.png",
+        "captureBounds": [
+            0,
+            123,
+            1080,
+            2043
+        ],
+        "device": "Android API 36 emulator; 420 dpi; actual application viewport captured by native test driver",
+        "processing": "No scaling, retouching or generated UI. System bars excluded by measured capture bounds.",
+        "capturedAt": "2026-11-10T12:05:06.391736+00:00"
+    },
+    {
+        "file": "screenshots/04-profile.png",
+        "description": "Профиль и управление аккаунтом",
+        "source": "e2e/artifacts/store-screens-2.0.16-final/004-04-profile.png",
+        "captureBounds": [
+            0,
+            123,
+            1080,
+            2043
+        ],
+        "device": "Android API 36 emulator; 420 dpi; actual application viewport captured by native test driver",
+        "processing": "No scaling, retouching or generated UI. System bars excluded by measured capture bounds.",
+        "capturedAt": "2026-11-10T12:05:11.538217+00:00"
+    }
+]

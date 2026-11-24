@@ -1,0 +1,54 @@
+@import "../../colors.css";
+
+.content {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: radial-gradient(700px 400px at 50% 0%, rgba(58, 168, 255, 0.1), transparent 60%), var(--bg);
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: auto;
+    padding: 32px;
+    max-width: 480px;
+    text-align: center;
+}
+.emptyIcon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(58, 168, 255, 0.25);
+    border-radius: 20px;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+.empty h1 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+.empty p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--quite-text);
+}
+.emptyActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+.emptyActions button {
+    font-size: 12px;
+}

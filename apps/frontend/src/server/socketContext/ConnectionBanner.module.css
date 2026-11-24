@@ -1,0 +1,10 @@
+.banner {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-1);
+    color: var(--quite-text);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}

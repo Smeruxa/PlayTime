@@ -1,0 +1,58 @@
+@import "../../colors.css";
+
+.wrap {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+}
+
+.input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--text);
+    font: inherit;
+    font-size: var(--text-sm);
+    outline: none;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease;
+}
+
+.input::placeholder {
+    color: var(--quite-text);
+}
+
+.input:focus {
+    border-color: rgba(58, 168, 255, 0.4);
+    background: rgba(58, 168, 255, 0.06);
+}
+
+.sendBtn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--gradient-accent);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter var(--motion-fast) ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+    filter: brightness(1.08);
+}
+
+.sendBtn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}

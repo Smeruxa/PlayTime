@@ -1,0 +1,15 @@
+[Unit]
+Description=PlayTime Redis standby %i
+After=docker.service wg-quick@ptwg0.service
+Requires=docker.service wg-quick@ptwg0.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --pull=never --name playtime-standby-redis-%i --network host --read-only --cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges --memory 192m --memory-swap 192m --cpus 0.25 --pids-limit 32 --log-opt max-size=10m --log-opt max-file=2 --mount type=bind,src=/etc/playtime-standby-redis/%i.conf,dst=/run/playtime/redis.conf,readonly --mount type=bind,src=/srv/playtime-standby-redis/%i,dst=/data playtime/standby-redis:8.0.5
+ExecStop=/usr/bin/docker stop --time 10 playtime-standby-redis-%i
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

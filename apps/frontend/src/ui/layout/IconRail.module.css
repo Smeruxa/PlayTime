@@ -1,0 +1,79 @@
+@import "../../colors.css";
+
+.rail {
+    width: var(--rail-width);
+    min-width: var(--rail-width);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    gap: 8px;
+    background: rgba(14, 16, 20, 0.92);
+    border-right: 1px solid var(--border);
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+.activePill {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--gradient-accent);
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.navBtn {
+    position: relative;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--icons);
+    cursor: pointer;
+    transition:
+        color var(--motion-fast) ease,
+        transform var(--motion-fast) ease;
+}
+
+.navBtn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.navBtn:hover {
+    color: var(--icons-hover);
+    transform: scale(1.05);
+}
+
+.navBtnActive {
+    color: var(--text);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}

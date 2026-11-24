@@ -1,0 +1,66 @@
+.interactions {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: 44px;
+    height: 44px;
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 120ms ease;
+    font-size: 18px;
+    color: var(--icons);
+    background: rgba(32, 32, 32, 0.35);
+    cursor: pointer;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.iconWrapper:hover {
+    background-color: rgba(58, 168, 255, 0.1);
+    border-color: rgba(58, 168, 255, 0.25);
+    color: var(--icons-hover);
+}
+
+.endCall:hover {
+    background-color: rgba(255, 77, 77, 0.12);
+    border-color: rgba(255, 77, 77, 0.35);
+}
+
+.screenControl {
+    display: inline-flex;
+}
+.iconWrapper:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    background: rgba(32, 32, 32, 0.35);
+    border-color: var(--border);
+    color: var(--icons);
+}
+
+.iconWrapperActive {
+    background-color: rgba(58, 168, 255, 0.2);
+    border-color: rgba(58, 168, 255, 0.5);
+    color: var(--accent);
+}
+
+.icon {
+    padding: 3px;
+}
+
+.iconWrapper:active {
+    transform: translateY(1px);
+}

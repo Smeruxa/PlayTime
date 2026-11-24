@@ -1,0 +1,101 @@
+.ambient {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.ambient__base {
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+}
+
+.ambient__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    will-change: transform;
+}
+
+.ambient__orb--1 {
+    width: min(65vw, 720px);
+    height: min(65vw, 720px);
+    top: -18%;
+    left: -12%;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.1), transparent 70%);
+    animation: ambient-drift-1 28s ease-in-out infinite alternate;
+}
+
+.ambient__orb--2 {
+    width: min(50vw, 560px);
+    height: min(50vw, 560px);
+    top: 35%;
+    right: -15%;
+    background: radial-gradient(circle, rgba(58, 168, 255, 0.09), transparent 72%);
+    animation: ambient-drift-2 32s ease-in-out infinite alternate;
+}
+
+.ambient__orb--3 {
+    width: min(45vw, 480px);
+    height: min(45vw, 480px);
+    bottom: 5%;
+    left: 15%;
+    background: radial-gradient(circle, rgba(191, 90, 242, 0.06), transparent 74%);
+    animation: ambient-drift-3 26s ease-in-out infinite alternate;
+}
+
+.ambient__orb--4 {
+    width: min(38vw, 400px);
+    height: min(38vw, 400px);
+    bottom: 40%;
+    right: 8%;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.06), transparent 70%);
+    animation: ambient-drift-2 24s ease-in-out infinite alternate-reverse;
+}
+
+.ambient__beam {
+    display: none;
+}
+
+.ambient__spot {
+    display: none;
+}
+
+.ambient__vignette {
+    display: none;
+}
+
+@keyframes ambient-drift-1 {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(4%, 6%);
+    }
+}
+
+@keyframes ambient-drift-2 {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-5%, 4%);
+    }
+}
+
+@keyframes ambient-drift-3 {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(3%, -5%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ambient__orb {
+        animation: none;
+    }
+}

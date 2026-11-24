@@ -1,0 +1,255 @@
+{
+    "name": "playtime",
+    "version": "2.0.21",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "electron-updater": "^6.8.9",
+        "@noble/hashes": "1.8.0",
+        "semver": "~7.7.3"
+    },
+    "overrides": {
+        "glob@>=9 <=14.0.1": "^14.0.6",
+        "minimatch@>=7 <11.0.1": "^11.0.9"
+    },
+    "main": "apps/frontend/public/electron.js",
+    "homepage": "./",
+    "scripts": {
+        "react-start": "vite --host 127.0.0.1 --port 3000 --strictPort",
+        "react-build": "vite build",
+        "icons:generate": "node scripts/generate-app-icons.cjs",
+        "react-test": "jest",
+        "electron-start": "wait-on http://localhost:3000 && electron .",
+        "start": "concurrently \"npm run react-start\" \"npm run electron-start\"",
+        "build": "npm run react-build && electron .",
+        "dist": "npm run react-build && electron-builder",
+        "electron:mac": "node scripts/build-mac.cjs",
+        "electron:win": "rm -rf dist/win-unpacked dist/__uninstaller-nsis-playtime.exe && electron-builder --win nsis:x64 --publish never",
+        "electron:all": "npm run electron:mac && npm run electron:win",
+        "dist:mac": "npm run react-build && npm run electron:mac",
+        "dist:win": "npm run react-build && npm run electron:win",
+        "dist:all": "npm run react-build && npm run electron:all",
+        "lint": "eslint \"apps/frontend/src/**/*.{ts,tsx,js,jsx}\" \"apps/{auth-api,chat-api,room-api,gateway,shared,database}/**/*.ts\" \"apps/frontend/public/*.js\"",
+        "lint:fix": "npm run lint -- --fix",
+        "format": "prettier --write \"apps/frontend/src/**/*.{ts,tsx,js,jsx,css,scss,json,html,md}\" \"apps/{auth-api,chat-api,room-api,gateway,shared,database}/**/*.ts\" \"apps/frontend/public/*.{js,html,css}\" \"package.json\" \".eslintrc.cjs\" \".prettierrc.json\"",
+        "format:check": "prettier --check \"apps/frontend/src/**/*.{ts,tsx,js,jsx,css,scss,json,html,md}\" \"apps/{auth-api,chat-api,room-api,gateway,shared,database}/**/*.ts\" \"apps/frontend/public/*.{js,html,css}\" \"package.json\" \".eslintrc.cjs\" \".prettierrc.json\"",
+        "codecheck": "npm run lint && npx tsc --noEmit",
+        "deploy:backend": "python3 deploy_backend/cluster.py",
+        "deploy:gateway": "python3 deploy_backend/gateway-deploy.py",
+        "deploy:backend:legacy": "bash deploy_backend/upload.sh --legacy",
+        "admin:key": "node --import tsx -- apps/gateway/admin/configureAdminAccess.ts",
+        "release": "npx tsx scripts/release-app.ts",
+        "release:mac": "npx tsx scripts/release-app.ts --platform darwin",
+        "release:win": "npx tsx scripts/release-app.ts --platform win32",
+        "release:all": "npx tsx scripts/release-app.ts --platform all",
+        "publish:release": "npx tsx scripts/publish-release.ts",
+        "test:services": "node --test scripts/tests/services-gateway.integration.test.cjs scripts/tests/gateway-rollout.integration.test.cjs scripts/tests/auth-replica.integration.test.cjs",
+        "test:release": "node --import tsx --test scripts/lib/release.test.ts scripts/tests/app-update.test.cjs scripts/tests/release-policy.test.cjs",
+        "test:push": "node --import tsx --test scripts/tests/mobile-push.test.ts",
+        "test:push:integration": "node --test scripts/tests/mobile-push-integration.test.cjs",
+        "test:screen-capture": "node --test scripts/tests/screen-capture.test.cjs scripts/tests/screen-viewer.test.cjs",
+        "test:security": "node --import tsx --test --test-timeout=15000 scripts/tests/runtime-security.test.ts scripts/tests/security.test.cjs scripts/tests/voice-packet-security.test.ts scripts/tests/login-security.test.cjs scripts/tests/logout-security.test.cjs scripts/tests/peer-block-security.test.cjs scripts/tests/room-wrap-security.test.cjs",
+        "test:screen-share": "node scripts/test-screen-share.cjs",
+        "test:screen-viewer:playback": "node scripts/tests/screen-viewer-playback.cjs",
+        "test:account-security": "node --import tsx --test scripts/tests/key-backup.test.ts scripts/tests/admin-whitelist.test.ts scripts/tests/site-admin-auth.test.ts",
+        "test:admin-ui": "node scripts/test-admin-ui.cjs",
+        "test:account-recovery": "node --test scripts/tests/account-recovery.test.cjs",
+        "test:call:participants": "node scripts/tests/direct-call-participants-ui.cjs",
+        "test:chat:send": "node scripts/tests/chat-send-ui.cjs",
+        "test:direct-calls": "node --import tsx --test apps/room-api/socket/directCall/callStore.test.ts apps/room-api/socket/directCall/recovery.test.ts",
+        "web:dev": "vite --config vite.web.config.mts",
+        "web:build": "vite build --config vite.web.config.mts",
+        "web:preview": "vite preview --config vite.web.config.mts",
+        "build:web-site": "node scripts/build-web-site.cjs",
+        "test:web:server": "node --test scripts/tests/guest-auth.test.cjs scripts/tests/retryable-auth.test.cjs scripts/tests/email-code-races.test.cjs scripts/tests/web-delivery.test.cjs scripts/tests/smtp-transport.test.cjs",
+        "test:web:ui": "node scripts/tests/web-app-ui.cjs",
+        "test:web:landing": "node scripts/tests/web-landing-ui.cjs",
+        "test:web:platform": "node scripts/tests/web-platform-ui.cjs",
+        "test:web:keys": "node scripts/tests/web-key-vault.cjs",
+        "test:web:integration": "node --test scripts/tests/web-backend-integration.test.cjs",
+        "test:web:media": "node scripts/run-web-media.cjs",
+        "dev:services": "npm run dev:services --prefix apps",
+        "typecheck:services": "npm run typecheck --prefix apps"
+    },
+    "browserslist": {
+        "electron": [
+            "Chrome >= 130"
+        ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/core": "^7.28.0",
+        "@babel/preset-env": "^7.28.0",
+        "@babel/preset-react": "^7.28.0",
+        "@babel/preset-typescript": "^7.28.0",
+        "@testing-library/dom": "^10.4.1",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.2",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^22.19.17",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "@typescript-eslint/eslint-plugin": "^8.58.2",
+        "@typescript-eslint/parser": "^8.58.2",
+        "@vitejs/plugin-react": "^6.0.1",
+        "babel-jest": "^30.5.0",
+        "buffer": "^6.0.3",
+        "concurrently": "^9.2.1",
+        "cross-env": "^10.1.0",
+        "electron": "43.8.3",
+        "electron-builder": "^26.18.0",
+        "emoji-regex": "^10.6.0",
+        "esbuild": "^0.28.2",
+        "eslint": "^8.57.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react-hooks": "^7.0.0",
+        "eslint-plugin-security": "^4.0.0",
+        "framer-motion": "^12.38.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^30.5.0",
+        "jest-environment-jsdom": "^30.5.0",
+        "opusscript": "^0.1.1",
+        "playwright": "1.65.0",
+        "prettier": "^3.8.2",
+        "react": "^19.2.5",
+        "react-dom": "^19.2.5",
+        "react-icons": "^5.6.0",
+        "react-router-dom": "^7.14.0",
+        "sass": "^1.99.0",
+        "socket.io-client": "^4.8.3",
+        "tsx": "^4.22.4",
+        "tweetnacl": "^1.0.3",
+        "tweetnacl-util": "^0.15.1",
+        "typescript": "^5.9.3",
+        "vite": "^8.3.5",
+        "wait-on": "^9.0.5",
+        "web-vitals": "^5.2.0"
+    },
+    "build": {
+        "appId": "com.playtime",
+        "productName": "PlayTime",
+        "npmRebuild": false,
+        "nodeGypRebuild": false,
+        "buildDependenciesFromSource": false,
+        "afterPack": "scripts/prepare-mac-sign.cjs",
+        "directories": {
+            "buildResources": "assets",
+            "output": "dist"
+        },
+        "files": [
+            "build/**/*",
+            "apps/frontend/public/electron.js",
+            "apps/frontend/public/electron/**/*.js",
+            "apps/frontend/public/notify.html",
+            "apps/frontend/public/scrollbars.css",
+            "apps/frontend/public/notify-preload.js",
+            "apps/frontend/public/incoming-call-preload.js",
+            "apps/frontend/public/preload.js",
+            "apps/frontend/public/recorder-worklet.js",
+            "apps/frontend/public/screen-share-viewer.html",
+            "apps/frontend/public/screen-share-viewer-preload.js",
+            "package.json",
+            "apps/frontend/public/screen-share-viewer.css",
+            "apps/frontend/public/screen-share-viewer.js"
+        ],
+        "mac": {
+            "extendInfo": {
+                "NSAudioCaptureUsageDescription": "PlayTime передаёт звук компьютера участникам звонка, когда вы включаете звук демонстрации экрана.",
+                "NSMicrophoneUsageDescription": "PlayTime использует микрофон для звонков и голосовых сообщений."
+            },
+            "target": [
+                "dmg",
+                "zip"
+            ],
+            "defaultArch": "arm64",
+            "icon": "assets/icons/mac/icon.icns",
+            "category": "public.app-category.social-networking",
+            "sign": "scripts/sign-mac.cjs"
+        },
+        "win": {
+            "target": "nsis",
+            "icon": "assets/icons/win/icon.ico",
+            "artifactName": "PlayTime-${version}-Setup.${ext}",
+            "requestedExecutionLevel": "asInvoker"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "perMachine": true,
+            "allowElevation": true,
+            "installerLanguages": [
+                "ru",
+                "en"
+            ],
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "shortcutName": "PlayTime",
+            "differentialPackage": false
+        },
+        "publish": [
+            {
+                "provider": "generic",
+                "url": "https://smeruxa.ru/playtime/downloads/"
+            }
+        ],
+        "cscLink": null,
+        "cscKeyPassword": null,
+        "extends": null
+    },
+    "description": "Desktop app for talk",
+    "author": "Smeruxa",
+    "jest": {
+        "moduleNameMapper": {
+            "^react-router-dom$": "<rootDir>/node_modules/react-router-dom/dist/index.js",
+            "^react-router$": "<rootDir>/node_modules/react-router/dist/development/index.js",
+            "^react-router/dom$": "<rootDir>/node_modules/react-router/dist/development/dom-export.js",
+            "\\.(css|scss)$": "identity-obj-proxy",
+            "\\.(png|jpe?g|gif|webp|svg|woff2?|mp3|mp4)$": "<rootDir>/scripts/tests/fileMock.cjs"
+        },
+        "roots": [
+            "<rootDir>/apps/frontend/src"
+        ],
+        "testEnvironment": "jsdom",
+        "setupFilesAfterEnv": [
+            "<rootDir>/apps/frontend/src/setupTests.ts"
+        ],
+        "testMatch": [
+            "**/?(*.)+(test).[jt]s?(x)"
+        ],
+        "clearMocks": true,
+        "transform": {
+            "^.+\\.[jt]sx?$": [
+                "babel-jest",
+                {
+                    "presets": [
+                        [
+                            "@babel/preset-env",
+                            {
+                                "targets": {
+                                    "node": "current"
+                                }
+                            }
+                        ],
+                        [
+                            "@babel/preset-react",
+                            {
+                                "runtime": "automatic"
+                            }
+                        ],
+                        "@babel/preset-typescript"
+                    ]
+                }
+            ]
+        }
+    }
+}

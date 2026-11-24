@@ -1,0 +1,43 @@
+location = /playtime {
+    return 301 /playtime/;
+}
+
+location /playtime/auth/ {
+    limit_req zone=playtime_auth burst=12 nodelay;
+    limit_req_status 429;
+    proxy_pass http://127.0.0.1:1501;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+location /playtime/socket.io/ {
+    proxy_pass http://127.0.0.1:1501;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_buffering off;
+    proxy_read_timeout 86400;
+    proxy_send_timeout 86400;
+}
+
+location /playtime/ {
+    limit_req zone=playtime_api burst=80 nodelay;
+    client_max_body_size 14m;
+    proxy_pass http://127.0.0.1:1501;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 86400;
+    proxy_send_timeout 86400;
+}

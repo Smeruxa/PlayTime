@@ -1,0 +1,15 @@
+{
+    "password": "Совместимый пароль 🔐 2026",
+    "userId": 42,
+    "keys": {
+        "dm": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+        "room:17": "KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKio="
+    },
+    "backup": {
+        "format": "playtime-key-backup-v1",
+        "salt": "FBUWFxgZGhscHR4fICEiIw==",
+        "iv": "WltcXV5fYGFiY2Rl",
+        "ciphertext": "RKwoWwVGRjzZsMvScF/N6GpPUODz5x7Rnj/K4L8JOKlR3fS3KnqljWuyer3jBebEWIoX6VgINCo0E9D/z5WYC8NBqaB57YAG7GRLibc/wEV9mRaZaf83eKrcLGHGAMhY+zkKpXhO5IvOk8ZMu9o/4uDtjan1acGpM6/hsQQ2Y36fnGXwrc0pDGbKffo32IE+1Ucq"
+    },
+    "fingerprint": "630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd"
+}

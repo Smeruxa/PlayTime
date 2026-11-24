@@ -1,0 +1,47 @@
+.volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 0 0;
+    border: 1px solid #ffffff33;
+    border-radius: 8px;
+    background: #101216e6;
+    color: #fff;
+}
+
+.mute {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.mute:hover {
+    background: #3aa8ff66;
+}
+
+.volume input {
+    width: clamp(64px, 12vw, 120px);
+    margin: 0;
+    accent-color: #69b8f5;
+    cursor: pointer;
+}
+
+.volume output {
+    min-width: 4ch;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.volume :focus-visible {
+    outline: 2px solid #69b8f5;
+    outline-offset: 3px;
+}

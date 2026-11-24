@@ -1,0 +1,394 @@
+@import url("../../../colors.css");
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.volumeModalBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+    padding: 24px;
+}
+
+.screenShareModalBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10050;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 24px;
+}
+
+.volumeModalTitle {
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--text);
+}
+
+.screenShareModal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 280px;
+    max-width: 90vw;
+}
+
+@keyframes screenShareModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screenShareModalEnter {
+    animation: screenShareModalIn 0.28s ease;
+}
+
+.screenShareSourcesEnter {
+    animation: screenShareModalIn 0.26s ease 0.06s both;
+}
+.screenShareModalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.screenShareModalClose {
+    background: none;
+    border: none;
+    color: var(--quite-text);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+.screenShareModalClose:hover {
+    color: var(--text);
+}
+.screenShareModalHint {
+    font-size: 13px;
+    color: var(--quite-text);
+    margin: 0;
+}
+.screenShareModalError {
+    font-size: 13px;
+    color: #e55;
+    margin: 0;
+}
+.browserScreenOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    line-height: 1.55;
+}
+.screenShareModalBtn {
+    padding: 10px 16px;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+}
+.screenShareModalBtn:hover {
+    filter: brightness(1.1);
+}
+.screenShareSources {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+.screenShareSourceCard {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: rgba(32, 32, 32, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+.screenShareSourceCard:hover {
+    border-color: rgba(58, 168, 255, 0.4);
+    background: rgba(58, 168, 255, 0.08);
+}
+.screenShareThumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+.screenShareSourceName {
+    font-size: 12px;
+    padding: 8px 10px;
+    color: var(--text);
+    text-align: center;
+}
+
+.screenShareModalSkeleton {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 8px 0 12px;
+}
+
+.screenShareModalSkeletonCard {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: rgba(32, 32, 32, 0.55);
+}
+
+.screenShareModalSkeletonThumb {
+    height: 72px;
+    background: rgba(255, 255, 255, 0.08);
+    animation: screenShareSkelPulse 1.1s ease-in-out infinite;
+}
+
+.screenShareModalSkeletonLabel {
+    height: 11px;
+    margin: 8px 10px 10px;
+    border-radius: 5px;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: screenShareSkelPulse 1.1s ease-in-out infinite;
+    animation-delay: 0.08s;
+}
+
+@keyframes screenShareSkelPulse {
+    0%,
+    100% {
+        opacity: 0.35;
+    }
+    50% {
+        opacity: 0.75;
+    }
+}
+
+.screenShareBlock {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(20, 20, 20, 0.6);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.screenShareLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--quite-text);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.screenShareWrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.screenShareHoverZone {
+    position: relative;
+    width: 100%;
+}
+
+.screenShareMediaWrap {
+    opacity: 1;
+}
+
+.screenShareHoverZone .screenShareFrame {
+    width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 2px solid rgba(58, 168, 255, 0.35);
+    background: #0a0a0a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    display: block;
+}
+.screenShareOverlay {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+.screenShareHoverZone:hover .screenShareOverlay,
+.screenShareHoverZone:focus-within .screenShareOverlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+.screenShareOverlayBtn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+}
+.screenShareOverlayBtn:hover {
+    background: rgba(58, 168, 255, 0.4);
+    border-color: rgba(58, 168, 255, 0.6);
+}
+.screenShareSelector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding-top: 4px;
+}
+.screenShareSelectorBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background: rgba(32, 32, 32, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--quite-text);
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        border-color 0.15s,
+        color 0.15s;
+}
+.screenShareSelectorBtn:hover {
+    background: rgba(58, 168, 255, 0.12);
+    border-color: rgba(58, 168, 255, 0.3);
+    color: var(--text);
+}
+.screenShareSelectorBtnActive {
+    background: rgba(58, 168, 255, 0.25);
+    border-color: rgba(58, 168, 255, 0.5);
+    color: var(--text);
+}
+.screenShareFrame {
+    width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 2px solid rgba(58, 168, 255, 0.35);
+    background: #0a0a0a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.screenShareFrame:fullscreen,
+.screenShareFrame:-webkit-full-screen {
+    max-height: none;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    object-fit: contain;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: #000;
+}
+
+.screenShareWrap:fullscreen,
+.screenShareWrap:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 8px;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.screenShareWrap:fullscreen .screenShareHoverZone,
+.screenShareWrap:-webkit-full-screen .screenShareHoverZone {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screenShareWrap:fullscreen .screenShareFrame,
+.screenShareWrap:-webkit-full-screen .screenShareFrame {
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    flex: 1;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.screenShareWrap:fullscreen .screenShareMediaWrap,
+.screenShareWrap:-webkit-full-screen .screenShareMediaWrap {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.screenShareWrap:fullscreen .screenShareOverlay,
+.screenShareWrap:-webkit-full-screen .screenShareOverlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.audioError {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.audioError span {
+    flex: 1 1 220px;
+}
+
+.audioError button {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--secondary-bg);
+    color: var(--accent);
+    cursor: pointer;
+}

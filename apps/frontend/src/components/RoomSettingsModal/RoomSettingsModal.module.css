@@ -1,0 +1,156 @@
+@import url("../../colors.css");
+
+.panelWide {
+    width: min(480px, 100%);
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.section {
+    padding: 14px 14px 16px;
+    border: 1px solid rgba(58, 168, 255, 0.12);
+    border-radius: var(--radius-lg);
+    background: rgba(18, 20, 24, 0.45);
+}
+
+.sectionTitle {
+    margin: 0 0 4px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.sectionHint {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--quite-text);
+}
+
+.sectionHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.sectionHead .sectionTitle {
+    margin: 0;
+}
+
+.countBadge {
+    flex-shrink: 0;
+    min-width: 26px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
+    border: 1px solid rgba(58, 168, 255, 0.28);
+    background: var(--accent-soft);
+}
+
+.fullWidth {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.error {
+    margin: 8px 0 0;
+    font-size: var(--text-sm);
+    color: var(--error);
+}
+
+.muted {
+    margin: 0 0 10px;
+    font-size: var(--text-sm);
+    color: var(--quite-text);
+}
+
+.memberScroll {
+    max-height: 180px;
+    margin-bottom: 10px;
+}
+
+.memberList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.memberRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: rgba(12, 14, 18, 0.55);
+}
+
+.memberName {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--text-sm);
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.youTag {
+    color: var(--quite-text);
+    font-weight: 500;
+}
+
+.removeBtn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid rgba(255, 120, 100, 0.35);
+    border-radius: var(--radius-sm);
+    background: rgba(48, 28, 28, 0.35);
+    color: rgba(255, 200, 190, 0.95);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease;
+}
+
+.removeBtn:hover:not(:disabled) {
+    border-color: rgba(255, 150, 130, 0.5);
+    background: rgba(64, 32, 32, 0.5);
+}
+
+.removeBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dangerSection {
+    border-color: rgba(255, 120, 100, 0.22);
+    background: rgba(32, 18, 18, 0.35);
+}
+
+.dangerHint {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--quite-text);
+}
+
+.memberActions { display: grid; gap: 6px; padding: 8px 0; }

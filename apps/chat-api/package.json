@@ -1,0 +1,7 @@
+{
+    "name": "@playtime/chat-api",
+    "private": true,
+    "scripts": {
+        "start": "node --import tsx main.ts"
+    }
+}

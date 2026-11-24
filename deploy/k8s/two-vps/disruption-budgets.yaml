@@ -1,0 +1,47 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: playtime-auth
+    namespace: playtime
+spec:
+    minAvailable: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-auth-api
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: playtime-gateways
+    namespace: playtime
+spec:
+    minAvailable: 1
+    selector:
+        matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+                  - playtime-gateway
+                  - playtime-gateway-secondary
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: playtime-chat
+    namespace: playtime
+spec:
+    minAvailable: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-chat-api
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: playtime-room
+    namespace: playtime
+spec:
+    minAvailable: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-room-api

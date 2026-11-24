@@ -1,0 +1,104 @@
+.anchor {
+    position: relative;
+    z-index: 60;
+}
+.trigger {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(58, 168, 255, 0.35);
+    border-radius: var(--radius-md);
+    background: var(--accent-soft);
+    color: var(--accent);
+    cursor: pointer;
+}
+.trigger:hover {
+    background: rgba(58, 168, 255, 0.28);
+}
+.trigger:focus-visible,
+.close:focus-visible,
+.action:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+.badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: grid;
+    place-items: center;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #101216;
+    border-radius: 50%;
+    background: #ffce64;
+    color: #201a0c;
+    font-size: 11px;
+    font-weight: 800;
+}
+.tooltip {
+    position: absolute;
+    left: calc(100% + 12px);
+    bottom: 0;
+    width: 282px;
+    max-width: calc(100vw - 84px);
+    padding: 16px;
+    border: 1px solid #31576e;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #193345, #17242e);
+    color: #eef8ff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.tooltip strong {
+    display: block;
+    padding-right: 24px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+.tooltip p {
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #b8cbd8;
+}
+.close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #a9c2d3;
+    cursor: pointer;
+}
+.close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 34px;
+    margin-top: 13px;
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 8px;
+    background: #3aa8ff;
+    color: #08243a;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.action:hover {
+    background: #66bbff;
+}

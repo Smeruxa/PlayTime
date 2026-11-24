@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily PlayTime disaster recovery snapshot
+
+[Timer]
+OnCalendar=*-*-* 04:45:00 UTC
+RandomizedDelaySec=2min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

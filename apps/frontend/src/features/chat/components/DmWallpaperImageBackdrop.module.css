@@ -1,0 +1,21 @@
+.root {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+}
+
+.blurPlate {
+    position: absolute;
+    inset: -14%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.dimLayer {
+    position: absolute;
+    inset: 0;
+}

@@ -1,0 +1,175 @@
+@import url("../../../colors.css");
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.box {
+    width: min(440px, 100%);
+    max-height: min(86vh, 620px);
+    overflow: auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(22, 22, 26, 0.96);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    padding: 14px 16px 16px;
+    box-sizing: border-box;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.closeBtn {
+    border: 1px solid var(--border);
+    background: rgba(32, 32, 32, 0.55);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: var(--text-sm);
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    border-color: rgba(58, 168, 255, 0.3);
+    background: rgba(58, 168, 255, 0.08);
+}
+
+.hint {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    color: var(--quite-text);
+    line-height: 1.45;
+}
+
+.err {
+    margin: 0 0 10px;
+    font-size: 0.8125rem;
+    color: var(--error);
+}
+
+.presetGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.presetCard {
+    position: relative;
+    min-height: 72px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+        border-color 0.15s ease,
+        transform 0.12s ease;
+}
+
+.presetCard:hover:not(:disabled) {
+    border-color: rgba(58, 168, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+.presetCard:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+.presetLabel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.btnSecondary {
+    flex: 1 1 auto;
+    min-width: 120px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(58, 168, 255, 0.35);
+    background: rgba(58, 168, 255, 0.12);
+    color: var(--text);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnSecondary:hover:not(:disabled) {
+    background: rgba(58, 168, 255, 0.2);
+}
+
+.btnSecondary:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+.btnGhost {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(32, 32, 32, 0.45);
+    color: var(--quite-text);
+    font-size: var(--text-sm);
+    cursor: pointer;
+}
+
+.btnGhost:hover:not(:disabled) {
+    color: var(--text);
+    border-color: rgba(58, 168, 255, 0.25);
+}
+
+.hiddenFile {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.imagePreviewShell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 10px 0 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+    background-color: rgba(32, 32, 32, 0.55);
+    overflow: hidden;
+}

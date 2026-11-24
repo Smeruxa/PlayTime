@@ -1,0 +1,42 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 4px 4px 2px 4px;
+    gap: 6px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease;
+}
+
+.wrapper:hover {
+    background-color: rgba(58, 168, 255, 0.08);
+    border-color: rgba(58, 168, 255, 0.22);
+}
+
+.wrapper.active {
+    background-color: rgba(58, 168, 255, 0.1);
+    border-color: rgba(58, 168, 255, 0.22);
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    color: var(--quite-text);
+}
+
+.text {
+    font-size: var(--text-md);
+    font-weight: 500;
+}

@@ -1,0 +1,68 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: playtime-auth-ingress
+spec:
+    podSelector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-auth-api
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                              - playtime-gateway
+                              - playtime-chat-api
+          ports:
+              - protocol: TCP
+                port: 1511
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: playtime-chat-ingress
+spec:
+    podSelector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-chat-api
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                              - playtime-gateway
+                              - playtime-room-api
+          ports:
+              - protocol: TCP
+                port: 1512
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: playtime-room-ingress
+spec:
+    podSelector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-room-api
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                              - playtime-gateway
+                              - playtime-chat-api
+          ports:
+              - protocol: TCP
+                port: 1513

@@ -1,0 +1,176 @@
+@import url("../../../colors.css");
+
+@keyframes callSkelPulse {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+    50% {
+        opacity: 0.42;
+    }
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    max-width: min(520px, 100%);
+    margin: 0 auto;
+    gap: 8px 12px;
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    max-width: 112px;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+}
+
+.name {
+    width: 72%;
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.18);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+}
+
+.layout1 {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 140px;
+}
+
+.layout2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 280px;
+    column-gap: 20px;
+}
+
+.layout2Duo > :first-child {
+    justify-self: end;
+}
+
+.layout2Duo > :last-child {
+    justify-self: start;
+}
+
+.layout3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 280px;
+}
+
+.layout3 > :nth-child(1) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.layout4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 300px;
+}
+
+.layoutFlex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
+    max-width: 100%;
+}
+
+.layoutFlex > * {
+    flex: 0 1 108px;
+}
+
+.volumeRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 28px;
+}
+
+.volumeIcon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.volumeTrack {
+    flex: 1;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+}
+
+.volumeBadge {
+    width: 2rem;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.12);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.callState {
+    display: inline-block;
+    width: min(140px, 38vw);
+    height: 14px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.14);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+}
+
+.partyCaption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0 2px;
+}
+
+.partyCaptionLabel {
+    width: 88px;
+    height: 12px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.14);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.partyCaptionRoom {
+    flex: 1;
+    max-width: 160px;
+    height: 12px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: callSkelPulse 1.15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .avatar,
+    .name,
+    .volumeIcon,
+    .volumeTrack,
+    .volumeBadge,
+    .callState,
+    .partyCaptionLabel,
+    .partyCaptionRoom {
+        animation: none;
+        opacity: 0.28;
+    }
+}

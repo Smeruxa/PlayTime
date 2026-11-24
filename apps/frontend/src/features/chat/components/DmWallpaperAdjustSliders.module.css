@@ -1,0 +1,42 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+}
+
+.fieldHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.fieldLabel {
+    font-size: var(--text-sm);
+    color: var(--text);
+    font-weight: 500;
+}
+
+.fieldValue {
+    font-size: 0.75rem;
+    color: var(--quite-text);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+
+.fieldHint {
+    margin: 0;
+    font-size: 0.6875rem;
+    color: var(--quite-text);
+    line-height: 1.35;
+}

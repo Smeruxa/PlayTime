@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: playtime-migrate
+spec:
+    activeDeadlineSeconds: 600
+    backoffLimit: 2
+    template:
+        spec:
+            automountServiceAccountToken: false
+            enableServiceLinks: false
+            restartPolicy: Never
+            securityContext:
+                runAsNonRoot: true
+                runAsUser: 1000
+                runAsGroup: 1000
+                seccompProfile:
+                    type: RuntimeDefault
+            containers:
+                - name: migrate
+                  image: playtime-database:codex-local
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-postgres
+                      - secretRef:
+                            name: playtime-database
+                  securityContext:
+                      allowPrivilegeEscalation: false
+                      readOnlyRootFilesystem: true
+                      capabilities:
+                          drop:
+                              - ALL
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 128Mi
+                      limits:
+                          memory: 512Mi
+                  volumeMounts:
+                      - name: tmp
+                        mountPath: /tmp
+            volumes:
+                - name: tmp
+                  emptyDir:
+                      sizeLimit: 64Mi

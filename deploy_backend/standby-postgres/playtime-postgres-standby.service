@@ -1,0 +1,16 @@
+[Unit]
+Description=Read-only PostgreSQL standby for PlayTime
+After=docker.service wg-quick@ptwg0.service
+Requires=docker.service wg-quick@ptwg0.service
+ConditionPathExists=/srv/playtime-postgres-standby/data/standby.signal
+
+[Service]
+EnvironmentFile=/etc/playtime-postgres-standby/image.env
+ExecStart=/usr/bin/docker run --rm --name playtime-postgres-standby --network host --stop-signal SIGINT --read-only --cap-drop ALL --security-opt no-new-privileges --memory 384m --cpus 0.8 --tmpfs /tmp:rw,nosuid,nodev --mount type=bind,src=/srv/playtime-postgres-standby/data,dst=/var/lib/playtime-postgres --mount type=bind,src=/etc/playtime-postgres-standby/config,dst=/etc/playtime-postgres,readonly ${PLAYTIME_POSTGRES_STANDBY_IMAGE}
+ExecStop=/usr/bin/docker stop --time 35 playtime-postgres-standby
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=45s
+
+[Install]
+WantedBy=multi-user.target

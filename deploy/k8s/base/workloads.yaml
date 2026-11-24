@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-auth-api
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-auth-api
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-auth-api
+                app.kubernetes.io/part-of: playtime
+        spec:
+            containers:
+                - name: app
+                  image: playtime-auth-api:codex-local
+                  ports:
+                      - name: http
+                        containerPort: 1511
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-runtime
+                      - configMapRef:
+                            name: playtime-postgres
+                      - secretRef:
+                            name: playtime-auth
+                      - secretRef:
+                            name: playtime-redis
+                      - secretRef:
+                            name: playtime-transport
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-chat-api
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-chat-api
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-chat-api
+                app.kubernetes.io/part-of: playtime
+        spec:
+            containers:
+                - name: app
+                  image: playtime-chat-api:codex-local
+                  ports:
+                      - name: http
+                        containerPort: 1512
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-runtime
+                      - configMapRef:
+                            name: playtime-postgres
+                      - secretRef:
+                            name: playtime-chat
+                      - secretRef:
+                            name: playtime-redis
+                      - secretRef:
+                            name: playtime-transport
+                  env:
+                      - name: ATTACHMENT_STORAGE_DIR
+                        value: /app/apps/data/attachments
+                      - name: VOICE_STORAGE_DIR
+                        value: /app/apps/data/voice
+                  volumeMounts:
+                      - name: media
+                        mountPath: /app/apps/data
+            volumes:
+                - name: media
+                  persistentVolumeClaim:
+                      claimName: playtime-chat-media
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-room-api
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-room-api
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-room-api
+                app.kubernetes.io/part-of: playtime
+        spec:
+            containers:
+                - name: app
+                  image: playtime-room-api:codex-local
+                  ports:
+                      - name: http
+                        containerPort: 1513
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-runtime
+                      - secretRef:
+                            name: playtime-redis
+                      - secretRef:
+                            name: playtime-transport
+                      - secretRef:
+                            name: playtime-room
+                            optional: true
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: playtime-gateway
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: playtime-gateway
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: playtime-gateway
+                app.kubernetes.io/part-of: playtime
+        spec:
+            containers:
+                - name: app
+                  image: playtime-gateway:codex-local
+                  ports:
+                      - name: http
+                        containerPort: 1501
+                  envFrom:
+                      - configMapRef:
+                            name: playtime-runtime
+                      - configMapRef:
+                            name: playtime-postgres
+                      - configMapRef:
+                            name: playtime-gateway-settings
+                      - secretRef:
+                            name: playtime-gateway
+                      - secretRef:
+                            name: playtime-redis
+                      - secretRef:
+                            name: playtime-transport
+                  env:
+                      - name: RELEASES_DIR
+                        value: /app/apps/data/releases
+                  volumeMounts:
+                      - name: releases
+                        mountPath: /app/apps/data
+                  startupProbe:
+                      httpGet:
+                          path: /playtime/health
+                          port: http
+                      periodSeconds: 2
+                      failureThreshold: 45
+                  readinessProbe:
+                      httpGet:
+                          path: /readyz
+                          port: http
+                      periodSeconds: 5
+                  livenessProbe:
+                      httpGet:
+                          path: /playtime/health
+                          port: http
+                      periodSeconds: 10
+            volumes:
+                - name: releases
+                  persistentVolumeClaim:
+                      claimName: playtime-releases

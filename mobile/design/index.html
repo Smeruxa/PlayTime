@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlayTime Android · макеты</title>
+    <style>
+        :root { color-scheme: dark; --bg:#161616; --surface:#202020; --raised:#2a2a2a; --line:#3a3a3a; --text:#fdfdfd; --muted:#a6a6a6; --blue:#3aa8ff; --cyan:#2ee7ff; --blue-soft:#172d3e; }
+        * { box-sizing:border-box; }
+        body { margin:0; background:#101010; color:var(--text); font-family:Arial, sans-serif; }
+        header.board-header { max-width:1640px; margin:0 auto; padding:56px 40px 28px; }
+        .eyebrow { color:var(--blue); font-size:11px; letter-spacing:2px; font-weight:700; }
+        h1 { font-size:46px; letter-spacing:-2px; margin:14px 0; }
+        .description { max-width:760px; color:var(--muted); font-size:16px; line-height:1.6; }
+        .tokens { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+        .token { display:flex; align-items:center; gap:9px; font-size:12px; color:var(--muted); padding:9px 12px; background:var(--surface); border-radius:10px; }
+        .token i { display:block; height:18px; width:18px; border-radius:6px; }
+        .toolbar { display:flex; flex-wrap:wrap; gap:8px; padding:24px 40px; max-width:1640px; margin:auto; position:sticky; top:0; background:#101010f5; z-index:3; border-bottom:1px solid #242424; }
+        button { cursor:pointer; border:1px solid var(--line); color:var(--muted); background:var(--surface); border-radius:22px; padding:11px 17px; font-size:13px; }
+        button.active { background:var(--blue-soft); color:var(--blue); border-color:#29475d; }
+        .board { max-width:1680px; padding:32px 40px 60px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:40px 28px; align-items:start; }
+        article { min-width:0; }
+        article.hidden { display:none; }
+        .screen-label { display:flex; justify-content:space-between; margin:0 8px 14px; font-size:12px; color:var(--muted); }
+        .screen-label b { color:var(--text); font-size:14px; }
+        .phone { height:730px; border-radius:32px; border:1px solid #444; box-shadow:0 16px 50px #0005; background:var(--bg); overflow:hidden; position:relative; display:flex; flex-direction:column; max-width:390px; margin:auto; }
+        .status { height:34px; flex-shrink:0; padding:12px 20px 5px; display:flex; justify-content:space-between; align-items:center; font-size:10px; background:var(--bg); }
+        .system { height:26px; flex-shrink:0; display:flex; justify-content:center; align-items:center; gap:66px; background:var(--bg); color:#bbb; font-size:12px; }
+        .system span:nth-child(2) { font-size:17px; }
+        .content { flex:1; min-height:0; padding:19px; overflow:hidden; display:flex; flex-direction:column; gap:16px; }
+        .content.flush { padding:0; }
+        .titlebar { display:flex; align-items:center; gap:12px; }
+        .titlebar h2 { margin:0; font-size:27px; letter-spacing:-.8px; flex:1; }
+        .titlebar small { display:block; margin-top:5px; font-weight:400; font-size:11px; color:var(--muted); letter-spacing:0; }
+        .titlebar .action { color:var(--blue); font-size:26px; }
+        .dialog-actions { display:flex; align-items:center; }
+        .dialog-action { display:grid; place-items:center; width:48px; height:48px; color:var(--text); font-size:24px; }
+        .dialog-action:last-child { color:var(--blue); }
+        .back { font-size:25px; }
+        .brand { display:flex; gap:10px; align-items:center; font-size:21px; font-weight:700; }
+        .brandmark { height:35px; width:35px; background:var(--blue-soft); color:var(--blue); border-radius:12px; display:grid; place-items:center; }
+        .hero { margin-top:17px; }
+        .hero h2 { font-size:34px; line-height:1.12; letter-spacing:-1.2px; margin:13px 0; }
+        p { font-size:13px; line-height:1.5; color:var(--muted); margin:0; }
+        .field { display:grid; gap:7px; }
+        label { font-size:11px; font-weight:600; color:var(--muted); }
+        .input { min-height:45px; border:1px solid var(--line); background:var(--surface); border-radius:12px; padding:13px; font-size:13px; color:#ddd; display:flex; justify-content:space-between; }
+        .input.muted { color:#777; }
+        .input.large { min-height:75px; }
+        .primary,.secondary,.ghost,.danger { padding:13px 15px; border-radius:12px; text-align:center; font-size:13px; font-weight:700; }
+        .primary { background:var(--blue); color:#071c2d; }
+        .secondary { background:var(--raised); border:1px solid var(--line); }
+        .ghost { color:var(--muted); }
+        .danger { background:#3b2226; color:#ff7478; }
+        .spacer { flex:1; }
+        .search { background:var(--surface); padding:14px; border-radius:12px; color:#888; font-size:13px; }
+        .chips { display:flex; gap:8px; font-size:12px; }
+        .chip { padding:10px 13px; border-radius:20px; background:var(--surface); color:var(--muted); }
+        .chip.selected { background:var(--blue-soft); color:var(--blue); }
+        .row { display:flex; align-items:center; gap:12px; }
+        .row.spread { justify-content:space-between; }
+        .avatar { width:46px; height:46px; border-radius:50%; flex-shrink:0; background:#28465d; color:#e7edf9; font-weight:600; display:grid; place-items:center; position:relative; font-size:17px; }
+        .avatar.room { border-radius:14px; background:#235552; color:#9fe1d7; }
+        .avatar.online:after { content:''; position:absolute; width:8px; height:8px; background:#71d597; bottom:0; right:0; border:2px solid var(--bg); border-radius:50%; }
+        .avatar.large { width:80px; height:80px; font-size:29px; }
+        .avatar.effect { border:2px solid var(--cyan); box-shadow:0 0 18px #2ee7ff25; }
+        .person { flex:1; min-width:0; font-size:14px; font-weight:600; }
+        .person small { display:block; font-size:12px; line-height:1.4; font-weight:400; color:var(--muted); margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .time { font-size:10px; color:#888; }
+        .badge { background:var(--blue); color:#071c2d; border-radius:10px; padding:3px 6px; font-size:9px; }
+        .conversation { padding:8px 0; }
+        .tabs { display:flex; border-top:1px solid #303030; background:#1b1b1b; justify-content:space-around; padding:10px 3px; height:60px; font-size:9px; color:#999; flex-shrink:0; }
+        .tab { text-align:center; width:25%; }
+        .tab b { font-size:20px; display:block; margin-bottom:4px; font-weight:400; }
+        .tab.active { color:var(--blue); }
+        .tab.active b { border-radius:12px; background:var(--blue-soft); width:45px; margin:0 auto 4px; }
+        .card { padding:16px; background:var(--surface); border:1px solid #303030; border-radius:16px; display:flex; flex-direction:column; gap:13px; }
+        .card h3 { margin:0; font-size:16px; }
+        .card.blue { background:var(--blue-soft); border-color:#29475d; }
+        .rule { border-top:1px solid #333; }
+        .caption { color:var(--muted); font-size:10px; line-height:1.5; }
+        .section { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1.4px; }
+        .chat-header { padding:12px; display:flex; gap:10px; align-items:center; border-bottom:1px solid #303030; }
+        .chat-header .avatar { height:34px; width:34px; font-size:12px; }
+        .chat { flex:1; min-height:0; display:flex; flex-direction:column; padding:12px; gap:10px; }
+        .day { align-self:center; border-radius:12px; padding:5px 10px; background:var(--surface); font-size:10px; color:var(--muted); margin:8px 0; }
+        .bubble { background:var(--surface); border-radius:14px; padding:10px 12px; align-self:flex-start; max-width:88%; font-size:13px; line-height:1.4; }
+        .bubble.me { align-self:flex-end; background:#203b50; }
+        .bubble .meta { text-align:right; color:#a6a6a6; font-size:9px; margin-top:5px; }
+        .bubble .quote { font-size:10px; color:#aad9fc; border-left:2px solid var(--blue); padding:3px 0 5px 8px; margin-bottom:6px; }
+        .bubble strong { color:var(--blue); font-size:10px; display:block; margin-bottom:5px; }
+        .compose { padding:7px; display:flex; align-items:center; gap:10px; border-top:1px solid #333; font-size:20px; color:#aaa; }
+        .compose .input { flex:1; border:0; }
+        .compose .send { color:var(--blue); }
+        .keyboard { background:#25252b; padding:10px 5px; color:#ccc; font-size:14px; text-align:center; height:190px; line-height:38px; flex-shrink:0; letter-spacing:10px; }
+        .keyboard .space { margin:4px 30px; border-radius:8px; height:28px; background:#45454d; }
+        .notice { padding:12px; border-radius:12px; background:#332d20; color:#eac47b; font-size:11px; line-height:1.5; }
+        .notice.error { background:#3b2226; color:#ff7478; }
+        .notice.blue { background:var(--blue-soft); color:#acd8fb; }
+        .menu-row { display:flex; align-items:center; gap:12px; padding:7px 0; font-size:13px; min-height:44px; }
+        .menu-row i { width:34px; height:34px; background:var(--raised); border-radius:11px; display:grid; place-items:center; font-style:normal; color:var(--blue); }
+        .menu-row span { flex:1; }
+        .menu-row small { display:block; color:var(--muted); font-size:10px; margin-top:4px; }
+        .profile-cover { height:90px; border-radius:15px 15px 0 0; background:linear-gradient(145deg,#1c3440,#282344); margin:-16px -16px 0; }
+        .center { text-align:center; align-items:center; }
+        .call-orbit { border-radius:50%; width:154px; height:154px; border:1px solid #3aa8ff30; margin:26px auto; display:grid; place-items:center; box-shadow:0 0 0 20px #3aa8ff06,0 0 0 40px #3aa8ff03; }
+        .call-orbit .avatar { width:108px; height:108px; font-size:38px; }
+        .call-actions { display:flex; justify-content:space-around; text-align:center; font-size:10px; color:var(--muted); }
+        .call-actions b { display:grid; place-items:center; border-radius:19px; width:52px; height:52px; background:var(--surface); font-size:20px; color:var(--text); margin-bottom:8px; }
+        .end { background:#a73642; color:white; border-radius:28px; padding:16px; text-align:center; font-size:13px; }
+        .sheet { background:var(--surface); border-radius:24px 24px 0 0; padding:22px; display:flex; flex-direction:column; gap:17px; box-shadow:0 -25px 80px #0007; }
+        .sheet:before { content:''; width:34px; height:4px; border-radius:4px; background:#555; margin:-11px auto 4px; }
+        .phone-note { font-size:12px; color:#888; line-height:1.6; margin:14px 8px 0; min-height:40px; max-width:390px; }
+        .small { font-size:11px; }
+        .wave { color:var(--blue); letter-spacing:2px; }
+        .empty { display:grid; text-align:center; justify-items:center; gap:13px; padding:40px 10px; }
+        .empty-icon { width:66px; height:66px; border-radius:23px; background:var(--blue-soft); color:var(--blue); display:grid; place-items:center; font-size:28px; }
+        footer { max-width:1640px; margin:auto; padding:0 40px 50px; font-size:12px; color:#777; line-height:1.7; }
+        @media(max-width:720px) { header.board-header { padding:30px 20px 10px; } h1 { font-size:34px; }.toolbar{padding:20px}.board{padding:20px;grid-template-columns:1fr;}.phone{width:100%} }
+    </style>
+</head>
+<body>
+    <header class="board-header">
+        <div class="eyebrow">PLAYTIME / ANDROID / ДИЗАЙН И СОСТОЯНИЯ</div>
+        <h1>Ваш PlayTime. Теперь в кармане.</h1>
+        <p class="description">Макеты мобильной адаптации desktop-версии. Сохранены графитовые поверхности и голубой акцент; нижняя навигация, формы и действия рассчитаны на управление одной рукой. Все данные на этой странице — примеры для макетов.</p>
+        <div class="tokens">
+            <span class="token"><i style="background:#161616"></i>Фон #161616</span><span class="token"><i style="background:#202020"></i>Панель #202020</span><span class="token"><i style="background:#3aa8ff"></i>Акцент #3AA8FF</span><span class="token"><i style="background:#2ee7ff"></i>Свечение #2EE7FF</span><span class="token">Скругления 10 / 14 / 18 dp</span><span class="token">Цели касания ≥ 44 dp</span>
+        </div>
+    </header>
+    <nav class="toolbar" aria-label="Фильтр макетов">
+        <button class="active" data-filter="all">Все экраны</button><button data-filter="auth">Вход</button><button data-filter="chat">Переписка</button><button data-filter="social">Друзья и комнаты</button><button data-filter="profile">Профиль</button><button data-filter="account">Безопасность</button><button data-filter="call">Звонки</button><button data-filter="states">Ошибки и состояния</button>
+    </nav>
+    <main class="board" id="board"></main>
+    <footer>У каждого экрана зарезервированы отдельные зоны для статус-бара и системной навигации. В Android клавиатура меняет доступную высоту: поле ввода и кнопки остаются над ней. Макеты задают направление; фактические скриншоты и результаты прогонов хранятся отдельно в <code>e2e/artifacts</code>. Контрольный список: <a href="../docs/desktop-parity.md">desktop-parity.md</a>.</footer>
+    <script>
+        const tabs = (active = 'Чаты') => `<div class="tabs">${[['Чаты','▤'],['Друзья','♧'],['Комнаты','⌂'],['Вы','♙']].map(([name,icon]) => `<div class="tab ${active===name?'active':''}"><b>${icon}</b>${name}</div>`).join('')}</div>`;
+        const header = (title, subtitle='', action='') => `<div class="titlebar"><h2>${title}${subtitle?`<small>${subtitle}</small>`:''}</h2><span class="action">${action}</span></div>`;
+        const dialogsHeader = (searching=false) => header('Диалоги', '', `<span class="dialog-actions"><span class="dialog-action" aria-label="${searching?'Закрыть поиск':'Поиск'}">${searching?'×':'⌕'}</span><span class="dialog-action" aria-label="Новый диалог">+</span></span>`);
+        const field = (label,value='',extra='') => `<div class="field"><label>${label}</label><div class="input ${extra}">${value}</div></div>`;
+        const person = (name,preview,options='') => `<div class="row conversation"><div class="avatar ${options}">${name.slice(0,2).toUpperCase()}</div><div class="person">${name}<small>${preview}</small></div></div>`;
+        const menu = (icon,title,hint='') => `<div class="menu-row"><i>${icon}</i><span>${title}<small>${hint}</small></span>›</div>`;
+        const screens = [
+            { group:'auth', name:'Вход', id:'01', note:'Клавиатура не перекрывает форму. Пароль можно показать; сессия сохраняется в Android Keystore.', body:`<div class="content"><div class="brand"><div class="brandmark">▤</div>PlayTime</div><div class="hero"><div class="eyebrow">РАЗГОВОРЫ БЕЗ РАССТОЯНИЙ</div><h2>Свои люди.<br>Всегда рядом.</h2><p>Чаты, голос и ваши комнаты — теперь в кармане.</p></div>${field('Почта','you@example.com','muted')}${field('Пароль','•••••••• <span style="color:var(--blue)">Показать</span>')}<div class="primary">Войти</div><div class="ghost">Не помню пароль</div><div class="spacer"></div><p style="text-align:center">Ещё не с нами?</p><div class="secondary">Создать аккаунт</div><div class="caption" style="text-align:center">♧ Личные разговоры зашифрованы</div></div>` },
+            { group:'auth', name:'Регистрация / подтверждение', id:'02', note:'Проверка никнейма, пароля и согласия. Код и таймер повторной отправки доступны на отдельном шаге.', body:`<div class="content">${header('Начните с разговора.')}<p>Один аккаунт на компьютере и телефоне.</p>${field('Никнейм','Mika')}${field('Почта','mika@example.com')}${field('Пароль · 12–50 символов','••••••••••••')}${field('Повторите пароль','••••••••••••')}<p>☑ Принимаю соглашение и политику конфиденциальности</p><div class="primary">Создать аккаунт</div><div class="notice blue">Следующий шаг — код из письма.<br>10 символов · действует 15 минут.</div></div>` },
+            { group:'chat', name:'Диалоги', id:'03', note:'Диалоги и комнаты идут от последнего сообщения к более ранним. Лупа слева от плюса раскрывает поиск перед списком; непрочитанное отмечено в самих диалогах.', body:`<div class="content">${dialogsHeader()}${person('Nova','Увидимся вечером?','online')}${person('Orbit','Вы: Отлично, до встречи','online')}${person('Вечерний пати','Nova: Кто сегодня с нами?','room')}<div class="spacer"></div></div>${tabs()}` },
+            { group:'chat', name:'Чат / клавиатура', id:'04', note:'Поле сообщения закреплено над IME. Системная зона не пересекает отправку. Долгое нажатие открывает действия.', body:`<div class="content flush"><div class="chat-header"><span>‹</span><div class="avatar">NO</div><div class="person">Nova<small>В сети</small></div><span style="color:var(--blue)">☎</span><span>•••</span></div><div class="chat"><div class="day">Сегодня</div><div class="bubble">Есть время созвониться?<div class="meta">18:42</div></div><div class="bubble me">Да, как раз закончил работу.<div class="meta">18:43 ✓✓</div></div><div class="bubble"><div class="quote">Mika · Да, как раз закончил…</div>Тогда заглядывай в комнату 💙<div class="meta">18:43</div></div><div class="bubble me">Уже иду!<div class="meta">18:44 ✓✓</div></div><div class="spacer"></div></div><div class="compose">+<div class="input">Увидимся через минуту<span>☺</span></div><span class="send">➤</span></div><div class="keyboard">q w e r t y u i o p<br>a s d f g h j k l<br>⇧ z x c v b n m ⌫<div class="space"></div></div></div>` },
+            { group:'chat', name:'Вложения / действия сообщения', id:'05', note:'Голосовые, файлы и фото шифруются до отправки. Реакции, ответ, правка и удаление доступны из одного меню.', body:`<div class="content">${header('Nova','В сети','☎')}<div class="bubble">Послушай, что получилось<div class="meta">18:42</div></div><div class="bubble"><div class="row"><span style="color:var(--blue)">▶</span><span class="wave">▂▅▃▇▅▂▃▅▇▅▃▂</span></div><div class="meta">0:18 · 18:43</div></div><div class="bubble me">▧ &nbsp; notes.pdf <div class="caption">240 КБ · зашифровано</div><div class="meta">18:44 ✓</div></div><div class="spacer"></div></div><div class="sheet"><div class="row spread" style="font-size:23px">👍 ❤️ 😂 🔥 🎉 👀</div>${menu('↶','Ответить')}${menu('✎','Редактировать')}${menu('♧','Закрепить')}${menu('⌫','Удалить у всех')}</div>` },
+            { group:'social', name:'Друзья', id:'06', note:'Входящие и исходящие заявки отделены от списка друзей. Опасные действия подтверждаются.', body:`<div class="content">${header('Друзья','2 в сети · 8 всего')}<div class="card"><h3>Добавить друга</h3><p>Найдите друг друга по точному никнейму.</p><div class="input muted">Никнейм</div><div class="primary">Отправить заявку</div></div><div class="chips"><span class="chip">Друзья · 8</span><span class="chip selected">Заявки · 2</span></div><div class="section">Входящие</div><div class="card">${person('Luna','Хочет добавить вас')}<div class="row"><div class="primary" style="flex:1">Принять</div><div class="secondary" style="flex:1">Отклонить</div></div></div><div class="section">Отправленные</div>${person('Comet','Ждём ответа')}</div>${tabs('Друзья')}` },
+            { group:'social', name:'Комната / роли', id:'07', note:'Владелец управляет составом и правами. Модератор приглашает; передача владения и удаление требуют подтверждения.', body:`<div class="content">${header('Комната','Вечерний пати')}<div class="card">${field('Название','Вечерний пати')}<div class="secondary">Сохранить название</div></div><div class="row spread"><div class="section">Участники · 3</div><span style="color:var(--blue)">＋</span></div>${person('Mika','Владелец · вы')}${person('Nova','Модератор')}${person('Orbit','Участник')}<div class="secondary">Добавить участников</div><div class="spacer"></div><div class="danger">Удалить комнату</div></div>` },
+            { group:'profile', name:'Профиль / оформление', id:'08', note:'Предпросмотр перед сохранением. Аватар, баннер, эффекты и стикеры учитывают возможности текущего плана.', body:`<div class="content">${header('Ваш профиль')}<div class="chips"><span class="chip selected">Профиль</span><span class="chip">Оформление</span></div><div class="card"><div class="profile-cover"></div><div class="avatar large effect" style="margin-top:-48px">MI</div><h3>Mika</h3><p style="color:var(--blue)">На связи, когда вы рядом</p><p>Вечерние разговоры, музыка и немного игр.</p></div>${field('Статус','На связи, когда вы рядом')}${field('О себе','Вечерние разговоры, музыка и немного игр.','large')}<div class="primary">Сохранить изменения</div></div>` },
+            { group:'account', name:'Аккаунт и безопасность', id:'09', note:'Ключи хранятся отдельно от сессии. Выход не уничтожает историю; удаление аккаунта защищено отдельным подтверждением.', body:`<div class="content">${header('Аккаунт','Вход, устройства и переписка')}<div class="card">${menu('▣','Ваши устройства','Активные сессии и завершение входа')}${menu('↔','Переписка на другом устройстве','Одноразовый код переноса')}${menu('↓','Сохранить ключи','Зашифрованная резервная копия')}${menu('↑','Восстановить переписку','Импорт резервной копии')}</div><div class="card">${menu('♧','Изменить пароль','Подтвердите текущий пароль')}</div><div class="spacer"></div><div class="danger">Удалить аккаунт</div></div>` },
+            { group:'account', name:'Перенос ключей', id:'10', note:'Одноразовый секрет действует 5 минут. Получение ключей не создаёт новый аккаунт и не заменяет ключи молча.', body:`<div class="content">${header('Перенос переписки')}<p>Продолжите ваши разговоры с той же историей на другом устройстве.</p><div class="chips"><span class="chip selected">Передать</span><span class="chip">Получить</span></div><div class="card"><h3>Подключить устройство</h3><p>1. Создайте код на этом телефоне.</p><p>2. Войдите в тот же аккаунт на втором устройстве.</p><p>3. Вставьте код в разделе Получить.</p><div class="primary">Создать одноразовый код</div></div><div class="notice blue">Код виден только вам. Он используется один раз и действует 5 минут.</div><div class="spacer"></div><div class="caption">На новом устройстве отправка сообщений недоступна до восстановления существующих ключей.</div></div>` },
+            { group:'account', name:'Сессии / подтверждение', id:'11', note:'Текущая сессия помечена. Для завершения других сессий запрашивается код по почте, есть таймер и ошибки.', body:`<div class="content">${header('Ваши устройства')}<div class="card">${menu('▣','Этот Android','Текущее устройство')}${menu('▤','PlayTime macOS','Активность: сегодня, 18:42')}<div class="secondary">Завершить остальные сеансы</div></div><div class="card"><h3>Подтвердите действие</h3><p>Отправили код на m•••@example.com</p>${field('Код из письма','ABCDEF1234')}<div class="primary">Завершить сеанс</div><div class="caption">Повторная отправка через 42 секунды</div></div></div>` },
+            { group:'call', name:'Голосовой звонок', id:'12', note:'Звонок остаётся активным при навигации. Микрофон, маршрут звука, участники и демонстрация доступны крупными кнопками.', body:`<div class="content">${header('Разговор','Защищённое соединение','⌄')}<div class="call-orbit"><div class="avatar">NO</div></div><div class="center"><h2 style="margin:0 0 10px">Nova</h2><p>В звонке · 04:32</p><div class="caption" style="margin-top:8px;color:#71d597">● Соединение хорошее · 32 мс</div></div><div class="spacer"></div><div class="call-actions"><div><b>♩</b>Микрофон</div><div><b>◖</b>Динамик</div><div><b>▣</b>Экран</div><div><b>•••</b>Ещё</div></div><div class="end">Завершить звонок</div></div>` },
+            { group:'call', name:'Входящий звонок', id:'13', note:'Разрешение на микрофон запрашивается только после ответа. Отказ оставляет возможность переписки.', body:`<div class="content">${dialogsHeader()}${person('Nova','До встречи!','online')}${person('Orbit','Есть время?','online')}<div class="spacer"></div></div><div class="sheet center"><div class="eyebrow">ВХОДЯЩИЙ АУДИОЗВОНОК</div><div class="avatar large">NO</div><h2 style="margin:0">Nova</h2><p>Ответьте, чтобы подключиться к разговору.</p><div class="row" style="width:100%"><div class="danger" style="flex:1">Отклонить</div><div class="primary" style="flex:1">Ответить</div></div></div>` },
+            { group:'profile', name:'Настройки', id:'14', note:'Разрешения запрашиваются по действию. Системный выбор файла не требует доступа ко всей памяти телефона.', body:`<div class="content">${header('Настройки')}<div class="card"><h3>Звук</h3><p>Запишите несколько секунд и послушайте, как вас слышно.</p><div class="secondary">Проверить микрофон</div><div class="caption">Маршрут звука можно менять прямо во время звонка.</div></div><div class="card">${menu('♧','Уведомления','Сообщения и входящие звонки')}${menu('⚙','Разрешения Android','Микрофон и уведомления')}</div><div class="card">${menu('▤','Связаться с нами')}${menu('♧','Конфиденциальность')}${menu('▣','Условия использования')}</div></div>` },
+            { group:'states', name:'Сеть / пустой результат', id:'15', note:'Отключение сети не стирает сессию или черновик. Пустой поиск объясняет следующий шаг.', body:`<div class="notice" style="border-radius:0;text-align:center">Нет соединения · повторить</div><div class="content">${dialogsHeader(true)}<div class="search">⌕ &nbsp; lunar &nbsp; ×</div><div class="empty"><div class="empty-icon">⌕</div><h3 style="margin:0">Ничего не найдено</h3><p>Попробуйте другое имя или название.</p></div><div class="spacer"></div><div class="notice blue">Сессия сохранена. Продолжим после восстановления соединения.</div></div>${tabs()}` },
+            { group:'states', name:'Ключи / отказ разрешения', id:'16', note:'Без молчаливой замены идентичности и без повторяющихся системных запросов после постоянного отказа.', body:`<div class="content">${header('Nova','Не в сети','☎')}<div class="notice error">Восстановите прежние ключи, чтобы прочитать переписку, или явно начните с новым ключом.</div><div class="secondary">Восстановить переписку</div><div class="ghost">Начать с новым ключом</div><div class="caption">Новый ключ не откроет старые сообщения. Замена требует подтверждения.</div><div class="day">Сегодня</div><div class="bubble">🔒 Ключ переписки недоступен<div class="meta">18:43</div></div><div class="spacer"></div><div class="card"><h3>Микрофон отключён</h3><p>Разрешите доступ в настройках Android. Переписка доступна и без микрофона.</p><div class="row"><div class="ghost" style="flex:1">Не сейчас</div><div class="primary" style="flex:1">Настройки</div></div></div></div>` },
+        ];
+        document.getElementById('board').innerHTML = screens.map(screen => `<article data-group="${screen.group}"><div class="screen-label"><b>${screen.name}</b><span>${screen.id}</span></div><div class="phone"><div class="status"><span>9:41</span><span>● ▰ ▮</span></div>${screen.body}<div class="system"><span>◁</span><span>○</span><span>□</span></div></div><p class="phone-note">${screen.note}</p></article>`).join('');
+        document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+            document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button));
+            document.querySelectorAll('[data-group]').forEach(item => item.classList.toggle('hidden', button.dataset.filter !== 'all' && item.dataset.group !== button.dataset.filter));
+        }));
+    </script>
+</body>
+</html>

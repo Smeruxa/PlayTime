@@ -1,0 +1,380 @@
+.container {
+    --account-panel: #181b21;
+    --account-raised: #1e222a;
+    --account-field: #13161b;
+    --account-line: #2a303b;
+    --account-text: #f0f3f8;
+    --account-muted: #a1aaba;
+    --account-accent: #57bcff;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 26px 0 8px;
+    color: var(--account-text);
+}
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
+}
+.card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--account-line);
+    border-radius: 17px;
+    background: var(--account-panel);
+}
+.wide {
+    grid-column: 1/-1;
+}
+.cardHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 15px;
+}
+.title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+.hint,
+.description,
+.count {
+    color: var(--account-muted);
+    font-size: var(--text-xs);
+    line-height: 1.6;
+}
+.hint {
+    margin: 0;
+}
+.description {
+    margin: 7px 0 17px;
+}
+.count {
+    flex-shrink: 0;
+}
+.icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    color: var(--account-accent);
+    background: #182e40;
+}
+.icon svg,
+.button svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid var(--account-line);
+    border-radius: 10px;
+    background: var(--account-raised);
+    color: var(--account-text);
+    font: inherit;
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease;
+}
+.button:hover:not(:disabled) {
+    border-color: var(--account-accent);
+}
+.button:focus-visible,
+.switch button:focus-visible,
+.advanced summary:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+.primary {
+    color: #092033;
+    background: var(--account-accent);
+    border-color: var(--account-accent);
+    font-weight: 500;
+}
+.link {
+    padding: 5px 0;
+    border: 0;
+    background: transparent;
+    color: var(--account-accent);
+}
+.danger {
+    color: #f48289;
+}
+.passwordRow,
+.dangerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+.passwordRow .hint {
+    margin-top: 5px;
+}
+.dangerRow {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--account-line);
+}
+.dangerRow h2 {
+    margin: 0 0 3px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+.device {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+    padding: 3px 0;
+}
+.device:nth-child(even) {
+    border-left: 1px solid var(--account-line);
+    padding-left: 18px;
+}
+.deviceIcon {
+    display: grid;
+    place-items: center;
+    width: 41px;
+    height: 41px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: var(--account-raised);
+    color: var(--account-muted);
+}
+.deviceInfo {
+    flex: 1;
+    min-width: 0;
+}
+.deviceName {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+.badge {
+    padding: 3px 8px;
+    border-radius: 7px;
+    background: #182e40;
+    color: var(--account-accent);
+    font-size: 0.6875rem;
+    font-weight: 500;
+}
+.deviceDate {
+    margin-top: 3px;
+    color: var(--account-muted);
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+.sessionFooter {
+    margin-top: 16px;
+}
+.modal {
+    --account-panel: #181b21;
+    --account-raised: #1e222a;
+    --account-field: #13161b;
+    --account-line: #2a303b;
+    --account-text: #f0f3f8;
+    --account-muted: #a1aaba;
+    --account-accent: #57bcff;
+    --border: var(--account-line);
+    width: min(460px, 100%);
+    background: var(--account-panel);
+    color: var(--account-text);
+}
+.modal > div:first-child {
+    padding: 20px 22px 16px;
+}
+.modal > div:nth-child(2) {
+    padding: 18px 22px 20px;
+}
+.modal > div:nth-child(3) {
+    padding: 0 22px 20px;
+}
+.modalBody {
+    display: grid;
+    gap: 18px;
+}
+.form {
+    display: grid;
+    gap: 16px;
+}
+.label {
+    display: grid;
+    gap: 7px;
+    color: var(--account-muted);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+}
+.input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--account-line);
+    border-radius: 10px;
+    background: var(--account-field);
+    color: var(--account-text);
+    font: inherit;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+.input:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+.input:disabled {
+    opacity: 0.5;
+}
+.input::placeholder {
+    color: var(--account-muted);
+}
+.code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+}
+.switch {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--account-line);
+    border-radius: 11px;
+    background: var(--account-field);
+}
+.switch button {
+    flex: 1;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--account-muted);
+    font: inherit;
+    font-size: var(--text-xs);
+    cursor: pointer;
+}
+.switch button[aria-pressed="true"] {
+    background: var(--account-raised);
+    color: var(--account-text);
+}
+.steps {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--account-muted);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+}
+.steps li + li {
+    margin-top: 8px;
+}
+.advanced {
+    padding-top: 16px;
+    border-top: 1px solid var(--account-line);
+    color: var(--account-muted);
+    font-size: var(--text-xs);
+}
+.advanced summary {
+    cursor: pointer;
+}
+.advancedBody {
+    display: grid;
+    gap: 12px;
+    padding-top: 12px;
+}
+.fingerprint {
+    overflow-wrap: anywhere;
+    font-size: 0.75rem;
+}
+.message,
+.error {
+    margin: 0;
+    font-size: var(--text-xs);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+.message {
+    color: #7bcbaa;
+}
+.error {
+    color: #f48289;
+}
+.hold {
+    width: 100%;
+    height: 44px;
+    margin: 0;
+}
+@media (max-width: 900px) {
+    .devices {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .device:nth-child(even),
+    .device + .device {
+        padding: 14px 0 0;
+        border-left: 0;
+        border-top: 1px solid var(--account-line);
+    }
+}
+@media (max-width: 760px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .container {
+        padding-top: 20px;
+    }
+    .passwordRow,
+    .dangerRow {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+@media (max-width: 460px) {
+    .card {
+        padding: 16px;
+    }
+    .device {
+        flex-wrap: wrap;
+    }
+    .deviceInfo {
+        flex-basis: calc(100% - 54px);
+    }
+    .device > .button {
+        margin-left: 54px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}

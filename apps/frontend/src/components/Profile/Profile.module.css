@@ -1,0 +1,156 @@
+@import url("../../colors.css");
+
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(20, 20, 20, 0.65);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: 100%;
+    height: auto;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    padding: 8px 6px 8px 10px;
+}
+
+.identityHit {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 4px 6px;
+}
+
+.identityHit:hover:not(:disabled) {
+    background: rgba(58, 168, 255, 0.08);
+}
+
+.identityHitDisabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.avatarWrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: linear-gradient(135deg, rgba(58, 168, 255, 0.35), rgba(46, 231, 255, 0.25));
+    border: 1px solid rgba(46, 231, 255, 0.25);
+    overflow: visible;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.dockAvatarFx {
+    width: 100%;
+    height: 100%;
+}
+
+.circleImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    padding: 8px 10px 8px 4px;
+}
+
+.onlineCircle {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    z-index: 12;
+    background-color: #42f143;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(20, 20, 20, 0.92);
+    pointer-events: none;
+}
+
+.nickname {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 4px;
+    color: var(--text);
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 6px;
+    color: var(--icons);
+}
+
+.iconBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(32, 32, 32, 0.45);
+    color: inherit;
+    cursor: pointer;
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        transform 120ms ease;
+}
+
+.iconBtn:hover:not(:disabled) {
+    background-color: rgba(58, 168, 255, 0.12);
+    border-color: rgba(58, 168, 255, 0.28);
+    color: var(--icons-hover);
+}
+
+.iconBtn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.iconBtnDisabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+}
+
+.iconGlyph {
+    display: block;
+}

@@ -1,0 +1,8 @@
+.text {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(58, 168, 255, 0.65);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-skip-ink: auto;
+}

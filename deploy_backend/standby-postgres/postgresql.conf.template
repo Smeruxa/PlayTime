@@ -1,0 +1,12 @@
+listen_addresses = ''
+unix_socket_directories = '/tmp'
+unix_socket_permissions = 0700
+port = 15432
+hba_file = '/etc/playtime-postgres/pg_hba.conf'
+hot_standby = on
+primary_conninfo = 'host=${PLAYTIME_POSTGRES_PRIMARY} port=5432 user=playtime_replication passfile=/etc/playtime-postgres/primary.pgpass application_name=playtime-standby connect_timeout=5'
+primary_slot_name = 'playtime_standby'
+shared_buffers = '64MB'
+max_wal_size = '256MB'
+max_connections = 100
+max_worker_processes = 8

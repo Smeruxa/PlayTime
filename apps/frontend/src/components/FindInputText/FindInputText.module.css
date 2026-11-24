@@ -1,0 +1,113 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text);
+    background: rgba(32, 32, 32, 0.55);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    min-height: 44px;
+}
+
+.hiddenInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+.letterAnimTop,
+.letterAnimBottom {
+    display: inline-block;
+    opacity: 0;
+    transform-origin: center;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.letterAnimTop {
+    animation-name: dropTop;
+}
+
+.letterAnimBottom {
+    animation-name: dropBottom;
+}
+
+.blink {
+    margin-left: 1px;
+    animation: blink 0.5s infinite alternate;
+}
+
+.button {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid rgba(58, 168, 255, 0.22);
+    background: rgba(58, 168, 255, 0.1);
+    color: var(--text);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 120ms ease;
+}
+
+.button:hover {
+    background: rgba(58, 168, 255, 0.16);
+    border-color: rgba(46, 231, 255, 0.25);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+@keyframes blink {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dropTop {
+    from {
+        transform: translateY(-1em) rotateX(90deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes dropBottom {
+    from {
+        transform: translateY(1em) rotateX(-90deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+}

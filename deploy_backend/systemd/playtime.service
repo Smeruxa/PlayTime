@@ -1,0 +1,35 @@
+[Unit]
+Description=PlayTime API and signaling
+After=network.target postgresql.service redis-server.service
+StartLimitIntervalSec=120
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=playtime
+Group=playtime
+WorkingDirectory=/srv/playtime
+EnvironmentFile=/etc/playtime/runtime.env
+Environment=NODE_ENV=production
+Environment=PATH=/opt/playtime/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/opt/playtime/bin/node /srv/playtime/node_modules/tsx/dist/cli.mjs /srv/playtime/server.ts
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=20
+KillSignal=SIGTERM
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/srv/playtime/data
+CapabilityBoundingSet=
+RestrictSUIDSGID=true
+LockPersonality=true
+UMask=0077
+MemoryMax=700M
+TasksMax=128
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+@import "../../colors.css";
+
+.root {
+    padding: 20px 16px;
+    text-align: center;
+    color: var(--quite-text);
+}
+
+.title {
+    margin: 0 0 6px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.desc {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.4;
+}
+
+.action {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}

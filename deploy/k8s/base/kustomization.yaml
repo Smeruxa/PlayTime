@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: playtime
+resources:
+    - namespace.yaml
+    - services.yaml
+    - workloads.yaml
+    - storage.yaml
+    - internal-network.yaml
+configMapGenerator:
+    - name: playtime-runtime
+      literals:
+          - NODE_ENV=production
+          - LISTEN_HOST=0.0.0.0
+          - PLAYTIME_SKIP_DOTENV=1
+          - PLAYTIME_INTERNAL_NETWORK=1
+          - PLAYTIME_AUTH_URL=http://playtime-auth-api:1511
+          - PLAYTIME_CHAT_URL=http://playtime-chat-api:1512
+          - PLAYTIME_ROOM_URL=http://playtime-room-api:1513
+patches:
+    - path: runtime-patch.yaml
+      target:
+          group: apps
+          version: v1
+          kind: StatefulSet
+    - path: private-probes.yaml
+      target:
+          group: apps
+          version: v1
+          kind: StatefulSet
+          name: playtime-(auth|chat|room)-api

@@ -1,0 +1,17 @@
+port 0
+protected-mode yes
+bind-source-addr ${REDIS_STANDBY_HOST}
+daemonize no
+unixsocket /data/redis.sock
+unixsocketperm 700
+dir /data
+dbfilename dump.rdb
+save 300 1
+appendonly yes
+appendfsync everysec
+replica-read-only yes
+replica-serve-stale-data no
+replica-ignore-maxmemory yes
+replicaof ${REDIS_PRIMARY_HOST} ${REDIS_PRIMARY_PORT}
+masteruser ${REDIS_MASTER_USER}
+masterauth ${REDIS_MASTER_PASSWORD}

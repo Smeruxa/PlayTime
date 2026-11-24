@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:label="PlayTime UI Test Driver" android:allowBackup="false" />
+    <instrumentation
+        android:name="com.playtime.uidriver.HierarchyInstrumentation"
+        android:targetPackage="com.playtime.uidriver"
+        android:label="Read-only UI hierarchy for PlayTime E2E" />
+</manifest>

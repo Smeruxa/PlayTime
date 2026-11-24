@@ -1,0 +1,232 @@
+.page {
+    background: var(--bg);
+}
+.sheet {
+    background: rgb(16, 18, 22);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+.header {
+    background: transparent;
+    padding: 20px 26px;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+.scroll {
+    padding: 4px 28px 22px;
+}
+.container {
+    --profile-row-space: 26px;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+}
+.identity {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: var(--profile-row-space) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.avatarButton {
+    position: relative;
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+.avatarImage,
+.avatarInitial {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.avatarImage {
+    object-fit: cover;
+    display: block;
+}
+.avatarInitial {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, rgba(58, 168, 255, 0.35), rgba(46, 231, 255, 0.16));
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 500;
+}
+.camera {
+    position: absolute;
+    z-index: 4;
+    right: -2px;
+    bottom: -2px;
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgb(16, 18, 22);
+    border-radius: 50%;
+    background: var(--third-bg);
+    color: var(--quite-text);
+    transition: color var(--motion-fast) ease;
+}
+.avatarButton:hover .camera {
+    color: var(--text);
+}
+.avatarButton:focus-visible,
+.bannerButton:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+.identityText {
+    min-width: 0;
+    flex: 1;
+}
+.name {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+}
+.memberSince {
+    margin: 5px 0 0;
+    color: var(--quite-text);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+}
+.row {
+    display: grid;
+    grid-template-columns: minmax(140px, 185px) minmax(0, 1fr);
+    align-items: start;
+    gap: 30px;
+    padding: var(--profile-row-space) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.rowHeading {
+    padding-top: 9px;
+    min-width: 0;
+}
+.rowHeading label,
+.rowHeading h3 {
+    display: block;
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+}
+.rowHeading p {
+    margin: 5px 0 0;
+    color: var(--quite-text);
+    font-size: var(--text-xs);
+    line-height: 1.55;
+}
+.fieldGroup {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+.field {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text);
+    font: inherit;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    transition: border-color var(--motion-fast) ease;
+}
+.field::placeholder {
+    color: var(--quite-text);
+}
+.field:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-color: rgba(58, 168, 255, 0.4);
+}
+.textarea {
+    display: block;
+    min-height: 110px;
+    resize: vertical;
+}
+.counter {
+    color: var(--quite-text);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+}
+.bannerButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 0;
+    margin-top: 14px;
+    border: 0;
+    background: transparent;
+    color: var(--quite-text);
+    font: inherit;
+    font-size: var(--text-xs);
+    text-align: left;
+    cursor: pointer;
+}
+.bannerButton:hover {
+    color: var(--text);
+}
+.avatarButton:disabled,
+.bannerButton:disabled,
+.field:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+.previewFrame {
+    width: 100%;
+    max-width: var(--drawer-width);
+    padding: 12px 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgb(14, 16, 20);
+}
+.visibilityHint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 0;
+    color: var(--quite-text);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+}
+.visibilityHint svg {
+    flex-shrink: 0;
+}
+@media (max-width: 760px) {
+    .header {
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .scroll {
+        padding: 0 18px 20px;
+    }
+    .identity {
+        flex-wrap: wrap;
+    }
+    .row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .rowHeading {
+        padding-top: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .camera,
+    .field {
+        transition: none;
+    }
+}

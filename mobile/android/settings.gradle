@@ -1,0 +1,19 @@
+pluginManagement {
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+}
+plugins {
+    id("com.facebook.react.settings")
+}
+extensions.configure(com.facebook.react.ReactSettingsExtension) { extension ->
+    extension.autolinkLibrariesFromCommand()
+}
+rootProject.name = "PlayTime"
+include ":app"
+includeBuild("../node_modules/@react-native/gradle-plugin")
+
+if (providers.gradleProperty("includeE2eFixtures").getOrElse("false") == "true") {
+    include ":audio-fixture"
+    project(":audio-fixture").projectDir = file("../e2e/android-audio-fixture")
+    include ":ui-driver"
+    project(":ui-driver").projectDir = file("../e2e/android-ui-driver")
+}

@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "lib": ["ES2023", "DOM", "DOM.Iterable"],
+        "types": ["node", "jest", "react"]
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "../apps/frontend/src/global.d.ts"],
+    "exclude": ["node_modules", "android", "e2e"]
+}

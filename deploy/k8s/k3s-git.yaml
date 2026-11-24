@@ -1,0 +1,7 @@
+secrets-encryption: true
+write-kubeconfig-mode: "0600"
+disable:
+    - traefik
+    - servicelb
+    - metrics-server
+    - local-storage

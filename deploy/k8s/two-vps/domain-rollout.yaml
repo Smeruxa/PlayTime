@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: statefulset
+spec:
+    replicas: 2
+    minReadySeconds: 5
+    updateStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+            partition: 0
+    template:
+        spec:
+            terminationGracePeriodSeconds: 28
